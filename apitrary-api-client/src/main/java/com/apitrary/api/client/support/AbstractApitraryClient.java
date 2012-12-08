@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import com.apitrary.api.client.common.HttpStatus;
 import com.apitrary.api.client.common.Timer;
 import com.apitrary.api.client.exception.CommunicationErrorException;
+import com.apitrary.api.client.serialization.ResultSerializer;
 import com.apitrary.api.client.util.HttpMethodUtil;
 import com.apitrary.api.client.util.PathUtil;
 import com.apitrary.api.client.util.RequestUtil;
@@ -18,12 +19,16 @@ import com.apitrary.api.response.Response;
 public abstract class AbstractApitraryClient {
 	protected final Logger log = Logger.getLogger(this.getClass());
 
+	protected static final String apitraryUrl = "api.apitrary.com";
+	protected static final String protocol = "http://";
+	protected static final String apiAuthHeaderKey = "X-Api-Key";
+	
+	protected ResultSerializer resultSerializer = new ResultSerializer();
+	
 	protected <T> Response<T> dispatchByMethod(Request<T> request) {
 		HttpMethod method = HttpMethodUtil.retrieveMethod(request);
 
-		String target = getTargetUrl();
-
-		WebClient webClient = instantiateWebClient(target);
+		WebClient webClient = instantiateWebClient();
 
 		switch (method) {
 			case GET:
@@ -113,11 +118,7 @@ public abstract class AbstractApitraryClient {
 
 		HttpStatus status = HttpStatus.getStatus(cxfResponse.getStatus());
 
-		if (status.isError()) {
-			response = deserializeError(inputStream, request);
-		} else {
-			response = deserialize(inputStream, request);
-		}
+		response = deserialize(inputStream, request);
 
 		response.setStatusCode(status.getCode());
 		response.setResponseTime(timer.getDifference());
@@ -128,15 +129,12 @@ public abstract class AbstractApitraryClient {
 	protected <T> String inquirePath(Request<T> request) {
 		return PathUtil.resolveResourcePath(request);
 	}
+	
+	protected abstract <T> String inquireVHost();
 
 	protected abstract <T> Response<T> deserialize(String response, Request<T> request);
 
 	protected abstract <T> Response<T> deserialize(InputStream inputStream, Request<T> request);
 
-	protected abstract <T> Response<T> deserializeError(InputStream inputStream, Request<T> request);
-
-	protected abstract <T> Response<T> deserializeError(String response, Request<T> request);
-	
-	protected abstract String getTargetUrl();
-	protected abstract WebClient instantiateWebClient(String targeturl);
+	protected abstract WebClient instantiateWebClient();
 }

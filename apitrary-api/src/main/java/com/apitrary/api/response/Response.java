@@ -1,11 +1,10 @@
 package com.apitrary.api.response;
 
-import org.json.JSONObject;
-
+import com.google.gson.JsonObject;
 
 public abstract class Response<T>{
 
-	private JSONObject result;
+	protected JsonObject result;
 //	"result": {
 //    "a": "asd",
 //    "_createdAt": "08 Dec 2012 13:03:41 +0000",
@@ -14,15 +13,15 @@ public abstract class Response<T>{
 //    "_updatedAt": "08 Dec 2012 13:03:41 +0000"
 //},
 	
-	private String statusMessage;
-	private int statusCode;
-	private long responseTime;
+	protected String statusMessage;
+	protected int statusCode;
+	protected long responseTime;
 	
-	public JSONObject getResult() {
+	public JsonObject getResult() {
 		return result;
 	}
 
-	public void setResult(JSONObject result) {
+	public void setResult(JsonObject result) {
 		this.result = result;
 	}
 

@@ -1,19 +1,26 @@
 package com.apitrary.api.client;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 
+import javax.ws.rs.core.MediaType;
+
+import org.apache.cxf.configuration.jsse.TLSClientParameters;
+import org.apache.cxf.helpers.IOUtils;
 import org.apache.cxf.jaxrs.client.WebClient;
+import org.apache.cxf.transport.http.HTTPConduit;
+import org.apache.cxf.transports.http.configuration.HTTPClientPolicy;
 
 import com.apitrary.api.client.exception.CommunicationErrorException;
+import com.apitrary.api.client.exception.SerializationException;
 import com.apitrary.api.client.support.AbstractApitraryClient;
 import com.apitrary.api.client.util.RequestUtil;
 import com.apitrary.api.request.Request;
 import com.apitrary.api.response.Response;
 
-public class ApitraryClient extends AbstractApitraryClient{
+public class ApitraryClient extends AbstractApitraryClient {
 
-	private static String apiAuthHeaderKey = "X-Api-Key";
 	private ApitraryApi api;
 
 	private ApitraryClient(ApitraryApi api) {
@@ -41,43 +48,55 @@ public class ApitraryClient extends AbstractApitraryClient{
 		return map;
 	}
 
-	/////////////////////////////////////
+	protected <T> String inquireVHost() {
+		return protocol + api.getApiId() + "." + apitraryUrl;
+	}
+
 	@Override
 	protected <T> Response<T> deserialize(String response, Request<T> request) {
-		// TODO Auto-generated method stub
-		return null;
+		Response<T> target = RequestUtil.getInstanceOfParameterizedType(request);
+
+		try {
+			return resultSerializer.fromJSON(response, target);
+		} catch (SerializationException jse) {
+			return target;
+		}
 	}
 
 	@Override
-	protected <T> Response<T> deserialize(InputStream inputStream,
-			Request<T> request) {
-		// TODO Auto-generated method stub
-		return null;
+	protected <T> Response<T> deserialize(InputStream inputStream, Request<T> request) {
+		String content = null;
+		try {
+			content = IOUtils.readStringFromStream(inputStream);
+		} catch (IOException e) {
+			throw new SerializationException(e);
+		}
+
+		return deserialize(content, request);
+		
 	}
 
 	@Override
-	protected <T> Response<T> deserializeError(InputStream inputStream,
-			Request<T> request) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	protected WebClient instantiateWebClient() {
+		WebClient webClient = WebClient.create(inquireVHost());
+		webClient = webClient.accept(MediaType.APPLICATION_JSON);
+		webClient = webClient.header("apiAuthHeaderKey", api.getApiKey());
+		webClient = webClient.header("Content-Type", "application/json");
+		
+		HTTPConduit conduit = WebClient.getConfig(webClient).getHttpConduit();
+		TLSClientParameters params = conduit.getTlsClientParameters();
+		if (params == null) {
+			params = new TLSClientParameters();
+			conduit.setTlsClientParameters(params);
+		}
+		params.setDisableCNCheck(true);
 
-	@Override
-	protected <T> Response<T> deserializeError(String response,
-			Request<T> request) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected String getTargetUrl() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected WebClient instantiateWebClient(String targeturl) {
-		// TODO Auto-generated method stub
-		return null;
+		HTTPClientPolicy policy = new HTTPClientPolicy();
+		policy.setConnectionTimeout(600000);
+		policy.setReceiveTimeout(600000);
+		policy.setAllowChunking(false);
+		conduit.setClient(policy);
+		
+		return webClient;
 	}
 }

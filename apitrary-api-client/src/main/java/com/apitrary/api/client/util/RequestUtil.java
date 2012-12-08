@@ -9,7 +9,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.cxf.jaxrs.client.WebClient;
-import org.json.JSONObject;
 
 import com.apitrary.api.annotation.Body;
 import com.apitrary.api.annotation.Query;
@@ -18,6 +17,7 @@ import com.apitrary.api.client.exception.ValidationConstraintViolationException;
 import com.apitrary.api.client.exception.ValidationConstraintViolationException.ConstraintViolation;
 import com.apitrary.api.request.Request;
 import com.apitrary.api.response.Response;
+import com.google.gson.JsonObject;
 
 public class RequestUtil {
 
@@ -61,12 +61,12 @@ public class RequestUtil {
 	public static <T> String getRequestPayload(Request<T> request) {
 		Class<?> referenceClazz = request.getClass();
 		List<Field> fields = ClassUtil.getAnnotatedFields(referenceClazz, Body.class);
-		List<JSONObject> objects = new LinkedList<JSONObject>();
+		List<JsonObject> objects = new LinkedList<JsonObject>();
 		for (Field field : fields) {
 			Body body = field.getAnnotation(Body.class);
 
-			JSONObject jsonObject = ClassUtil.getValueOf(field, request, referenceClazz, JSONObject.class);
-			return (jsonObject!=null?jsonObject.toString():"");
+			String asString = ClassUtil.getValueOf(field, request, referenceClazz, String.class);
+			return (asString!=null?asString:"");
 //			objects.add(jsonObject);
 		}
 		return EMPTY;
