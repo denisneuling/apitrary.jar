@@ -80,7 +80,7 @@ public class ApitraryClient extends AbstractApitraryClient {
 	protected WebClient instantiateWebClient() {
 		WebClient webClient = WebClient.create(inquireVHost());
 		webClient = webClient.accept(MediaType.APPLICATION_JSON);
-		webClient = webClient.header("apiAuthHeaderKey", api.getApiKey());
+		webClient = webClient.header(apiAuthHeaderKey, api.getApiKey());
 		webClient = webClient.header("Content-Type", "application/json");
 		
 		HTTPConduit conduit = WebClient.getConfig(webClient).getHttpConduit();
