@@ -6,8 +6,13 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-public @interface Path {
+@Target(value = ElementType.FIELD)
+public @interface PathVariable {
 
+	/**
+	 * Defines the placeholder of the variable to set.
+	 * 
+	 * @return the placeholder of the variable to set.
+	 */
 	String value();
 }
