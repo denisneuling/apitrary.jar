@@ -6,6 +6,11 @@
 		<artifactId>apitrary-jar</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>apitrary-api</artifactId>
-	<name>${project.artifactId}</name>
+	<artifactId>apitrary-orm</artifactId>
+	<packaging>pom</packaging>
+	<name>orm</name>
+	<modules>
+		<module>apitrary-orm-core</module>
+		<module>apitrary-orm-annotations</module>
+	</modules>
 </project>

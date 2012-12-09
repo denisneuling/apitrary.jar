@@ -1,27 +1,17 @@
 package com.apitrary.api.response;
 
-import com.google.gson.JsonObject;
-
 public abstract class Response<T>{
 
-	protected JsonObject result;
-//	"result": {
-//    "a": "asd",
-//    "_createdAt": "08 Dec 2012 13:03:41 +0000",
-//    "c": "xcv",
-//    "b": "wer",
-//    "_updatedAt": "08 Dec 2012 13:03:41 +0000"
-//},
-	
+	protected String result;
 	protected String statusMessage;
 	protected int statusCode;
 	protected long responseTime;
 	
-	public JsonObject getResult() {
+	public String getResult() {
 		return result;
 	}
 
-	public void setResult(JsonObject result) {
+	public void setResult(String result) {
 		this.result = result;
 	}
 
@@ -47,5 +37,12 @@ public abstract class Response<T>{
 
 	public void setResponseTime(long responseTime) {
 		this.responseTime = responseTime;
+	}
+
+	@Override
+	public String toString() {
+		return "Response [result=" + result + ", statusMessage="
+				+ statusMessage + ", statusCode=" + statusCode
+				+ ", responseTime=" + responseTime + "]";
 	}
 }

@@ -2,7 +2,6 @@ package com.apitrary.api.client;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 
 import javax.ws.rs.core.MediaType;
 
@@ -22,6 +21,9 @@ import com.apitrary.api.response.Response;
 public class ApitraryClient extends AbstractApitraryClient {
 
 	private ApitraryApi api;
+	
+	private int connectionTimeOut = DEFAULTCONNECTIONTIMEOUT;
+	private int receiveTimeout = DEFAULTRECEIVETIMEOUT;
 
 	private ApitraryClient(ApitraryApi api) {
 		this.api = api;
@@ -38,16 +40,13 @@ public class ApitraryClient extends AbstractApitraryClient {
 		}
 		RequestUtil.validate(request);
 
+		@SuppressWarnings("unchecked")
 		T response = (T) dispatchByMethod(request);
+		
 		return response;
 	}
 
-	private HashMap<String, String> prepareHeader() {
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put(apiAuthHeaderKey, api.getApiKey());
-		return map;
-	}
-
+	@Override
 	protected <T> String inquireVHost() {
 		return protocol + api.getApiId() + "." + apitraryUrl;
 	}
@@ -55,12 +54,8 @@ public class ApitraryClient extends AbstractApitraryClient {
 	@Override
 	protected <T> Response<T> deserialize(String response, Request<T> request) {
 		Response<T> target = RequestUtil.getInstanceOfParameterizedType(request);
-
-		try {
-			return resultSerializer.fromJSON(response, target);
-		} catch (SerializationException jse) {
-			return target;
-		}
+		target.setResult(response);
+		return target;
 	}
 
 	@Override
@@ -71,9 +66,7 @@ public class ApitraryClient extends AbstractApitraryClient {
 		} catch (IOException e) {
 			throw new SerializationException(e);
 		}
-
 		return deserialize(content, request);
-		
 	}
 
 	@Override
@@ -81,7 +74,7 @@ public class ApitraryClient extends AbstractApitraryClient {
 		WebClient webClient = WebClient.create(inquireVHost());
 		webClient = webClient.accept(MediaType.APPLICATION_JSON);
 		webClient = webClient.header(apiAuthHeaderKey, api.getApiKey());
-		webClient = webClient.header("Content-Type", "application/json");
+		webClient = webClient.header("Content-Type", contentType);
 		
 		HTTPConduit conduit = WebClient.getConfig(webClient).getHttpConduit();
 		TLSClientParameters params = conduit.getTlsClientParameters();
@@ -92,11 +85,27 @@ public class ApitraryClient extends AbstractApitraryClient {
 		params.setDisableCNCheck(true);
 
 		HTTPClientPolicy policy = new HTTPClientPolicy();
-		policy.setConnectionTimeout(600000);
-		policy.setReceiveTimeout(600000);
+		policy.setConnectionTimeout(connectionTimeOut);
+		policy.setReceiveTimeout(receiveTimeout);
 		policy.setAllowChunking(false);
 		conduit.setClient(policy);
 		
 		return webClient;
+	}
+
+	public int getConnectionTimeOut() {
+		return connectionTimeOut;
+	}
+
+	public void setConnectionTimeOut(int connectionTimeOut) {
+		this.connectionTimeOut = connectionTimeOut;
+	}
+
+	public int getReceiveTimeout() {
+		return receiveTimeout;
+	}
+
+	public void setReceiveTimeout(int receiveTimeout) {
+		this.receiveTimeout = receiveTimeout;
 	}
 }

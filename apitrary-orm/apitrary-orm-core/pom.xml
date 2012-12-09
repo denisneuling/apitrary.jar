@@ -3,9 +3,17 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.apitrary</groupId>
-		<artifactId>apitrary-jar</artifactId>
+		<artifactId>apitrary-orm</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>apitrary-api</artifactId>
+	<artifactId>apitrary-orm-core</artifactId>
 	<name>${project.artifactId}</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.apitrary</groupId>
+			<artifactId>apitrary-jar</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 </project>

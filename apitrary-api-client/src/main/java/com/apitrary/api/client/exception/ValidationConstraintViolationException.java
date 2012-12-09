@@ -107,11 +107,6 @@ public class ValidationConstraintViolationException extends ClientException {
 			return new ConstraintViolation(hint, field);
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.lang.Object#toString()
-		 */
 		@Override
 		public String toString() {
 			return "\t" + hint + " " + field;

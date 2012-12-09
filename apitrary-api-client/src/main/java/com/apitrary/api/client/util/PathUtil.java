@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.apitrary.api.annotation.Default;
 import com.apitrary.api.annotation.Path;
 import com.apitrary.api.annotation.PathVariable;
 import com.apitrary.api.request.Request;
@@ -27,6 +28,8 @@ public class PathUtil {
 	 * @return a {@link java.lang.String} object.
 	 */
 	public static <T> String resolveResourcePath(Request<T> request) {
+		infixPotentialPathDefaults(request, request.getClass());
+		
 		Class<?> clazz = request.getClass();
 
 		String unresolvedPath = ClassUtil.getClassAnnotationValue(clazz, Path.class, "value", String.class);
@@ -61,6 +64,36 @@ public class PathUtil {
 			}
 		}
 
+		if(unresolvedPath.endsWith("/")){
+			unresolvedPath = unresolvedPath.substring(0, unresolvedPath.length()-1);
+		}
 		return unresolvedPath;
+	}
+	
+	private static <T> void infixPotentialPathDefaults(Request<T> request, Class<?> targetClazz) {
+		if (targetClazz == null) {
+			targetClazz = request.getClass();
+		}
+
+		Class<?> superClass = targetClazz.getSuperclass();
+		if (superClass != null && superClass.equals(Request.class)) {
+			infixPotentialPathDefaults(request, superClass);
+		}
+
+		Field[] declaredFields = targetClazz.getDeclaredFields();
+		for (Field property : declaredFields) {
+			Default defaultValue = property.getAnnotation(Default.class);
+			if (null != defaultValue) {
+				property.setAccessible(true);
+				try {
+					Object value = property.get(request);
+					if (value == null) {
+						property.set(request, defaultValue.value());
+					}
+				} catch (Exception e) {
+					throw new RuntimeException(e);
+				}
+			}
+		}
 	}
 }

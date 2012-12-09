@@ -7,12 +7,12 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<packaging>pom</packaging>
-	<name>apitrary-jar</name>
+	<name>${project.artifactId}</name>
 
 	<modules>
 		<module>apitrary-api</module>
 		<module>apitrary-api-client</module>
-		<module>apitrary-myapi</module>
+		<module>apitrary-orm</module>
 	</modules>
 
 	<properties>

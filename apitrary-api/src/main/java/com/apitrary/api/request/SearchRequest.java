@@ -1,5 +1,6 @@
 package com.apitrary.api.request;
 
+import com.apitrary.api.annotation.Default;
 import com.apitrary.api.annotation.Method;
 import com.apitrary.api.annotation.Path;
 import com.apitrary.api.annotation.PathVariable;
@@ -17,7 +18,7 @@ public class SearchRequest extends Request<SearchResponse>{
 	@PathVariable("${entity}")
 	private String entity;
 	
-	@Required
+	@Default
 	@PathVariable("${id}")
 	private String id;
 	

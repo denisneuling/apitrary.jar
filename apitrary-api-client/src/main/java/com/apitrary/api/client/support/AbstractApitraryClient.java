@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import com.apitrary.api.client.common.HttpStatus;
 import com.apitrary.api.client.common.Timer;
 import com.apitrary.api.client.exception.CommunicationErrorException;
-import com.apitrary.api.client.serialization.ResultSerializer;
 import com.apitrary.api.client.util.HttpMethodUtil;
 import com.apitrary.api.client.util.PathUtil;
 import com.apitrary.api.client.util.RequestUtil;
@@ -22,8 +21,10 @@ public abstract class AbstractApitraryClient {
 	protected static final String apitraryUrl = "api.apitrary.com";
 	protected static final String protocol = "http://";
 	protected static final String apiAuthHeaderKey = "X-Api-Key";
+	protected static final String contentType = "application/json";
 	
-	protected ResultSerializer resultSerializer = new ResultSerializer();
+	protected static final int DEFAULTCONNECTIONTIMEOUT = 60000;
+	protected static final int DEFAULTRECEIVETIMEOUT = 60000;
 	
 	protected <T> Response<T> dispatchByMethod(Request<T> request) {
 		HttpMethod method = HttpMethodUtil.retrieveMethod(request);
@@ -65,8 +66,11 @@ public abstract class AbstractApitraryClient {
 		webClient = webClient.path(inquirePath(request));
 		webClient = RequestUtil.resolveAndSetQueryPart(request, webClient);
 
+		String payload = RequestUtil.getRequestPayload(request);
+		log.debug(payload);
+		
 		Timer timer = Timer.tic();
-		javax.ws.rs.core.Response cxfResponse = webClient.post(RequestUtil.getRequestPayload(request));
+		javax.ws.rs.core.Response cxfResponse = webClient.post(payload);
 		timer.toc();
 
 		log.debug(cxfResponse.getStatus() + " " + webClient.getCurrentURI() + " took " + timer.getDifference() + "ms");
@@ -82,8 +86,11 @@ public abstract class AbstractApitraryClient {
 		webClient = webClient.path(inquirePath(request));
 		webClient = RequestUtil.resolveAndSetQueryPart(request, webClient);
 
+		String payload = RequestUtil.getRequestPayload(request);
+		log.debug(payload);
+		
 		Timer timer = Timer.tic();
-		javax.ws.rs.core.Response cxfResponse = webClient.put(RequestUtil.getRequestPayload(request));
+		javax.ws.rs.core.Response cxfResponse = webClient.put(payload);
 		timer.toc();
 
 		log.debug(cxfResponse.getStatus() + " " + webClient.getCurrentURI() + " took " + timer.getDifference() + "ms");
