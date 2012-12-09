@@ -31,7 +31,7 @@ import com.apitrary.api.response.UpdateResponse;
  * <p>ApitraryDaoSupport class.</p>
  *
  * @author Denis Neuling (denisneuling@gmail.com)
- * @version $Id: $Id
+ *
  */
 public class ApitraryDaoSupport extends AbstractApitraryDaoSupport {
 

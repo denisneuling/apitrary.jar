@@ -29,7 +29,7 @@ import com.apitrary.orm.annotations.Id;
  * <p>Abstract AbstractApitraryDaoSupport class.</p>
  *
  * @author Denis Neuling (denisneuling@gmail.com)
- * @version $Id: $Id
+ *
  */
 public abstract class AbstractApitraryDaoSupport {
 
