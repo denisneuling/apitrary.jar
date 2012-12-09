@@ -15,6 +15,10 @@
  */
 package com.apitrary.api.client.exception;
 
+/**
+ * 
+ * @author Denis Neuling (denisneuling@gmail.com)
+ */
 public class ClientException extends RuntimeException {
 	private static final long serialVersionUID = -3334422740923547404L;
 

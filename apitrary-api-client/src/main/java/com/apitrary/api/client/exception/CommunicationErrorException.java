@@ -17,6 +17,10 @@ package com.apitrary.api.client.exception;
 
 import com.apitrary.api.client.common.HttpStatus;
 
+/**
+ * 
+ * @author Denis Neuling (denisneuling@gmail.com)
+ */
 public class CommunicationErrorException extends ClientException {
 	private static final long serialVersionUID = 212232635139714702L;
 

@@ -22,6 +22,10 @@ import java.lang.annotation.Target;
 
 import com.apitrary.api.common.HttpMethod;
 
+/**
+ * 
+ * @author Denis Neuling (denisneuling@gmail.com)
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface Method {

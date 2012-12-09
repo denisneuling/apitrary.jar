@@ -22,6 +22,10 @@ import com.apitrary.api.annotation.Required;
 import com.apitrary.api.common.HttpMethod;
 import com.apitrary.api.response.DeleteResponse;
 
+/**
+ * 
+ * @author Denis Neuling (denisneuling@gmail.com)
+ */
 @Method(HttpMethod.DELETE)
 @Path("/${entity}/${id}")
 public class DeleteRequest extends Request<DeleteResponse>{

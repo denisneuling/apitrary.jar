@@ -33,6 +33,10 @@ import com.apitrary.api.client.util.RequestUtil;
 import com.apitrary.api.request.Request;
 import com.apitrary.api.response.Response;
 
+/**
+ * 
+ * @author Denis Neuling (denisneuling@gmail.com)
+ */
 public class ApitraryClient extends AbstractApitraryClient {
 
 	private ApitraryApi api;

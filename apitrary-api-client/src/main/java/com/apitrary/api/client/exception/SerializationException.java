@@ -17,6 +17,10 @@ package com.apitrary.api.client.exception;
 
 import com.apitrary.api.client.exception.ClientException;
 
+/**
+ * 
+ * @author Denis Neuling (denisneuling@gmail.com)
+ */
 public class SerializationException extends ClientException{
 	private static final long serialVersionUID = 1110855831203401596L;
 

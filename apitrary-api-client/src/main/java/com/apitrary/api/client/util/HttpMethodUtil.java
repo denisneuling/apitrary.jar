@@ -19,6 +19,10 @@ import com.apitrary.api.annotation.Method;
 import com.apitrary.api.common.HttpMethod;
 import com.apitrary.api.request.Request;
 
+/**
+ * 
+ * @author Denis Neuling (denisneuling@gmail.com)
+ */
 public class HttpMethodUtil {
 
 	public static <T> HttpMethod retrieveMethod(Request<T> request) {

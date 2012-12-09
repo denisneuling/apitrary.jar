@@ -15,6 +15,10 @@
  */
 package com.apitrary.api.response;
 
+/**
+ * 
+ * @author Denis Neuling (denisneuling@gmail.com)
+ */
 public abstract class Response<T>{
 
 	protected String result;

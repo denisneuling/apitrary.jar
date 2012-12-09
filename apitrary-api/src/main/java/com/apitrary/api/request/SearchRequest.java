@@ -24,8 +24,12 @@ import com.apitrary.api.annotation.Required;
 import com.apitrary.api.common.HttpMethod;
 import com.apitrary.api.response.SearchResponse;
 
+/**
+ * 
+ * @author Denis Neuling (denisneuling@gmail.com)
+ */
 @Method(HttpMethod.GET)
-@Path("/${entity}/${id}") /** a/id || a?q= **/
+@Path("/${entity}/${id}") /* a/id || a?q= */
 public class SearchRequest extends Request<SearchResponse>{
 	private static final long serialVersionUID = 7586680719718414828L;
 

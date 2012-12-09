@@ -15,6 +15,10 @@
  */
 package com.apitrary.api.client.common;
 
+/**
+ * 
+ * @author Denis Neuling (denisneuling@gmail.com)
+ */
 public enum HttpStatus {
 
 	Unknown(0), Unassigned_1(1), Unassigned_2(2), Unassigned_3(3), Unassigned_4(4), Unassigned_5(5), Unassigned_6(6), Unassigned_7(7), Unassigned_8(8), Unassigned_9(9), Unassigned_10(10), Unassigned_11(11), Unassigned_12(12), Unassigned_13(13), Unassigned_14(14), Unassigned_15(15), Unassigned_16(16), Unassigned_17(

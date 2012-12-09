@@ -23,6 +23,10 @@ import com.apitrary.api.annotation.Required;
 import com.apitrary.api.common.HttpMethod;
 import com.apitrary.api.response.UpdateResponse;
 
+/**
+ * 
+ * @author Denis Neuling (denisneuling@gmail.com)
+ */
 @Method(HttpMethod.PUT)
 @Path("/${entity}/${id}")
 public class UpdateRequest extends Request<UpdateResponse>{

@@ -15,6 +15,10 @@
  */
 package com.apitrary.api.common;
 
+/**
+ * 
+ * @author Denis Neuling (denisneuling@gmail.com)
+ */
 public enum HttpMethod {
 
 	/**

@@ -17,6 +17,10 @@ package com.apitrary.api.client.util;
 
 import java.util.Arrays;
 
+/**
+ * 
+ * @author Denis Neuling (denisneuling@gmail.com)
+ */
 public class ArrayUtil {
 
 	public static <T> T[] concat(T[] first, T[] second) {

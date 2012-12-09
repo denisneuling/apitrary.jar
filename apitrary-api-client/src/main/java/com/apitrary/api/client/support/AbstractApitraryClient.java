@@ -30,6 +30,10 @@ import com.apitrary.api.common.HttpMethod;
 import com.apitrary.api.request.Request;
 import com.apitrary.api.response.Response;
 
+/**
+ * 
+ * @author Denis Neuling (denisneuling@gmail.com)
+ */
 public abstract class AbstractApitraryClient {
 	protected final Logger log = Logger.getLogger(this.getClass());
 

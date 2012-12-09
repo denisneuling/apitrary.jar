@@ -15,6 +15,10 @@
  */
 package com.apitrary.api.client;
 
+/**
+ * 
+ * @author Denis Neuling (denisneuling@gmail.com)
+ */
 public class ApitraryApi {
 
 	private String apiId;

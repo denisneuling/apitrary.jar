@@ -27,6 +27,10 @@ import com.apitrary.api.annotation.Path;
 import com.apitrary.api.annotation.PathVariable;
 import com.apitrary.api.request.Request;
 
+/**
+ * 
+ * @author Denis Neuling (denisneuling@gmail.com)
+ */
 public class PathUtil {
 
 	private static final String PATTERN = "\\$\\{(.*?)*\\}(.*?)";

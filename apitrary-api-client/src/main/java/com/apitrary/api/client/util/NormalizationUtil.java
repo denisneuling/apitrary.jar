@@ -19,6 +19,10 @@ import com.apitrary.api.annotation.Normalized;
 import com.apitrary.api.response.Response;
 import com.apitrary.api.response.normalized.Normalizer;
 
+/**
+ * 
+ * @author Denis Neuling (denisneuling@gmail.com)
+ */
 public class NormalizationUtil {
 
 	@SuppressWarnings("unchecked")

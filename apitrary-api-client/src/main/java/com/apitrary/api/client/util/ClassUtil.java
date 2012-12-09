@@ -20,6 +20,10 @@ import java.lang.reflect.Field;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * 
+ * @author Denis Neuling (denisneuling@gmail.com)
+ */
 public class ClassUtil {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
