@@ -8,7 +8,8 @@
 	</parent>
 	<artifactId>apitrary-orm</artifactId>
 	<packaging>pom</packaging>
-	<name>orm</name>
+	<name>${project.artifactId}</name>
+	
 	<modules>
 		<module>apitrary-orm-core</module>
 		<module>apitrary-orm-annotations</module>

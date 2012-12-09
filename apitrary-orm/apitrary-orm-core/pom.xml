@@ -12,7 +12,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.apitrary</groupId>
-			<artifactId>apitrary-jar</artifactId>
+			<artifactId>apitrary-api-client</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
