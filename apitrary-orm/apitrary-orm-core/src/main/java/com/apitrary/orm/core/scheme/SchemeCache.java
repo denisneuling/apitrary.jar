@@ -16,8 +16,10 @@
 package com.apitrary.orm.core.scheme;
 
 /**
- * 
+ * <p>SchemeCache class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
+ * @version $Id: $Id
  */
 public class SchemeCache {
 

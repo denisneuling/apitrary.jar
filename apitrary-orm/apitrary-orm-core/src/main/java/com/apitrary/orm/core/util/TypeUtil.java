@@ -21,8 +21,10 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
- * 
+ * <p>TypeUtil class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
+ * @version $Id: $Id
  */
 public class TypeUtil {
 

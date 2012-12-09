@@ -26,13 +26,22 @@ import com.apitrary.orm.annotations.Entity;
 import com.apitrary.orm.annotations.Id;
 
 /**
- * 
+ * <p>Abstract AbstractApitraryDaoSupport class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
+ * @version $Id: $Id
  */
 public abstract class AbstractApitraryDaoSupport {
 
 	protected SchemeCache schemeCache = new SchemeCache();
 	
+	/**
+	 * <p>resolveApitraryEntity.</p>
+	 *
+	 * @param entity a T object.
+	 * @param <T> a T object.
+	 * @return a {@link java.lang.String} object.
+	 */
 	protected <T> String resolveApitraryEntity(T entity){
 		String entityName = ClassUtil.getClassAnnotationValue(entity.getClass(), Entity.class, "value", String.class);
 		if(entityName==null){
@@ -42,6 +51,13 @@ public abstract class AbstractApitraryDaoSupport {
 		return entityName;
 	}
 	
+	/**
+	 * <p>resolveApitraryEntityId.</p>
+	 *
+	 * @param entity a T object.
+	 * @param <T> a T object.
+	 * @return a {@link java.lang.String} object.
+	 */
 	protected <T> String resolveApitraryEntityId(T entity){
 		List<java.lang.reflect.Field> fields = ClassUtil.getAnnotatedFields(entity.getClass(), Id.class);
 		if(fields.isEmpty()){
@@ -59,16 +75,39 @@ public abstract class AbstractApitraryDaoSupport {
 		return id;
 	}
 	
+	/**
+	 * <p>dump.</p>
+	 *
+	 * @param entity a T object.
+	 * @param <T> a T object.
+	 * @return a {@link java.lang.String} object.
+	 */
 	protected <T> String dump(T entity){
 		// TODO implement
 		return "{}";
 	}
 	
+	/**
+	 * <p>map.</p>
+	 *
+	 * @param entity a T object.
+	 * @param result a {@link java.lang.String} object.
+	 * @param <T> a T object.
+	 * @return a T object.
+	 */
 	protected <T> T map(T entity, String result){
 		// TODO implement
 		return entity;
 	}
 	
+	/**
+	 * <p>map.</p>
+	 *
+	 * @param entity a {@link java.lang.Class} object.
+	 * @param result a {@link java.lang.String} object.
+	 * @param <T> a T object.
+	 * @return a T object.
+	 */
 	protected <T> T map(Class<T> entity, String result){
 		// TODO implement
 		return null;

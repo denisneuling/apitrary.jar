@@ -28,24 +28,46 @@ import com.apitrary.api.response.SearchResponse;
 import com.apitrary.api.response.UpdateResponse;
 
 /**
- * 
+ * <p>ApitraryDaoSupport class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
+ * @version $Id: $Id
  */
 public class ApitraryDaoSupport extends AbstractApitraryDaoSupport {
 
 	protected ApitraryClient apitraryClient;
 
+	/**
+	 * <p>Constructor for ApitraryDaoSupport.</p>
+	 */
 	public ApitraryDaoSupport() {
 	}
 
+	/**
+	 * <p>Getter for the field <code>apitraryClient</code>.</p>
+	 *
+	 * @return a {@link com.apitrary.api.client.ApitraryClient} object.
+	 */
 	public ApitraryClient getApitraryClient() {
 		return apitraryClient;
 	}
 
+	/**
+	 * <p>Setter for the field <code>apitraryClient</code>.</p>
+	 *
+	 * @param apitraryClient a {@link com.apitrary.api.client.ApitraryClient} object.
+	 */
 	public void setApitraryClient(ApitraryClient apitraryClient) {
 		this.apitraryClient = apitraryClient;
 	}
 
+	/**
+	 * <p>save.</p>
+	 *
+	 * @param entity a T object.
+	 * @param <T> a T object.
+	 * @return a T object.
+	 */
 	public <T> T save(T entity) {
 
 		AddRequest request = new AddRequest();
@@ -59,6 +81,13 @@ public class ApitraryDaoSupport extends AbstractApitraryDaoSupport {
 		return this.map(entity, response.getResult());
 	}
 
+	/**
+	 * <p>update.</p>
+	 *
+	 * @param entity a T object.
+	 * @param <T> a T object.
+	 * @return a T object.
+	 */
 	public <T> T update(T entity) {
 
 		UpdateRequest request = new UpdateRequest();
@@ -74,6 +103,12 @@ public class ApitraryDaoSupport extends AbstractApitraryDaoSupport {
 		return this.map(entity, response.getResult());
 	}
 
+	/**
+	 * <p>delete.</p>
+	 *
+	 * @param entity a T object.
+	 * @param <T> a T object.
+	 */
 	public <T> void delete(T entity) {
 
 		DeleteRequest request = new DeleteRequest();
@@ -88,6 +123,13 @@ public class ApitraryDaoSupport extends AbstractApitraryDaoSupport {
 		response.getResult();
 	}
 
+	/**
+	 * <p>refresh.</p>
+	 *
+	 * @param entity a T object.
+	 * @param <T> a T object.
+	 * @return a T object.
+	 */
 	public <T> T refresh(T entity) {
 
 		SearchRequest request = new SearchRequest();
@@ -103,6 +145,14 @@ public class ApitraryDaoSupport extends AbstractApitraryDaoSupport {
 		return entity;
 	}
 
+	/**
+	 * <p>loadById.</p>
+	 *
+	 * @param id a {@link java.lang.String} object.
+	 * @param entity a {@link java.lang.Class} object.
+	 * @param <T> a T object.
+	 * @return a T object.
+	 */
 	public <T> T loadById(String id, Class<T> entity) {
 
 		SearchRequest request = new SearchRequest();
@@ -116,6 +166,14 @@ public class ApitraryDaoSupport extends AbstractApitraryDaoSupport {
 		return this.map(entity, response.getResult());
 	}
 
+	/**
+	 * <p>find.</p>
+	 *
+	 * @param riakQuery a {@link java.lang.String} object.
+	 * @param entity a {@link java.lang.Class} object.
+	 * @param <T> a T object.
+	 * @return a {@link java.util.List} object.
+	 */
 	@SuppressWarnings("unchecked")
 	public <T> List<T> find(String riakQuery, Class<T> entity) {
 

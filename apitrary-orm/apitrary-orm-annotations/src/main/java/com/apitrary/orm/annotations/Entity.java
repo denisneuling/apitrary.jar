@@ -21,8 +21,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 
+ * <p>Entity class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
+ * @version $Id: $Id
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
