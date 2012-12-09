@@ -1,6 +1,6 @@
 # apitrary.jar
 
-Maven parent project, which contains the Java [apitrary Backend as a Service](https://www.apitrary.com/) client and orm modules.
+Maven parent project, which contains the Java [apitrary Backend as a Service](http://apitrary.com/) client and orm modules.
 
 ### Requirements
 ---
