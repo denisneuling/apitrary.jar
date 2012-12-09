@@ -34,8 +34,10 @@ import com.apitrary.api.request.Request;
 import com.apitrary.api.response.Response;
 
 /**
- * 
+ * <p>ApitraryClient class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
+ *
  */
 public class ApitraryClient extends AbstractApitraryClient {
 
@@ -48,10 +50,23 @@ public class ApitraryClient extends AbstractApitraryClient {
 		this.api = api;
 	}
 
+	/**
+	 * <p>connectTo.</p>
+	 *
+	 * @param api a {@link com.apitrary.api.client.ApitraryApi} object.
+	 * @return a {@link com.apitrary.api.client.ApitraryClient} object.
+	 */
 	public static ApitraryClient connectTo(ApitraryApi api) {
 		return new ApitraryClient(api);
 	}
 
+	/**
+	 * <p>send.</p>
+	 *
+	 * @param request a {@link com.apitrary.api.request.Request} object.
+	 * @param <T> a T object.
+	 * @return a T object.
+	 */
 	public <T> T send(Request<T> request) {
 
 		if (request == null) {
@@ -65,11 +80,13 @@ public class ApitraryClient extends AbstractApitraryClient {
 		return response;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	protected <T> String inquireVHost() {
 		return protocol + api.getApiId() + "." + apitraryUrl;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	protected <T> Response<T> deserialize(String response, Request<T> request) {
 		Response<T> target = RequestUtil.getInstanceOfParameterizedType(request);
@@ -77,6 +94,7 @@ public class ApitraryClient extends AbstractApitraryClient {
 		return target;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	protected <T> Response<T> deserialize(InputStream inputStream, Request<T> request) {
 		String content = null;
@@ -88,6 +106,7 @@ public class ApitraryClient extends AbstractApitraryClient {
 		return deserialize(content, request);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	protected WebClient instantiateWebClient() {
 		WebClient webClient = WebClient.create(inquireVHost());
@@ -112,18 +131,38 @@ public class ApitraryClient extends AbstractApitraryClient {
 		return webClient;
 	}
 
+	/**
+	 * <p>Getter for the field <code>connectionTimeOut</code>.</p>
+	 *
+	 * @return a int.
+	 */
 	public int getConnectionTimeOut() {
 		return connectionTimeOut;
 	}
 
+	/**
+	 * <p>Setter for the field <code>connectionTimeOut</code>.</p>
+	 *
+	 * @param connectionTimeOut a int.
+	 */
 	public void setConnectionTimeOut(int connectionTimeOut) {
 		this.connectionTimeOut = connectionTimeOut;
 	}
 
+	/**
+	 * <p>Getter for the field <code>receiveTimeout</code>.</p>
+	 *
+	 * @return a int.
+	 */
 	public int getReceiveTimeout() {
 		return receiveTimeout;
 	}
 
+	/**
+	 * <p>Setter for the field <code>receiveTimeout</code>.</p>
+	 *
+	 * @param receiveTimeout a int.
+	 */
 	public void setReceiveTimeout(int receiveTimeout) {
 		this.receiveTimeout = receiveTimeout;
 	}

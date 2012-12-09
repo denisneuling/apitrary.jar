@@ -28,13 +28,22 @@ import com.apitrary.api.annotation.PathVariable;
 import com.apitrary.api.request.Request;
 
 /**
- * 
+ * <p>PathUtil class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
+ *
  */
 public class PathUtil {
 
 	private static final String PATTERN = "\\$\\{(.*?)*\\}(.*?)";
 
+	/**
+	 * <p>resolveResourcePath.</p>
+	 *
+	 * @param request a {@link com.apitrary.api.request.Request} object.
+	 * @param <T> a T object.
+	 * @return a {@link java.lang.String} object.
+	 */
 	public static <T> String resolveResourcePath(Request<T> request) {
 		infixPotentialPathDefaults(request, request.getClass());
 		

@@ -24,8 +24,10 @@ import com.apitrary.api.common.HttpMethod;
 import com.apitrary.api.response.AddResponse;
 
 /**
- * 
+ * <p>AddRequest class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
+ *
  */
 @Method(HttpMethod.POST)
 @Path("/${entity}")
@@ -39,21 +41,44 @@ public class AddRequest extends Request<AddResponse>{
 	@Body
 	private String requestPayload;
 	
+	/**
+	 * <p>Constructor for AddRequest.</p>
+	 */
 	public AddRequest(){
 	}
 
+	/**
+	 * <p>Getter for the field <code>entity</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getEntity() {
 		return entity;
 	}
 
+	/**
+	 * <p>Setter for the field <code>entity</code>.</p>
+	 *
+	 * @param entity a {@link java.lang.String} object.
+	 */
 	public void setEntity(String entity) {
 		this.entity = entity;
 	}
 
+	/**
+	 * <p>Getter for the field <code>requestPayload</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getRequestPayload() {
 		return requestPayload;
 	}
 	
+	/**
+	 * <p>Setter for the field <code>requestPayload</code>.</p>
+	 *
+	 * @param requestPayload a {@link java.lang.String} object.
+	 */
 	public void setRequestPayload(String requestPayload) {
 		this.requestPayload = requestPayload;
 	}

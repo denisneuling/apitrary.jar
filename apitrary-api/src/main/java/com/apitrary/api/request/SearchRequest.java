@@ -25,8 +25,10 @@ import com.apitrary.api.common.HttpMethod;
 import com.apitrary.api.response.SearchResponse;
 
 /**
- * 
+ * <p>SearchRequest class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
+ *
  */
 @Method(HttpMethod.GET)
 @Path("/${entity}/${id}") /* a/id || a?q= */
@@ -44,29 +46,62 @@ public class SearchRequest extends Request<SearchResponse>{
 	@Query("q")
 	private String query;
 	
+	/**
+	 * <p>Constructor for SearchRequest.</p>
+	 */
 	public SearchRequest(){
 	}
 
+	/**
+	 * <p>Getter for the field <code>entity</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getEntity() {
 		return entity;
 	}
 
+	/**
+	 * <p>Setter for the field <code>entity</code>.</p>
+	 *
+	 * @param entity a {@link java.lang.String} object.
+	 */
 	public void setEntity(String entity) {
 		this.entity = entity;
 	}
 
+	/**
+	 * <p>Getter for the field <code>query</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getQuery() {
 		return query;
 	}
 
+	/**
+	 * <p>Setter for the field <code>query</code>.</p>
+	 *
+	 * @param query a {@link java.lang.String} object.
+	 */
 	public void setQuery(String query) {
 		this.query = query;
 	}
 
+	/**
+	 * <p>Getter for the field <code>id</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getId() {
 		return id;
 	}
 
+	/**
+	 * <p>Setter for the field <code>id</code>.</p>
+	 *
+	 * @param id a {@link java.lang.String} object.
+	 */
 	public void setId(String id) {
 		this.id = id;
 	}

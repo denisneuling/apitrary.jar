@@ -30,12 +30,22 @@ public class Timer {
 	private Date start;
 	private long difference = 0;
 
+	/**
+	 * <p>tic.</p>
+	 *
+	 * @return a {@link com.apitrary.api.client.common.Timer} object.
+	 */
 	public static Timer tic() {
 		Timer timer = new Timer();
 		timer.start = new Date();
 		return timer;
 	}
 
+	/**
+	 * <p>toc.</p>
+	 *
+	 * @return a long.
+	 */
 	public long toc() {
 		Date end = new Date();
 		difference = end.getTime() - start.getTime();
@@ -43,6 +53,11 @@ public class Timer {
 		return difference;
 	}
 
+	/**
+	 * <p>Getter for the field <code>difference</code>.</p>
+	 *
+	 * @return a long.
+	 */
 	public long getDifference() {
 		return difference;
 	}

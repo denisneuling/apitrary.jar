@@ -20,11 +20,20 @@ import com.apitrary.api.response.Response;
 import com.apitrary.api.response.normalized.Normalizer;
 
 /**
- * 
+ * <p>NormalizationUtil class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
+ *
  */
 public class NormalizationUtil {
 
+	/**
+	 * <p>getNormalizer.</p>
+	 *
+	 * @param response a {@link com.apitrary.api.response.Response} object.
+	 * @param <T> a T object.
+	 * @return a {@link com.apitrary.api.response.normalized.Normalizer} object.
+	 */
 	@SuppressWarnings("unchecked")
 	public static <T> Normalizer getNormalizer(Response<T> response) {
 		Normalizer normalizer = new Normalizer();

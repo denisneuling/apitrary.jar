@@ -18,8 +18,10 @@ package com.apitrary.api.response;
 import com.apitrary.api.annotation.Normalized;
 
 /**
- * 
+ * <p>AddResponse class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
+ *
  */
 @Normalized
 public class AddResponse extends Response<AddResponse> {

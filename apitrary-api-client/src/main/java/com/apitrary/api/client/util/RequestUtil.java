@@ -34,14 +34,23 @@ import com.apitrary.api.request.Request;
 import com.apitrary.api.response.Response;
 
 /**
- * 
+ * <p>RequestUtil class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
+ *
  */
 public class RequestUtil {
 
 	private static final String EMPTY = "{}";
 	private static final String preMessage = "Request breaks constraints.";
 
+	/**
+	 * <p>getInstanceOfParameterizedType.</p>
+	 *
+	 * @param request a {@link com.apitrary.api.request.Request} object.
+	 * @param <T> a T object.
+	 * @return a {@link com.apitrary.api.response.Response} object.
+	 */
 	@SuppressWarnings("unchecked")
 	public static <T> Response<T> getInstanceOfParameterizedType(Request<T> request) {
 		Type superclazz = request.getClass().getGenericSuperclass();
@@ -53,6 +62,13 @@ public class RequestUtil {
 		}
 	}
 
+	/**
+	 * <p>getRequestPayload.</p>
+	 *
+	 * @param request a {@link com.apitrary.api.request.Request} object.
+	 * @param <T> a T object.
+	 * @return a {@link java.lang.String} object.
+	 */
 	@SuppressWarnings("unused")
 	public static <T> String getRequestPayload(Request<T> request) {
 		Class<?> referenceClazz = request.getClass();
@@ -68,6 +84,14 @@ public class RequestUtil {
 		return EMPTY;
 	}
 
+	/**
+	 * <p>resolveAndSetQueryPart.</p>
+	 *
+	 * @param request a {@link com.apitrary.api.request.Request} object.
+	 * @param webClient a {@link org.apache.cxf.jaxrs.client.WebClient} object.
+	 * @param <T> a T object.
+	 * @return a {@link org.apache.cxf.jaxrs.client.WebClient} object.
+	 */
 	public static <T> WebClient resolveAndSetQueryPart(Request<T> request, WebClient webClient) {
 		HashMap<String, String> queryParts = resolveQueryPart(request);
 		Iterator<String> iterator = queryParts.keySet().iterator();
@@ -83,6 +107,13 @@ public class RequestUtil {
 		return webClient;
 	}
 
+	/**
+	 * <p>resolveQueryPart.</p>
+	 *
+	 * @param request a {@link com.apitrary.api.request.Request} object.
+	 * @param <T> a T object.
+	 * @return a {@link java.util.HashMap} object.
+	 */
 	public static <T> HashMap<String, String> resolveQueryPart(Request<T> request) {
 		HashMap<String, String> queryParts = new HashMap<String, String>();
 		Class<?> referenceClazz = request.getClass();
@@ -104,6 +135,13 @@ public class RequestUtil {
 		return queryParts;
 	}
 
+	/**
+	 * <p>validate.</p>
+	 *
+	 * @param request a {@link com.apitrary.api.request.Request} object.
+	 * @param <T> a T object.
+	 * @throws com.apitrary.api.client.exception.ValidationConstraintViolationException if any.
+	 */
 	public static <T> void validate(Request<T> request) throws ValidationConstraintViolationException {
 		if (request != null) {
 			Class<?> clazz = request.getClass();

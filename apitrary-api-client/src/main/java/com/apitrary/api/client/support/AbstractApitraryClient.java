@@ -31,20 +31,35 @@ import com.apitrary.api.request.Request;
 import com.apitrary.api.response.Response;
 
 /**
- * 
+ * <p>Abstract AbstractApitraryClient class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
+ *
  */
 public abstract class AbstractApitraryClient {
 	protected final Logger log = Logger.getLogger(this.getClass());
 
+	/** Constant <code>apitraryUrl="api.apitrary.com"</code> */
 	protected static final String apitraryUrl = "api.apitrary.com";
+	/** Constant <code>protocol="http://"</code> */
 	protected static final String protocol = "http://";
+	/** Constant <code>apiAuthHeaderKey="X-Api-Key"</code> */
 	protected static final String apiAuthHeaderKey = "X-Api-Key";
+	/** Constant <code>contentType="application/json"</code> */
 	protected static final String contentType = "application/json";
 	
+	/** Constant <code>DEFAULTCONNECTIONTIMEOUT=60000</code> */
 	protected static final int DEFAULTCONNECTIONTIMEOUT = 60000;
+	/** Constant <code>DEFAULTRECEIVETIMEOUT=60000</code> */
 	protected static final int DEFAULTRECEIVETIMEOUT = 60000;
 	
+	/**
+	 * <p>dispatchByMethod.</p>
+	 *
+	 * @param request a {@link com.apitrary.api.request.Request} object.
+	 * @param <T> a T object.
+	 * @return a {@link com.apitrary.api.response.Response} object.
+	 */
 	protected <T> Response<T> dispatchByMethod(Request<T> request) {
 		HttpMethod method = HttpMethodUtil.retrieveMethod(request);
 
@@ -64,6 +79,14 @@ public abstract class AbstractApitraryClient {
 		}
 	}
 	
+	/**
+	 * <p>doGet.</p>
+	 *
+	 * @param webClient a {@link org.apache.cxf.jaxrs.client.WebClient} object.
+	 * @param request a {@link com.apitrary.api.request.Request} object.
+	 * @param <T> a T object.
+	 * @return a {@link com.apitrary.api.response.Response} object.
+	 */
 	protected <T> Response<T> doGet(WebClient webClient, Request<T> request) {
 		webClient = webClient.path(inquirePath(request));
 		webClient = RequestUtil.resolveAndSetQueryPart(request, webClient);
@@ -81,6 +104,14 @@ public abstract class AbstractApitraryClient {
 		return response;
 	}
 
+	/**
+	 * <p>doPost.</p>
+	 *
+	 * @param webClient a {@link org.apache.cxf.jaxrs.client.WebClient} object.
+	 * @param request a {@link com.apitrary.api.request.Request} object.
+	 * @param <T> a T object.
+	 * @return a {@link com.apitrary.api.response.Response} object.
+	 */
 	protected <T> Response<T> doPost(WebClient webClient, Request<T> request) {
 		webClient = webClient.path(inquirePath(request));
 		webClient = RequestUtil.resolveAndSetQueryPart(request, webClient);
@@ -101,6 +132,14 @@ public abstract class AbstractApitraryClient {
 		return response;
 	}
 
+	/**
+	 * <p>doPut.</p>
+	 *
+	 * @param webClient a {@link org.apache.cxf.jaxrs.client.WebClient} object.
+	 * @param request a {@link com.apitrary.api.request.Request} object.
+	 * @param <T> a T object.
+	 * @return a {@link com.apitrary.api.response.Response} object.
+	 */
 	protected <T> Response<T> doPut(WebClient webClient, Request<T> request) {
 		webClient = webClient.path(inquirePath(request));
 		webClient = RequestUtil.resolveAndSetQueryPart(request, webClient);
@@ -121,6 +160,14 @@ public abstract class AbstractApitraryClient {
 		return response;
 	}
 
+	/**
+	 * <p>doDelete.</p>
+	 *
+	 * @param webClient a {@link org.apache.cxf.jaxrs.client.WebClient} object.
+	 * @param request a {@link com.apitrary.api.request.Request} object.
+	 * @param <T> a T object.
+	 * @return a {@link com.apitrary.api.response.Response} object.
+	 */
 	protected <T> Response<T> doDelete(WebClient webClient, Request<T> request) {
 		webClient = webClient.path(inquirePath(request));
 		webClient = RequestUtil.resolveAndSetQueryPart(request, webClient);
@@ -152,15 +199,49 @@ public abstract class AbstractApitraryClient {
 		return response;
 	}
 
+	/**
+	 * <p>inquirePath.</p>
+	 *
+	 * @param request a {@link com.apitrary.api.request.Request} object.
+	 * @param <T> a T object.
+	 * @return a {@link java.lang.String} object.
+	 */
 	protected <T> String inquirePath(Request<T> request) {
 		return PathUtil.resolveResourcePath(request);
 	}
 	
+	/**
+	 * <p>inquireVHost.</p>
+	 *
+	 * @param <T> a T object.
+	 * @return a {@link java.lang.String} object.
+	 */
 	protected abstract <T> String inquireVHost();
 
+	/**
+	 * <p>deserialize.</p>
+	 *
+	 * @param response a {@link java.lang.String} object.
+	 * @param request a {@link com.apitrary.api.request.Request} object.
+	 * @param <T> a T object.
+	 * @return a {@link com.apitrary.api.response.Response} object.
+	 */
 	protected abstract <T> Response<T> deserialize(String response, Request<T> request);
 
+	/**
+	 * <p>deserialize.</p>
+	 *
+	 * @param inputStream a {@link java.io.InputStream} object.
+	 * @param request a {@link com.apitrary.api.request.Request} object.
+	 * @param <T> a T object.
+	 * @return a {@link com.apitrary.api.response.Response} object.
+	 */
 	protected abstract <T> Response<T> deserialize(InputStream inputStream, Request<T> request);
 
+	/**
+	 * <p>instantiateWebClient.</p>
+	 *
+	 * @return a {@link org.apache.cxf.jaxrs.client.WebClient} object.
+	 */
 	protected abstract WebClient instantiateWebClient();
 }

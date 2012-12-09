@@ -20,11 +20,20 @@ import com.apitrary.api.common.HttpMethod;
 import com.apitrary.api.request.Request;
 
 /**
- * 
+ * <p>HttpMethodUtil class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
+ *
  */
 public class HttpMethodUtil {
 
+	/**
+	 * <p>retrieveMethod.</p>
+	 *
+	 * @param request a {@link com.apitrary.api.request.Request} object.
+	 * @param <T> a T object.
+	 * @return a {@link com.apitrary.api.common.HttpMethod} object.
+	 */
 	public static <T> HttpMethod retrieveMethod(Request<T> request) {
 		if (request == null) {
 			return null;

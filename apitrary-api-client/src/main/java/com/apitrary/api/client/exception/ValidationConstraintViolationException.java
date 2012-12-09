@@ -20,8 +20,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * 
+ * <p>ValidationConstraintViolationException class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
+ *
  */
 public class ValidationConstraintViolationException extends ClientException {
 	private static final long serialVersionUID = 8653296771499098292L;

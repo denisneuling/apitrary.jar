@@ -16,8 +16,10 @@
 package com.apitrary.api.client.common;
 
 /**
- * 
+ * <p>HttpStatus class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
+ *
  */
 public enum HttpStatus {
 
@@ -72,17 +74,19 @@ public enum HttpStatus {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * <p>Getter for the field <code>code</code>.</p>
+	 *
+	 * @return a int.
 	 */
 	public int getCode() {
 		return code;
 	}
 
 	/**
-	 * 
-	 * @param code
-	 * @return
+	 * <p>getStatus.</p>
+	 *
+	 * @param code a int.
+	 * @return a {@link com.apitrary.api.client.common.HttpStatus} object.
 	 */
 	public static HttpStatus getStatus(int code) {
 		if (code < 0) {
@@ -99,6 +103,7 @@ public enum HttpStatus {
 	 * 
 	 * @see java.lang.Enum#toString()
 	 */
+	/** {@inheritDoc} */
 	@Override
 	public String toString() {
 		if (this.name().startsWith("Unassigned_")) {
@@ -108,8 +113,9 @@ public enum HttpStatus {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * <p>isError.</p>
+	 *
+	 * @return a boolean.
 	 */
 	public boolean isError() {
 		return (this.code >= 400 && this.code < 600);

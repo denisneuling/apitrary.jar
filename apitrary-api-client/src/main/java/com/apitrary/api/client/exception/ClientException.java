@@ -16,16 +16,28 @@
 package com.apitrary.api.client.exception;
 
 /**
- * 
+ * <p>ClientException class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
+ *
  */
 public class ClientException extends RuntimeException {
 	private static final long serialVersionUID = -3334422740923547404L;
 
+	/**
+	 * <p>Constructor for ClientException.</p>
+	 *
+	 * @param th a {@link java.lang.Throwable} object.
+	 */
 	public ClientException(Throwable th){
 		super(th);
 	}
 
+	/**
+	 * <p>Constructor for ClientException.</p>
+	 *
+	 * @param message a {@link java.lang.String} object.
+	 */
 	public ClientException(String message) {
 		super(message);
 	}

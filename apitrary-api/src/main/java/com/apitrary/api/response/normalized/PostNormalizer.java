@@ -16,8 +16,10 @@
 package com.apitrary.api.response.normalized;
 
 /**
- * 
+ * <p>PostNormalizer class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
+ *
  */
 public class PostNormalizer extends Normalizer{
 

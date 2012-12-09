@@ -21,11 +21,23 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * 
+ * <p>ClassUtil class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
+ *
  */
 public class ClassUtil {
 
+	/**
+	 * <p>getClassAnnotationValue.</p>
+	 *
+	 * @param source a {@link java.lang.Class} object.
+	 * @param annotation a {@link java.lang.Class} object.
+	 * @param attributeName a {@link java.lang.String} object.
+	 * @param expected a {@link java.lang.Class} object.
+	 * @param <T> a T object.
+	 * @return a T object.
+	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static <T> T getClassAnnotationValue(Class source, Class annotation, String attributeName, Class<T> expected) {
 		Annotation instance = source.getAnnotation(annotation);
@@ -39,6 +51,14 @@ public class ClassUtil {
 		return value;
 	}
 
+	/**
+	 * <p>getAnnotatedFields.</p>
+	 *
+	 * @param clazz a {@link java.lang.Class} object.
+	 * @param annotationClass a {@link java.lang.Class} object.
+	 * @param <T> a T object.
+	 * @return a {@link java.util.List} object.
+	 */
 	public static <T> List<Field> getAnnotatedFields(Class<?> clazz, Class<? extends Annotation> annotationClass) {
 		List<Field> annotatedFields = new LinkedList<Field>();
 		Field[] allFields = getAllDeclaredFields(clazz);
@@ -50,6 +70,12 @@ public class ClassUtil {
 		return annotatedFields;
 	}
 
+	/**
+	 * <p>getAllDeclaredFields.</p>
+	 *
+	 * @param clazz a {@link java.lang.Class} object.
+	 * @return an array of {@link java.lang.reflect.Field} objects.
+	 */
 	public static Field[] getAllDeclaredFields(Class<?> clazz) {
 		Field[] declaredFields = clazz.getDeclaredFields();
 		Class<?> superClass = clazz.getSuperclass();
@@ -59,6 +85,16 @@ public class ClassUtil {
 		return declaredFields;
 	}
 
+	/**
+	 * <p>getValueOf.</p>
+	 *
+	 * @param field a {@link java.lang.reflect.Field} object.
+	 * @param reference a {@link java.lang.Object} object.
+	 * @param referenceClazz a {@link java.lang.Class} object.
+	 * @param valueType a {@link java.lang.Class} object.
+	 * @param <T> a T object.
+	 * @return a T object.
+	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T getValueOf(Field field, Object reference, Class<?> referenceClazz, Class<T> valueType) {
 		try {
@@ -73,6 +109,16 @@ public class ClassUtil {
 		}
 	}
 
+	/**
+	 * <p>getValueOf.</p>
+	 *
+	 * @param fieldName a {@link java.lang.String} object.
+	 * @param reference a {@link java.lang.Object} object.
+	 * @param referenceClazz a {@link java.lang.Class} object.
+	 * @param valueType a {@link java.lang.Class} object.
+	 * @param <T> a T object.
+	 * @return a T object.
+	 */
 	public static <T> T getValueOf(String fieldName, Object reference, Class<?> referenceClazz, Class<T> valueType) {
 		try {
 			Field field = referenceClazz.getDeclaredField(fieldName);
@@ -86,6 +132,13 @@ public class ClassUtil {
 		}
 	}
 
+	/**
+	 * <p>getValueOfField.</p>
+	 *
+	 * @param field a {@link java.lang.reflect.Field} object.
+	 * @param ref a {@link java.lang.Object} object.
+	 * @return a {@link java.lang.Object} object.
+	 */
 	public static Object getValueOfField(Field field, Object ref) {
 		field.setAccessible(true);
 		Object value = null;

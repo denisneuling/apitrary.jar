@@ -24,8 +24,10 @@ import com.apitrary.api.common.HttpMethod;
 import com.apitrary.api.response.UpdateResponse;
 
 /**
- * 
+ * <p>UpdateRequest class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
+ *
  */
 @Method(HttpMethod.PUT)
 @Path("/${entity}/${id}")
@@ -43,29 +45,62 @@ public class UpdateRequest extends Request<UpdateResponse>{
 	@Body
 	private String requestPayload;
 	
+	/**
+	 * <p>Constructor for UpdateRequest.</p>
+	 */
 	public UpdateRequest(){
 	}
 
+	/**
+	 * <p>Getter for the field <code>entity</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getEntity() {
 		return entity;
 	}
 
+	/**
+	 * <p>Setter for the field <code>entity</code>.</p>
+	 *
+	 * @param entity a {@link java.lang.String} object.
+	 */
 	public void setEntity(String entity) {
 		this.entity = entity;
 	}
 
+	/**
+	 * <p>Getter for the field <code>id</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getId() {
 		return id;
 	}
 
+	/**
+	 * <p>Setter for the field <code>id</code>.</p>
+	 *
+	 * @param id a {@link java.lang.String} object.
+	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 
+	/**
+	 * <p>Getter for the field <code>requestPayload</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getRequestPayload() {
 		return requestPayload;
 	}
 	
+	/**
+	 * <p>Setter for the field <code>requestPayload</code>.</p>
+	 *
+	 * @param requestPayload a {@link java.lang.String} object.
+	 */
 	public void setRequestPayload(String requestPayload) {
 		this.requestPayload = requestPayload;
 	}
