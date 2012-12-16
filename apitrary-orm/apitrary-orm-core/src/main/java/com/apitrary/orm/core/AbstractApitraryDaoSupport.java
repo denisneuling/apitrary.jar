@@ -20,6 +20,7 @@ import java.util.List;
 import org.apache.cxf.common.util.StringUtils;
 
 import com.apitrary.api.client.util.ClassUtil;
+import com.apitrary.orm.core.exception.ApitraryOrmIdException;
 import com.apitrary.orm.core.scheme.SchemeCache;
 
 import com.apitrary.orm.annotations.Entity;
@@ -61,16 +62,16 @@ public abstract class AbstractApitraryDaoSupport {
 	protected <T> String resolveApitraryEntityId(T entity){
 		List<java.lang.reflect.Field> fields = ClassUtil.getAnnotatedFields(entity.getClass(), Id.class);
 		if(fields.isEmpty()){
-			// TODO throw exception
+			throw new ApitraryOrmIdException("Apitrary entity must own an annotated ID field.");
 		}
 		if(fields.size()>1){
-			// TODO throw exception
+			throw new ApitraryOrmIdException("Apitrary entity can not have more than one ID field.");
 		}
 		
 		java.lang.reflect.Field field = fields.get(0);
 		String id = ClassUtil.getValueOf(field, entity, entity.getClass(), String.class);
 		if(id == null || id.isEmpty()){
-			// TODO throw exception
+			throw new ApitraryOrmIdException("Entity lacks ID and is probably not persisted.");
 		}
 		return id;
 	}

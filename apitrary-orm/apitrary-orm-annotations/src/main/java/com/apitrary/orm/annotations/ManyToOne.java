@@ -13,15 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.orm.core.exception;
+package com.apitrary.orm.annotations;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Inherited;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * <p>ApitraryORMException class.</p>
  *
  * @author Denis Neuling (denisneuling@gmail.com)
- *
  */
-public class ApitraryORMException extends RuntimeException{
-	private static final long serialVersionUID = -7542464634115383578L;
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+@Inherited
+public @interface ManyToOne {
 
 }
