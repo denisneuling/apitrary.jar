@@ -9,9 +9,45 @@
 	<artifactId>apitrary-orm</artifactId>
 	<packaging>pom</packaging>
 	<name>${project.artifactId}</name>
-	
+
 	<modules>
 		<module>apitrary-orm-core</module>
 		<module>apitrary-orm-annotations</module>
 	</modules>
+
+
+	<scm>
+		<url>https://github.com/denisneuling/apitrary.jar</url>
+		<connection>scm:git:git://github.com/denisneuling/apitrary.jar.git</connection>
+		<developerConnection>scm:git:git@github.com:denisneuling/apitrary.jar.git</developerConnection>
+	</scm>
+
+	<mailingLists>
+		<mailingList>
+			<name>apitrary.jar issues</name>
+			<archive>https://github.com/denisneuling/apitrary.jar/issues?state=closed</archive>
+			<subscribe>https://github.com/denisneuling/apitrary.jar/toggle_watch</subscribe>
+			<unsubscribe>https://github.com/denisneuling/apitrary.jar/toggle_watch</unsubscribe>
+			<post>https://github.com/denisneuling/apitrary.jar/issues/new</post>
+		</mailingList>
+	</mailingLists>
+
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/denisneuling/apitrary.jar/issues/new</url>
+	</issueManagement>
+
+	<developers>
+		<developer>
+			<id>denisneuling</id>
+			<name>Denis Neuling</name>
+			<email>denisneuling@gmail.com</email>
+			<timezone>+1</timezone>
+			<roles>
+				<role>architect</role>
+				<role>developer</role>
+			</roles>
+		</developer>
+	</developers>
+
 </project>
