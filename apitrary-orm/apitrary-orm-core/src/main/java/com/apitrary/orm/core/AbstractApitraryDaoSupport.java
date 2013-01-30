@@ -17,14 +17,16 @@ package com.apitrary.orm.core;
 
 import java.util.List;
 
-import org.apache.cxf.common.util.StringUtils;
-
 import com.apitrary.api.client.util.ClassUtil;
-import com.apitrary.orm.core.exception.ApitraryOrmIdException;
-import com.apitrary.orm.core.scheme.SchemeCache;
-
 import com.apitrary.orm.annotations.Entity;
 import com.apitrary.orm.annotations.Id;
+import com.apitrary.orm.core.exception.ApitraryOrmIdException;
+import com.apitrary.orm.core.scheme.SchemeCache;
+import com.apitrary.orm.core.util.StringUtil;
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 /**
  * <p>Abstract AbstractApitraryDaoSupport class.</p>
@@ -46,8 +48,7 @@ public abstract class AbstractApitraryDaoSupport {
 	protected <T> String resolveApitraryEntity(T entity){
 		String entityName = ClassUtil.getClassAnnotationValue(entity.getClass(), Entity.class, "value", String.class);
 		if(entityName==null){
-			// TODO just the first letter to lower
-			entityName = StringUtils.uncapitalize(entity.getClass().getSimpleName());
+			entityName = StringUtil.toVerb(entity.getClass().getSimpleName());
 		}
 		return entityName;
 	}
@@ -84,8 +85,16 @@ public abstract class AbstractApitraryDaoSupport {
 	 * @return a {@link java.lang.String} object.
 	 */
 	protected <T> String dump(T entity){
-		// TODO implement
-		return "{}";
+		Gson gson = new GsonBuilder().addDeserializationExclusionStrategy(new ExclusionStrategy(){
+			@Override
+			public boolean shouldSkipField(FieldAttributes f) {
+				return "serialVersionUID".equals(f.getName())?true:false;
+			}
+			@Override
+			public boolean shouldSkipClass(Class<?> clazz) {
+				return false;
+			}}).create();
+		return gson.toJson(entity);
 	}
 	
 	/**
@@ -96,9 +105,10 @@ public abstract class AbstractApitraryDaoSupport {
 	 * @param <T> a T object.
 	 * @return a T object.
 	 */
+	@SuppressWarnings("unchecked")
 	protected <T> T map(T entity, String result){
-		// TODO implement
-		return entity;
+		Gson gson = new GsonBuilder().create();
+		return (T) gson.fromJson(result, entity.getClass());
 	}
 	
 	/**
@@ -110,7 +120,7 @@ public abstract class AbstractApitraryDaoSupport {
 	 * @return a T object.
 	 */
 	protected <T> T map(Class<T> entity, String result){
-		// TODO implement
-		return null;
+		Gson gson = new GsonBuilder().create();
+		return gson.fromJson(result, entity);
 	}
 }

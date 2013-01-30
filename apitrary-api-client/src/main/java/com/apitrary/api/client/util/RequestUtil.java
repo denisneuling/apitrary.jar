@@ -58,7 +58,7 @@ public class RequestUtil {
 			Type parameterizedTypeClazz = ((ParameterizedType) superclazz).getActualTypeArguments()[0];
 			return (Response<T>) ((Class<T>) parameterizedTypeClazz).newInstance();
 		} catch (Exception e) {
-			return null;
+			throw new RuntimeException(e);
 		}
 	}
 

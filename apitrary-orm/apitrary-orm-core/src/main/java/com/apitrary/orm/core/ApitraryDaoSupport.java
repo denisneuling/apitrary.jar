@@ -18,14 +18,17 @@ package com.apitrary.orm.core;
 import java.util.List;
 
 import com.apitrary.api.client.ApitraryClient;
+import com.apitrary.api.request.APIStateRequest;
 import com.apitrary.api.request.AddRequest;
 import com.apitrary.api.request.DeleteRequest;
 import com.apitrary.api.request.SearchRequest;
 import com.apitrary.api.request.UpdateRequest;
+import com.apitrary.api.response.APIStateResponse;
 import com.apitrary.api.response.AddResponse;
 import com.apitrary.api.response.DeleteResponse;
 import com.apitrary.api.response.SearchResponse;
 import com.apitrary.api.response.UpdateResponse;
+import com.apitrary.orm.core.internal.model.APIState;
 
 /**
  * <p>ApitraryDaoSupport class.</p>
@@ -69,11 +72,9 @@ public class ApitraryDaoSupport extends AbstractApitraryDaoSupport {
 	 * @return a T object.
 	 */
 	public <T> T save(T entity) {
-
 		AddRequest request = new AddRequest();
 
 		request.setEntity(resolveApitraryEntity(entity));
-
 		request.setRequestPayload(dump(entity));
 
 		AddResponse response = apitraryClient.send(request);
@@ -89,13 +90,10 @@ public class ApitraryDaoSupport extends AbstractApitraryDaoSupport {
 	 * @return a T object.
 	 */
 	public <T> T update(T entity) {
-
 		UpdateRequest request = new UpdateRequest();
 
 		request.setEntity(resolveApitraryEntity(entity));
-
 		request.setId(resolveApitraryEntityId(entity));
-
 		request.setRequestPayload(dump(entity));
 
 		UpdateResponse response = apitraryClient.send(request);
@@ -110,11 +108,9 @@ public class ApitraryDaoSupport extends AbstractApitraryDaoSupport {
 	 * @param <T> a T object.
 	 */
 	public <T> void delete(T entity) {
-
 		DeleteRequest request = new DeleteRequest();
 
 		request.setEntity(resolveApitraryEntity(entity));
-
 		request.setId(resolveApitraryEntityId(entity));
 
 		DeleteResponse response = apitraryClient.send(request);
@@ -124,6 +120,8 @@ public class ApitraryDaoSupport extends AbstractApitraryDaoSupport {
 	}
 
 	/**
+	 * TODO use mixin
+	 * 
 	 * <p>refresh.</p>
 	 *
 	 * @param entity a T object.
@@ -153,7 +151,7 @@ public class ApitraryDaoSupport extends AbstractApitraryDaoSupport {
 	 * @param <T> a T object.
 	 * @return a T object.
 	 */
-	public <T> T loadById(String id, Class<T> entity) {
+	public <T> T findById(String id, Class<T> entity) {
 
 		SearchRequest request = new SearchRequest();
 
@@ -186,5 +184,11 @@ public class ApitraryDaoSupport extends AbstractApitraryDaoSupport {
 		SearchResponse response = apitraryClient.send(request);
 
 		return ((List<T>)this.map(List.class, response.getResult()));
+	}
+	
+	public APIState getAPIState(){
+		APIStateRequest request = new APIStateRequest();
+		APIStateResponse response = apitraryClient.send(request);
+		return this.map(APIState.class, response.getResult());
 	}
 }
