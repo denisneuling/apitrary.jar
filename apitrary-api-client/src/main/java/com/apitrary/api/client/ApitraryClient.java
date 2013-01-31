@@ -34,15 +34,17 @@ import com.apitrary.api.request.Request;
 import com.apitrary.api.response.Response;
 
 /**
- * <p>ApitraryClient class.</p>
- *
+ * <p>
+ * ApitraryClient class.
+ * </p>
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
 public class ApitraryClient extends AbstractApitraryClient {
 
 	private ApitraryApi api;
-	
+
 	private int connectionTimeOut = DEFAULTCONNECTIONTIMEOUT;
 	private int receiveTimeout = DEFAULTRECEIVETIMEOUT;
 
@@ -51,9 +53,12 @@ public class ApitraryClient extends AbstractApitraryClient {
 	}
 
 	/**
-	 * <p>connectTo.</p>
-	 *
-	 * @param api a {@link com.apitrary.api.client.ApitraryApi} object.
+	 * <p>
+	 * connectTo.
+	 * </p>
+	 * 
+	 * @param api
+	 *            a {@link com.apitrary.api.client.ApitraryApi} object.
 	 * @return a {@link com.apitrary.api.client.ApitraryClient} object.
 	 */
 	public static ApitraryClient connectTo(ApitraryApi api) {
@@ -61,10 +66,14 @@ public class ApitraryClient extends AbstractApitraryClient {
 	}
 
 	/**
-	 * <p>send.</p>
-	 *
-	 * @param request a {@link com.apitrary.api.request.Request} object.
-	 * @param <T> a T object.
+	 * <p>
+	 * send.
+	 * </p>
+	 * 
+	 * @param request
+	 *            a {@link com.apitrary.api.request.Request} object.
+	 * @param <T>
+	 *            a T object.
 	 * @return a T object.
 	 */
 	public <T> T send(Request<T> request) {
@@ -76,7 +85,7 @@ public class ApitraryClient extends AbstractApitraryClient {
 
 		@SuppressWarnings("unchecked")
 		T response = (T) dispatchByMethod(request);
-		
+
 		return response;
 	}
 
@@ -113,7 +122,7 @@ public class ApitraryClient extends AbstractApitraryClient {
 		webClient = webClient.accept(MediaType.APPLICATION_JSON);
 		webClient = webClient.header(apiAuthHeaderKey, api.getApiKey());
 		webClient = webClient.header("Content-Type", contentType);
-		
+
 		HTTPConduit conduit = WebClient.getConfig(webClient).getHttpConduit();
 		TLSClientParameters params = conduit.getTlsClientParameters();
 		if (params == null) {
@@ -127,13 +136,15 @@ public class ApitraryClient extends AbstractApitraryClient {
 		policy.setReceiveTimeout(receiveTimeout);
 		policy.setAllowChunking(false);
 		conduit.setClient(policy);
-		
+
 		return webClient;
 	}
 
 	/**
-	 * <p>Getter for the field <code>connectionTimeOut</code>.</p>
-	 *
+	 * <p>
+	 * Getter for the field <code>connectionTimeOut</code>.
+	 * </p>
+	 * 
 	 * @return a int.
 	 */
 	public int getConnectionTimeOut() {
@@ -141,17 +152,22 @@ public class ApitraryClient extends AbstractApitraryClient {
 	}
 
 	/**
-	 * <p>Setter for the field <code>connectionTimeOut</code>.</p>
-	 *
-	 * @param connectionTimeOut a int.
+	 * <p>
+	 * Setter for the field <code>connectionTimeOut</code>.
+	 * </p>
+	 * 
+	 * @param connectionTimeOut
+	 *            a int.
 	 */
 	public void setConnectionTimeOut(int connectionTimeOut) {
 		this.connectionTimeOut = connectionTimeOut;
 	}
 
 	/**
-	 * <p>Getter for the field <code>receiveTimeout</code>.</p>
-	 *
+	 * <p>
+	 * Getter for the field <code>receiveTimeout</code>.
+	 * </p>
+	 * 
 	 * @return a int.
 	 */
 	public int getReceiveTimeout() {
@@ -159,9 +175,12 @@ public class ApitraryClient extends AbstractApitraryClient {
 	}
 
 	/**
-	 * <p>Setter for the field <code>receiveTimeout</code>.</p>
-	 *
-	 * @param receiveTimeout a int.
+	 * <p>
+	 * Setter for the field <code>receiveTimeout</code>.
+	 * </p>
+	 * 
+	 * @param receiveTimeout
+	 *            a int.
 	 */
 	public void setReceiveTimeout(int receiveTimeout) {
 		this.receiveTimeout = receiveTimeout;

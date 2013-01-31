@@ -15,46 +15,51 @@
  */
 package com.apitrary.api.request;
 
-import com.apitrary.api.annotation.Default;
+import com.apitrary.api.annotation.Body;
 import com.apitrary.api.annotation.Method;
 import com.apitrary.api.annotation.Path;
 import com.apitrary.api.annotation.PathVariable;
-import com.apitrary.api.annotation.Query;
 import com.apitrary.api.annotation.Required;
 import com.apitrary.api.common.HttpMethod;
-import com.apitrary.api.response.SearchResponse;
+import com.apitrary.api.response.PutResponse;
 
 /**
- * <p>SearchRequest class.</p>
- *
+ * <p>
+ * UpdateRequest class.
+ * </p>
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
-@Method(HttpMethod.GET)
-@Path("/${entity}/${id}") /* a/id || a?q= */
-public class SearchRequest extends Request<SearchResponse>{
-	private static final long serialVersionUID = 7586680719718414828L;
+@Method(HttpMethod.PUT)
+@Path("/${entity}/${id}")
+public class PutRequest extends Request<PutResponse> {
+	private static final long serialVersionUID = 7880320624981198826L;
 
 	@Required
 	@PathVariable("${entity}")
 	private String entity;
-	
-	@Default
+
+	@Required
 	@PathVariable("${id}")
 	private String id;
-	
-	@Query("q")
-	private String query;
-	
+
+	@Body
+	private String requestPayload;
+
 	/**
-	 * <p>Constructor for SearchRequest.</p>
+	 * <p>
+	 * Constructor for UpdateRequest.
+	 * </p>
 	 */
-	public SearchRequest(){
+	public PutRequest() {
 	}
 
 	/**
-	 * <p>Getter for the field <code>entity</code>.</p>
-	 *
+	 * <p>
+	 * Getter for the field <code>entity</code>.
+	 * </p>
+	 * 
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getEntity() {
@@ -62,35 +67,22 @@ public class SearchRequest extends Request<SearchResponse>{
 	}
 
 	/**
-	 * <p>Setter for the field <code>entity</code>.</p>
-	 *
-	 * @param entity a {@link java.lang.String} object.
+	 * <p>
+	 * Setter for the field <code>entity</code>.
+	 * </p>
+	 * 
+	 * @param entity
+	 *            a {@link java.lang.String} object.
 	 */
 	public void setEntity(String entity) {
 		this.entity = entity;
 	}
 
 	/**
-	 * <p>Getter for the field <code>query</code>.</p>
-	 *
-	 * @return a {@link java.lang.String} object.
-	 */
-	public String getQuery() {
-		return query;
-	}
-
-	/**
-	 * <p>Setter for the field <code>query</code>.</p>
-	 *
-	 * @param query a {@link java.lang.String} object.
-	 */
-	public void setQuery(String query) {
-		this.query = query;
-	}
-
-	/**
-	 * <p>Getter for the field <code>id</code>.</p>
-	 *
+	 * <p>
+	 * Getter for the field <code>id</code>.
+	 * </p>
+	 * 
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getId() {
@@ -98,11 +90,37 @@ public class SearchRequest extends Request<SearchResponse>{
 	}
 
 	/**
-	 * <p>Setter for the field <code>id</code>.</p>
-	 *
-	 * @param id a {@link java.lang.String} object.
+	 * <p>
+	 * Setter for the field <code>id</code>.
+	 * </p>
+	 * 
+	 * @param id
+	 *            a {@link java.lang.String} object.
 	 */
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	/**
+	 * <p>
+	 * Getter for the field <code>requestPayload</code>.
+	 * </p>
+	 * 
+	 * @return a {@link java.lang.String} object.
+	 */
+	public String getRequestPayload() {
+		return requestPayload;
+	}
+
+	/**
+	 * <p>
+	 * Setter for the field <code>requestPayload</code>.
+	 * </p>
+	 * 
+	 * @param requestPayload
+	 *            a {@link java.lang.String} object.
+	 */
+	public void setRequestPayload(String requestPayload) {
+		this.requestPayload = requestPayload;
 	}
 }

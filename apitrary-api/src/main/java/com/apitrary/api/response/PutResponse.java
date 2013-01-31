@@ -15,15 +15,20 @@
  */
 package com.apitrary.api.response;
 
+import java.io.Serializable;
+
 import com.apitrary.api.annotation.Normalized;
 
 /**
- * <p>AddResponse class.</p>
- *
+ * <p>
+ * UpdateResponse class.
+ * </p>
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
 @Normalized
-public class AddResponse extends Response<AddResponse> {
+public class PutResponse extends Response<PutResponse> implements Serializable {
+	private static final long serialVersionUID = -260081852057572008L;
 
 }

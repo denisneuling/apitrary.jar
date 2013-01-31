@@ -16,20 +16,25 @@
 package com.apitrary.api.response.normalized;
 
 /**
- * <p>Normalizer class.</p>
- *
+ * <p>
+ * Normalizer class.
+ * </p>
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
 public class Normalizer {
 
 	/**
-	 * <p>normalize.</p>
-	 *
-	 * @param jsonResponse a {@link java.lang.String} object.
+	 * <p>
+	 * normalize.
+	 * </p>
+	 * 
+	 * @param jsonResponse
+	 *            a {@link java.lang.String} object.
 	 * @return a {@link java.lang.String} object.
 	 */
-	public String normalize(String jsonResponse){
+	public String normalize(String jsonResponse) {
 		return jsonResponse;
 	}
 }

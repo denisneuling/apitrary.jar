@@ -13,17 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.api.response;
-
-import com.apitrary.api.annotation.Normalized;
+package com.apitrary.orm.core.exception;
 
 /**
- * <p>SearchResponse class.</p>
- *
+ * <p>
+ * ApitraryOrmUpdateException class.
+ * </p>
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
-@Normalized
-public class SearchResponse extends Response<SearchResponse> {
+public class ApitraryOrmUpdateException extends ApitraryOrmException {
+	private static final long serialVersionUID = 4407617887870658985L;
 
+	/**
+	 * <p>
+	 * Constructor for ApitraryOrmDeleteException.
+	 * </p>
+	 * 
+	 * @param message
+	 *            a {@link java.lang.String} object.
+	 */
+	public ApitraryOrmUpdateException(String message) {
+		super(message);
+	}
 }

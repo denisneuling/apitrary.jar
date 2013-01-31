@@ -21,21 +21,30 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * <p>ClassUtil class.</p>
- *
+ * <p>
+ * ClassUtil class.
+ * </p>
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
 public class ClassUtil {
 
 	/**
-	 * <p>getClassAnnotationValue.</p>
-	 *
-	 * @param source a {@link java.lang.Class} object.
-	 * @param annotation a {@link java.lang.Class} object.
-	 * @param attributeName a {@link java.lang.String} object.
-	 * @param expected a {@link java.lang.Class} object.
-	 * @param <T> a T object.
+	 * <p>
+	 * getClassAnnotationValue.
+	 * </p>
+	 * 
+	 * @param source
+	 *            a {@link java.lang.Class} object.
+	 * @param annotation
+	 *            a {@link java.lang.Class} object.
+	 * @param attributeName
+	 *            a {@link java.lang.String} object.
+	 * @param expected
+	 *            a {@link java.lang.Class} object.
+	 * @param <T>
+	 *            a T object.
 	 * @return a T object.
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -52,11 +61,16 @@ public class ClassUtil {
 	}
 
 	/**
-	 * <p>getAnnotatedFields.</p>
-	 *
-	 * @param clazz a {@link java.lang.Class} object.
-	 * @param annotationClass a {@link java.lang.Class} object.
-	 * @param <T> a T object.
+	 * <p>
+	 * getAnnotatedFields.
+	 * </p>
+	 * 
+	 * @param clazz
+	 *            a {@link java.lang.Class} object.
+	 * @param annotationClass
+	 *            a {@link java.lang.Class} object.
+	 * @param <T>
+	 *            a T object.
 	 * @return a {@link java.util.List} object.
 	 */
 	public static <T> List<Field> getAnnotatedFields(Class<?> clazz, Class<? extends Annotation> annotationClass) {
@@ -71,9 +85,12 @@ public class ClassUtil {
 	}
 
 	/**
-	 * <p>getAllDeclaredFields.</p>
-	 *
-	 * @param clazz a {@link java.lang.Class} object.
+	 * <p>
+	 * getAllDeclaredFields.
+	 * </p>
+	 * 
+	 * @param clazz
+	 *            a {@link java.lang.Class} object.
 	 * @return an array of {@link java.lang.reflect.Field} objects.
 	 */
 	public static Field[] getAllDeclaredFields(Class<?> clazz) {
@@ -86,13 +103,20 @@ public class ClassUtil {
 	}
 
 	/**
-	 * <p>getValueOf.</p>
-	 *
-	 * @param field a {@link java.lang.reflect.Field} object.
-	 * @param reference a {@link java.lang.Object} object.
-	 * @param referenceClazz a {@link java.lang.Class} object.
-	 * @param valueType a {@link java.lang.Class} object.
-	 * @param <T> a T object.
+	 * <p>
+	 * getValueOf.
+	 * </p>
+	 * 
+	 * @param field
+	 *            a {@link java.lang.reflect.Field} object.
+	 * @param reference
+	 *            a {@link java.lang.Object} object.
+	 * @param referenceClazz
+	 *            a {@link java.lang.Class} object.
+	 * @param valueType
+	 *            a {@link java.lang.Class} object.
+	 * @param <T>
+	 *            a T object.
 	 * @return a T object.
 	 */
 	@SuppressWarnings("unchecked")
@@ -100,7 +124,7 @@ public class ClassUtil {
 		try {
 			field.setAccessible(true);
 			Object toReturn = (T) field.get(reference);
-			if(String.class.isInstance(valueType.getClass()) && !String.class.isInstance(toReturn.getClass())){
+			if (String.class.isInstance(valueType.getClass()) && !String.class.isInstance(toReturn.getClass())) {
 				toReturn = toReturn.toString();
 			}
 			return (T) toReturn;
@@ -110,13 +134,20 @@ public class ClassUtil {
 	}
 
 	/**
-	 * <p>getValueOf.</p>
-	 *
-	 * @param fieldName a {@link java.lang.String} object.
-	 * @param reference a {@link java.lang.Object} object.
-	 * @param referenceClazz a {@link java.lang.Class} object.
-	 * @param valueType a {@link java.lang.Class} object.
-	 * @param <T> a T object.
+	 * <p>
+	 * getValueOf.
+	 * </p>
+	 * 
+	 * @param fieldName
+	 *            a {@link java.lang.String} object.
+	 * @param reference
+	 *            a {@link java.lang.Object} object.
+	 * @param referenceClazz
+	 *            a {@link java.lang.Class} object.
+	 * @param valueType
+	 *            a {@link java.lang.Class} object.
+	 * @param <T>
+	 *            a T object.
 	 * @return a T object.
 	 */
 	public static <T> T getValueOf(String fieldName, Object reference, Class<?> referenceClazz, Class<T> valueType) {
@@ -133,10 +164,14 @@ public class ClassUtil {
 	}
 
 	/**
-	 * <p>getValueOfField.</p>
-	 *
-	 * @param field a {@link java.lang.reflect.Field} object.
-	 * @param ref a {@link java.lang.Object} object.
+	 * <p>
+	 * getValueOfField.
+	 * </p>
+	 * 
+	 * @param field
+	 *            a {@link java.lang.reflect.Field} object.
+	 * @param ref
+	 *            a {@link java.lang.Object} object.
 	 * @return a {@link java.lang.Object} object.
 	 */
 	public static Object getValueOfField(Field field, Object ref) {
@@ -148,5 +183,74 @@ public class ClassUtil {
 		} catch (IllegalAccessException e) {
 		}
 		return value;
+	}
+
+	/**
+	 * @param entity
+	 * @return
+	 */
+	public static Object newInstance(Class<?> entity) {
+		if (entity == null) {
+			return null;
+		}
+		try {
+			return entity.newInstance();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public static Object setSilent(Object target, String fieldName, Object value) {
+		Class<?> targetClass = target.getClass();
+		try {
+			Field field = targetClass.getDeclaredField(fieldName);
+			field.setAccessible(true);
+			field.set(target, box(value, field.getType()));
+			return target;
+		} catch (Exception e) {
+			return target;
+		}
+	}
+
+	public static Object box(Object property, Class<?> to) {
+		if (property == null) {
+			return property;
+		}
+
+		if (property instanceof String && String.class.isAssignableFrom(to)) {
+			return property;
+		}
+
+		if ((property instanceof String || property instanceof Boolean) && Boolean.class.isAssignableFrom(to)) {
+			if (((String) property).equalsIgnoreCase("true") || property.equals("1")) {
+				return true;
+			}
+			if (((String) property).equalsIgnoreCase("false") || property.equals("0")) {
+				return false;
+			}
+		}
+
+		if ((property instanceof String || property instanceof Integer) && Integer.class.isAssignableFrom(to)) {
+			if (((String) property).isEmpty()) {
+				return 0;
+			}
+			return new Integer(property.toString());
+		}
+
+		if ((property instanceof String || property instanceof Integer || property instanceof Long) && Long.class.isAssignableFrom(to)) {
+			if (((String) property).isEmpty()) {
+				return 0L;
+			}
+			return new Long(property.toString());
+		}
+		
+		if ((property instanceof String || property instanceof Double) && Double.class.isAssignableFrom(to)) {
+			if (((String) property).isEmpty()) {
+				return 0D;
+			}
+			return new Double(property.toString());
+		}
+
+		return to.cast(property);
 	}
 }

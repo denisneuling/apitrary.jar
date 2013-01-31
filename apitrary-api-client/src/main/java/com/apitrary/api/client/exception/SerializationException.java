@@ -15,30 +15,36 @@
  */
 package com.apitrary.api.client.exception;
 
-import com.apitrary.api.client.exception.ClientException;
-
 /**
- * <p>SerializationException class.</p>
- *
+ * <p>
+ * SerializationException class.
+ * </p>
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
-public class SerializationException extends ClientException{
+public class SerializationException extends ClientException {
 	private static final long serialVersionUID = 1110855831203401596L;
 
 	/**
-	 * <p>Constructor for SerializationException.</p>
-	 *
-	 * @param message a {@link java.lang.String} object.
+	 * <p>
+	 * Constructor for SerializationException.
+	 * </p>
+	 * 
+	 * @param message
+	 *            a {@link java.lang.String} object.
 	 */
 	public SerializationException(String message) {
 		super(message);
 	}
 
 	/**
-	 * <p>Constructor for SerializationException.</p>
-	 *
-	 * @param th a {@link java.lang.Throwable} object.
+	 * <p>
+	 * Constructor for SerializationException.
+	 * </p>
+	 * 
+	 * @param th
+	 *            a {@link java.lang.Throwable} object.
 	 */
 	public SerializationException(Throwable th) {
 		super(th);

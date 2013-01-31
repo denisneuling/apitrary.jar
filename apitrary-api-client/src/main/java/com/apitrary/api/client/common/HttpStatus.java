@@ -16,10 +16,12 @@
 package com.apitrary.api.client.common;
 
 /**
- * <p>HttpStatus class.</p>
- *
+ * <p>
+ * HttpStatus class.
+ * </p>
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
 public enum HttpStatus {
 
@@ -74,8 +76,10 @@ public enum HttpStatus {
 	}
 
 	/**
-	 * <p>Getter for the field <code>code</code>.</p>
-	 *
+	 * <p>
+	 * Getter for the field <code>code</code>.
+	 * </p>
+	 * 
 	 * @return a int.
 	 */
 	public int getCode() {
@@ -83,9 +87,12 @@ public enum HttpStatus {
 	}
 
 	/**
-	 * <p>getStatus.</p>
-	 *
-	 * @param code a int.
+	 * <p>
+	 * getStatus.
+	 * </p>
+	 * 
+	 * @param code
+	 *            a int.
 	 * @return a {@link com.apitrary.api.client.common.HttpStatus} object.
 	 */
 	public static HttpStatus getStatus(int code) {
@@ -113,8 +120,10 @@ public enum HttpStatus {
 	}
 
 	/**
-	 * <p>isError.</p>
-	 *
+	 * <p>
+	 * isError.
+	 * </p>
+	 * 
 	 * @return a boolean.
 	 */
 	public boolean isError() {

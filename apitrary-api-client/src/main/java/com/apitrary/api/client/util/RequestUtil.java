@@ -34,10 +34,12 @@ import com.apitrary.api.request.Request;
 import com.apitrary.api.response.Response;
 
 /**
- * <p>RequestUtil class.</p>
- *
+ * <p>
+ * RequestUtil class.
+ * </p>
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
 public class RequestUtil {
 
@@ -45,10 +47,14 @@ public class RequestUtil {
 	private static final String preMessage = "Request breaks constraints.";
 
 	/**
-	 * <p>getInstanceOfParameterizedType.</p>
-	 *
-	 * @param request a {@link com.apitrary.api.request.Request} object.
-	 * @param <T> a T object.
+	 * <p>
+	 * getInstanceOfParameterizedType.
+	 * </p>
+	 * 
+	 * @param request
+	 *            a {@link com.apitrary.api.request.Request} object.
+	 * @param <T>
+	 *            a T object.
 	 * @return a {@link com.apitrary.api.response.Response} object.
 	 */
 	@SuppressWarnings("unchecked")
@@ -63,10 +69,14 @@ public class RequestUtil {
 	}
 
 	/**
-	 * <p>getRequestPayload.</p>
-	 *
-	 * @param request a {@link com.apitrary.api.request.Request} object.
-	 * @param <T> a T object.
+	 * <p>
+	 * getRequestPayload.
+	 * </p>
+	 * 
+	 * @param request
+	 *            a {@link com.apitrary.api.request.Request} object.
+	 * @param <T>
+	 *            a T object.
 	 * @return a {@link java.lang.String} object.
 	 */
 	@SuppressWarnings("unused")
@@ -78,18 +88,23 @@ public class RequestUtil {
 			Body body = field.getAnnotation(Body.class);
 
 			String asString = ClassUtil.getValueOf(field, request, referenceClazz, String.class);
-			return (asString!=null?asString:"");
+			return (asString != null ? asString : "");
 			// what if there are more bodies?!
 		}
 		return EMPTY;
 	}
 
 	/**
-	 * <p>resolveAndSetQueryPart.</p>
-	 *
-	 * @param request a {@link com.apitrary.api.request.Request} object.
-	 * @param webClient a {@link org.apache.cxf.jaxrs.client.WebClient} object.
-	 * @param <T> a T object.
+	 * <p>
+	 * resolveAndSetQueryPart.
+	 * </p>
+	 * 
+	 * @param request
+	 *            a {@link com.apitrary.api.request.Request} object.
+	 * @param webClient
+	 *            a {@link org.apache.cxf.jaxrs.client.WebClient} object.
+	 * @param <T>
+	 *            a T object.
 	 * @return a {@link org.apache.cxf.jaxrs.client.WebClient} object.
 	 */
 	public static <T> WebClient resolveAndSetQueryPart(Request<T> request, WebClient webClient) {
@@ -108,10 +123,14 @@ public class RequestUtil {
 	}
 
 	/**
-	 * <p>resolveQueryPart.</p>
-	 *
-	 * @param request a {@link com.apitrary.api.request.Request} object.
-	 * @param <T> a T object.
+	 * <p>
+	 * resolveQueryPart.
+	 * </p>
+	 * 
+	 * @param request
+	 *            a {@link com.apitrary.api.request.Request} object.
+	 * @param <T>
+	 *            a T object.
 	 * @return a {@link java.util.HashMap} object.
 	 */
 	public static <T> HashMap<String, String> resolveQueryPart(Request<T> request) {
@@ -136,11 +155,16 @@ public class RequestUtil {
 	}
 
 	/**
-	 * <p>validate.</p>
-	 *
-	 * @param request a {@link com.apitrary.api.request.Request} object.
-	 * @param <T> a T object.
-	 * @throws com.apitrary.api.client.exception.ValidationConstraintViolationException if any.
+	 * <p>
+	 * validate.
+	 * </p>
+	 * 
+	 * @param request
+	 *            a {@link com.apitrary.api.request.Request} object.
+	 * @param <T>
+	 *            a T object.
+	 * @throws com.apitrary.api.client.exception.ValidationConstraintViolationException
+	 *             if any.
 	 */
 	public static <T> void validate(Request<T> request) throws ValidationConstraintViolationException {
 		if (request != null) {

@@ -18,19 +18,26 @@ package com.apitrary.api.client.util;
 import java.util.Arrays;
 
 /**
- * <p>ArrayUtil class.</p>
- *
+ * <p>
+ * ArrayUtil class.
+ * </p>
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
 public class ArrayUtil {
 
 	/**
-	 * <p>concat.</p>
-	 *
-	 * @param first an array of T objects.
-	 * @param second an array of T objects.
-	 * @param <T> a T object.
+	 * <p>
+	 * concat.
+	 * </p>
+	 * 
+	 * @param first
+	 *            an array of T objects.
+	 * @param second
+	 *            an array of T objects.
+	 * @param <T>
+	 *            a T object.
 	 * @return an array of T objects.
 	 */
 	public static <T> T[] concat(T[] first, T[] second) {

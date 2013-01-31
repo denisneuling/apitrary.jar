@@ -13,17 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.api.response;
-
-import com.apitrary.api.annotation.Normalized;
+package com.apitrary.orm.core.exception;
 
 /**
- * <p>UpdateResponse class.</p>
- *
+ * <p>
+ * DaoSupportUninitializedException class.
+ * </p>
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
-@Normalized
-public class UpdateResponse extends Response<UpdateResponse> {
+public class DaoSupportUninitializedException  extends ApitraryOrmException {
+	private static final long serialVersionUID = -7712804435364904885L;
 
+	/**
+	 * <p>
+	 * Constructor for DaoSupportUninitializedException.
+	 * </p>
+	 * 
+	 * @param message
+	 *            a {@link java.lang.String} object.
+	 */
+	public DaoSupportUninitializedException(String message) {
+		super(message);
+	}
 }

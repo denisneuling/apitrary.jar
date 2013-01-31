@@ -18,46 +18,61 @@ package com.apitrary.api.client.exception;
 import com.apitrary.api.client.common.HttpStatus;
 
 /**
- * <p>CommunicationErrorException class.</p>
- *
+ * <p>
+ * CommunicationErrorException class.
+ * </p>
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
 public class CommunicationErrorException extends ClientException {
 	private static final long serialVersionUID = 212232635139714702L;
 
 	/**
-	 * <p>Constructor for CommunicationErrorException.</p>
-	 *
-	 * @param message a {@link java.lang.String} object.
+	 * <p>
+	 * Constructor for CommunicationErrorException.
+	 * </p>
+	 * 
+	 * @param message
+	 *            a {@link java.lang.String} object.
 	 */
 	public CommunicationErrorException(String message) {
 		super(message);
 	}
 
 	/**
-	 * <p>Constructor for CommunicationErrorException.</p>
-	 *
-	 * @param th a {@link java.lang.Throwable} object.
+	 * <p>
+	 * Constructor for CommunicationErrorException.
+	 * </p>
+	 * 
+	 * @param th
+	 *            a {@link java.lang.Throwable} object.
 	 */
 	public CommunicationErrorException(Throwable th) {
 		super(th);
 	}
 
 	/**
-	 * <p>Constructor for CommunicationErrorException.</p>
-	 *
-	 * @param httpStatus a {@link com.apitrary.api.client.common.HttpStatus} object.
-	 * @param message a {@link java.lang.String} object.
+	 * <p>
+	 * Constructor for CommunicationErrorException.
+	 * </p>
+	 * 
+	 * @param httpStatus
+	 *            a {@link com.apitrary.api.client.common.HttpStatus} object.
+	 * @param message
+	 *            a {@link java.lang.String} object.
 	 */
 	public CommunicationErrorException(HttpStatus httpStatus, String message) {
 		super(httpStatus.getCode() + " " + message);
 	}
 
 	/**
-	 * <p>Constructor for CommunicationErrorException.</p>
-	 *
-	 * @param httpStatus a {@link com.apitrary.api.client.common.HttpStatus} object.
+	 * <p>
+	 * Constructor for CommunicationErrorException.
+	 * </p>
+	 * 
+	 * @param httpStatus
+	 *            a {@link com.apitrary.api.client.common.HttpStatus} object.
 	 */
 	public CommunicationErrorException(HttpStatus httpStatus) {
 		super(httpStatus.getCode() + " " + httpStatus.toString());

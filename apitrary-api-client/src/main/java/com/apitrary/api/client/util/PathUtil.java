@@ -28,25 +28,31 @@ import com.apitrary.api.annotation.PathVariable;
 import com.apitrary.api.request.Request;
 
 /**
- * <p>PathUtil class.</p>
- *
+ * <p>
+ * PathUtil class.
+ * </p>
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
 public class PathUtil {
 
 	private static final String PATTERN = "\\$\\{(.*?)*\\}(.*?)";
 
 	/**
-	 * <p>resolveResourcePath.</p>
-	 *
-	 * @param request a {@link com.apitrary.api.request.Request} object.
-	 * @param <T> a T object.
+	 * <p>
+	 * resolveResourcePath.
+	 * </p>
+	 * 
+	 * @param request
+	 *            a {@link com.apitrary.api.request.Request} object.
+	 * @param <T>
+	 *            a T object.
 	 * @return a {@link java.lang.String} object.
 	 */
 	public static <T> String resolveResourcePath(Request<T> request) {
 		infixPotentialPathDefaults(request, request.getClass());
-		
+
 		Class<?> clazz = request.getClass();
 
 		String unresolvedPath = ClassUtil.getClassAnnotationValue(clazz, Path.class, "value", String.class);
@@ -81,12 +87,12 @@ public class PathUtil {
 			}
 		}
 
-		if(unresolvedPath.endsWith("/")){
-			unresolvedPath = unresolvedPath.substring(0, unresolvedPath.length()-1);
+		if (unresolvedPath.endsWith("/")) {
+			unresolvedPath = unresolvedPath.substring(0, unresolvedPath.length() - 1);
 		}
 		return unresolvedPath;
 	}
-	
+
 	private static <T> void infixPotentialPathDefaults(Request<T> request, Class<?> targetClazz) {
 		if (targetClazz == null) {
 			targetClazz = request.getClass();

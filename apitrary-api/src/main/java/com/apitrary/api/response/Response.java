@@ -16,21 +16,25 @@
 package com.apitrary.api.response;
 
 /**
- * <p>Abstract Response class.</p>
- *
+ * <p>
+ * Abstract Response class.
+ * </p>
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
-public abstract class Response<T>{
+public abstract class Response<T> {
 
 	protected String result;
 	protected String statusMessage;
 	protected int statusCode;
 	protected long responseTime;
-	
+
 	/**
-	 * <p>Getter for the field <code>result</code>.</p>
-	 *
+	 * <p>
+	 * Getter for the field <code>result</code>.
+	 * </p>
+	 * 
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getResult() {
@@ -38,17 +42,22 @@ public abstract class Response<T>{
 	}
 
 	/**
-	 * <p>Setter for the field <code>result</code>.</p>
-	 *
-	 * @param result a {@link java.lang.String} object.
+	 * <p>
+	 * Setter for the field <code>result</code>.
+	 * </p>
+	 * 
+	 * @param result
+	 *            a {@link java.lang.String} object.
 	 */
 	public void setResult(String result) {
 		this.result = result;
 	}
 
 	/**
-	 * <p>Getter for the field <code>statusMessage</code>.</p>
-	 *
+	 * <p>
+	 * Getter for the field <code>statusMessage</code>.
+	 * </p>
+	 * 
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getStatusMessage() {
@@ -56,17 +65,22 @@ public abstract class Response<T>{
 	}
 
 	/**
-	 * <p>Setter for the field <code>statusMessage</code>.</p>
-	 *
-	 * @param statusMessage a {@link java.lang.String} object.
+	 * <p>
+	 * Setter for the field <code>statusMessage</code>.
+	 * </p>
+	 * 
+	 * @param statusMessage
+	 *            a {@link java.lang.String} object.
 	 */
 	public void setStatusMessage(String statusMessage) {
 		this.statusMessage = statusMessage;
 	}
 
 	/**
-	 * <p>Getter for the field <code>statusCode</code>.</p>
-	 *
+	 * <p>
+	 * Getter for the field <code>statusCode</code>.
+	 * </p>
+	 * 
 	 * @return a int.
 	 */
 	public int getStatusCode() {
@@ -74,17 +88,22 @@ public abstract class Response<T>{
 	}
 
 	/**
-	 * <p>Setter for the field <code>statusCode</code>.</p>
-	 *
-	 * @param statusCode a int.
+	 * <p>
+	 * Setter for the field <code>statusCode</code>.
+	 * </p>
+	 * 
+	 * @param statusCode
+	 *            a int.
 	 */
 	public void setStatusCode(int statusCode) {
 		this.statusCode = statusCode;
 	}
 
 	/**
-	 * <p>Getter for the field <code>responseTime</code>.</p>
-	 *
+	 * <p>
+	 * Getter for the field <code>responseTime</code>.
+	 * </p>
+	 * 
 	 * @return a long.
 	 */
 	public long getResponseTime() {
@@ -92,9 +111,12 @@ public abstract class Response<T>{
 	}
 
 	/**
-	 * <p>Setter for the field <code>responseTime</code>.</p>
-	 *
-	 * @param responseTime a long.
+	 * <p>
+	 * Setter for the field <code>responseTime</code>.
+	 * </p>
+	 * 
+	 * @param responseTime
+	 *            a long.
 	 */
 	public void setResponseTime(long responseTime) {
 		this.responseTime = responseTime;
@@ -103,8 +125,6 @@ public abstract class Response<T>{
 	/** {@inheritDoc} */
 	@Override
 	public String toString() {
-		return "Response [result=" + result + ", statusMessage="
-				+ statusMessage + ", statusCode=" + statusCode
-				+ ", responseTime=" + responseTime + "]";
+		return "Response [result=" + result + ", statusMessage=" + statusMessage + ", statusCode=" + statusCode + ", responseTime=" + responseTime + "]";
 	}
 }

@@ -15,45 +15,48 @@
  */
 package com.apitrary.api.request;
 
-import com.apitrary.api.annotation.Body;
+import com.apitrary.api.annotation.Default;
 import com.apitrary.api.annotation.Method;
 import com.apitrary.api.annotation.Path;
 import com.apitrary.api.annotation.PathVariable;
 import com.apitrary.api.annotation.Required;
 import com.apitrary.api.common.HttpMethod;
-import com.apitrary.api.response.UpdateResponse;
+import com.apitrary.api.response.GetResponse;
 
 /**
- * <p>UpdateRequest class.</p>
- *
+ * <p>
+ * GetRequest class.
+ * </p>
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
-@Method(HttpMethod.PUT)
+@Method(HttpMethod.GET)
 @Path("/${entity}/${id}")
-public class UpdateRequest extends Request<UpdateResponse>{
-	private static final long serialVersionUID = 7880320624981198826L;
+public class GetRequest extends Request<GetResponse> {
+	private static final long serialVersionUID = 626610613858401470L;
 
 	@Required
 	@PathVariable("${entity}")
 	private String entity;
-	
-	@Required
+
+	@Default
 	@PathVariable("${id}")
 	private String id;
-	
-	@Body
-	private String requestPayload;
-	
+
 	/**
-	 * <p>Constructor for UpdateRequest.</p>
+	 * <p>
+	 * Constructor for GetRequest.
+	 * </p>
 	 */
-	public UpdateRequest(){
+	public GetRequest() {
 	}
 
 	/**
-	 * <p>Getter for the field <code>entity</code>.</p>
-	 *
+	 * <p>
+	 * Getter for the field <code>entity</code>.
+	 * </p>
+	 * 
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getEntity() {
@@ -61,17 +64,22 @@ public class UpdateRequest extends Request<UpdateResponse>{
 	}
 
 	/**
-	 * <p>Setter for the field <code>entity</code>.</p>
-	 *
-	 * @param entity a {@link java.lang.String} object.
+	 * <p>
+	 * Setter for the field <code>entity</code>.
+	 * </p>
+	 * 
+	 * @param entity
+	 *            a {@link java.lang.String} object.
 	 */
 	public void setEntity(String entity) {
 		this.entity = entity;
 	}
 
 	/**
-	 * <p>Getter for the field <code>id</code>.</p>
-	 *
+	 * <p>
+	 * Getter for the field <code>id</code>.
+	 * </p>
+	 * 
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getId() {
@@ -79,29 +87,14 @@ public class UpdateRequest extends Request<UpdateResponse>{
 	}
 
 	/**
-	 * <p>Setter for the field <code>id</code>.</p>
-	 *
-	 * @param id a {@link java.lang.String} object.
+	 * <p>
+	 * Setter for the field <code>id</code>.
+	 * </p>
+	 * 
+	 * @param id
+	 *            a {@link java.lang.String} object.
 	 */
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	/**
-	 * <p>Getter for the field <code>requestPayload</code>.</p>
-	 *
-	 * @return a {@link java.lang.String} object.
-	 */
-	public String getRequestPayload() {
-		return requestPayload;
-	}
-	
-	/**
-	 * <p>Setter for the field <code>requestPayload</code>.</p>
-	 *
-	 * @param requestPayload a {@link java.lang.String} object.
-	 */
-	public void setRequestPayload(String requestPayload) {
-		this.requestPayload = requestPayload;
 	}
 }
