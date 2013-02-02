@@ -19,7 +19,7 @@ package com.apitrary.orm.core.exception;
  * <p>
  * ApitraryOrmUpdateException class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
@@ -30,7 +30,7 @@ public class ApitraryOrmUpdateException extends ApitraryOrmException {
 	 * <p>
 	 * Constructor for ApitraryOrmDeleteException.
 	 * </p>
-	 * 
+	 *
 	 * @param message
 	 *            a {@link java.lang.String} object.
 	 */

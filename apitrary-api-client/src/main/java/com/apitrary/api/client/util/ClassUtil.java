@@ -17,8 +17,11 @@ package com.apitrary.api.client.util;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -59,6 +62,10 @@ public class ClassUtil {
 		}
 		return value;
 	}
+	
+	public static <T> List<Field> getAnnotatedFields(Object object, Class<? extends Annotation> annotationClass) {
+		return getAnnotatedFields(object.getClass(), annotationClass);
+	}
 
 	/**
 	 * <p>
@@ -82,6 +89,24 @@ public class ClassUtil {
 			}
 		}
 		return annotatedFields;
+	}
+	
+	public static <T> List<Field> getAnnotatedFields(Object object, Class<? extends Annotation>...annotationClasses) {
+		return getAnnotatedFields(object.getClass(), annotationClasses);
+	}
+	
+	@SuppressWarnings({"unchecked", "rawtypes"})
+	public static <T> List<Field> getAnnotatedFields(Class<?> clazz, Class<? extends Annotation>...annotationClasses) {
+		Set<Field> annotatedFields = new HashSet<Field>();
+		Field[] allFields = getAllDeclaredFields(clazz);
+		for(Class annotationClass : annotationClasses){
+			for (Field field : allFields) {
+				if (null != (field.getAnnotation(annotationClass))) {
+					annotatedFields.add(field);
+				}
+			}
+		}
+		return new LinkedList<Field>(annotatedFields);
 	}
 
 	/**
@@ -213,7 +238,14 @@ public class ClassUtil {
 	}
 
 	public static Object box(Object property, Class<?> to) {
+		if(property instanceof Exception){
+			((Exception)property).printStackTrace();
+		}
 		if (property == null) {
+			return property;
+		}
+		
+		if(property.getClass().equals(to)){
 			return property;
 		}
 
@@ -252,5 +284,29 @@ public class ClassUtil {
 		}
 
 		return to.cast(property);
+	}
+	
+	public static Field getDeclaredFieldSilent(Class<?> target, String fieldName){
+		try {
+			return target.getDeclaredField(fieldName);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static <T> T getFieldAnnotationValue(String annotationProperty, Field field, Class<? extends Annotation> annotationClass, Class<T> ofType){
+		Object annotation = field.getAnnotation(annotationClass);
+		
+		T result = null;
+		if(annotation!=null){
+			try{
+				Method method = annotationClass.getMethod(annotationProperty, new Class[]{});
+				result = (T) method.invoke(annotation, new Object[]{});
+			}catch(Exception e){
+				throw new RuntimeException(e);
+			}
+		}
+		return result;
 	}
 }

@@ -13,36 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.orm.core.mapping;
+package com.apitrary.orm.core.unmarshalling;
 
 import org.codehaus.jackson.JsonParser;
 
-import com.apitrary.api.response.DeleteResponse;
+import com.apitrary.api.response.PutResponse;
 import com.apitrary.api.response.Response;
 import com.apitrary.orm.core.exception.MappingException;
-import com.apitrary.orm.core.mapping.api.Mapper;
+import com.apitrary.orm.core.unmarshalling.api.Unmarshaller;
 
 /**
  * <p>
- * DeleteResponseMapper class.
+ * PutResponseMapper class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
-public class DeleteResponseMapper extends JsonResponseConsumer implements Mapper<DeleteResponse> {
+public class PutResponseUnmarshaller extends JsonResponseConsumer implements Unmarshaller<PutResponse> {
 
 	private String statusMessage = new String();
 
 	/** {@inheritDoc} */
 	@Override
-	public Object unMarshall(Response<DeleteResponse> response, Object entity) {
+	public Object unMarshall(Response<PutResponse> response, Object entity) {
 		return unMarshall(response, entity.getClass());
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public Object unMarshall(Response<DeleteResponse> response, Class<?> entity) {
+	public Object unMarshall(Response<PutResponse> response, Class<?> entity) {
 		try {
 			consume(response.getResult());
 

@@ -21,18 +21,20 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import com.apitrary.orm.cascade.Cascade;
+
 /**
  * <p>
  * References class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 @Inherited
-public @interface References {
-
-	Class<?> value();
+public @interface Reference {
+	
+	Cascade[] cascade() default {};
 }

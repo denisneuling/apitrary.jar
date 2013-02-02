@@ -13,47 +13,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.orm.core.mapping;
-
-import java.lang.reflect.Field;
-import java.util.List;
+package com.apitrary.orm.core.unmarshalling;
 
 import org.codehaus.jackson.JsonParser;
 
-import com.apitrary.api.client.util.ClassUtil;
-import com.apitrary.api.response.PostResponse;
+import com.apitrary.api.response.DeleteResponse;
 import com.apitrary.api.response.Response;
-import com.apitrary.orm.annotations.Id;
-import com.apitrary.orm.core.exception.ApitraryOrmIdException;
 import com.apitrary.orm.core.exception.MappingException;
-import com.apitrary.orm.core.mapping.api.Mapper;
+import com.apitrary.orm.core.unmarshalling.api.Unmarshaller;
 
 /**
  * <p>
- * PostResponseMapper class.
+ * DeleteResponseMapper class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
-public class PostResponseMapper extends JsonResponseConsumer implements Mapper<PostResponse> {
+public class DeleteResponseUnmarshaller extends JsonResponseConsumer implements Unmarshaller<DeleteResponse> {
 
-	private Object entity;
+	private String statusMessage = new String();
 
 	/** {@inheritDoc} */
 	@Override
-	public Object unMarshall(Response<PostResponse> response, Object entity) {
-		this.entity = entity;
+	public Object unMarshall(Response<DeleteResponse> response, Object entity) {
 		return unMarshall(response, entity.getClass());
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public Object unMarshall(Response<PostResponse> response, Class<?> entity) {
+	public Object unMarshall(Response<DeleteResponse> response, Class<?> entity) {
 		try {
 			consume(response.getResult());
 
-			return this.entity;
+			return statusMessage;
 		} catch (Exception e) {
 			throw new MappingException(e);
 		}
@@ -64,13 +57,8 @@ public class PostResponseMapper extends JsonResponseConsumer implements Mapper<P
 	protected void onString(String text, String fieldName, JsonParser jp) {
 		log.trace(fieldName + " " + text);
 
-		if ("_id".equals(fieldName)) {
-			List<Field> fields = ClassUtil.getAnnotatedFields(entity.getClass(), Id.class);
-			if (fields.isEmpty() || fields.size() > 1) {
-				throw new ApitraryOrmIdException("Illegal amount of annotated id properties of class " + entity.getClass().getName());
-			} else {
-				ClassUtil.setSilent(this.entity, fields.get(0).getName(), text);
-			}
+		if ("statusMessage".equals(fieldName)) {
+			this.statusMessage = text;
 		}
 	}
 }

@@ -23,19 +23,23 @@ import java.lang.annotation.Target;
 
 /**
  * <p>
- * Field class.
+ * MarshallingStrategy class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
+ *
+ *         TODO: implement this to have an aspect to flag the serialization to
+ *         use a custom marshalling service for the annotated property
  * 
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 @Inherited
-public @interface Field {
+public @interface MarshallingStrategy {
 
 	/**
-	 * The field's name
+	 * The MarshallingStrategy's class to define serialization method and vice
+	 * versa
 	 */
-	String value() default "";
+	Class<?> value();
 }

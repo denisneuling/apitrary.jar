@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Denis Neuling 
+ * Copyright 2012-2013 Denis Neuling 
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License.
@@ -13,30 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.orm.annotations;
+package com.apitrary.orm.core.marshalling.api;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
 
 /**
- * <p>
- * SerializationStrategy class.
- * </p>
- * 
+ * <p>Marshaller interface.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-@Inherited
-public @interface SerializationStrategy {
+public interface Marshaller {
 
 	/**
-	 * The SerializationStrategy's class to define serialization method and vice
-	 * versa
+	 * <p>marshall.</p>
+	 *
+	 * @param entity a T object.
+	 * @param <T> a T object.
+	 * @return a {@link java.lang.String} object.
 	 */
-	Class<?> value();
+	public <T> String marshall(T entity);
 }

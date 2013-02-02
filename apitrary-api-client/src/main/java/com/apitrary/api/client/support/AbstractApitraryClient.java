@@ -106,11 +106,9 @@ public abstract class AbstractApitraryClient {
 		javax.ws.rs.core.Response cxfResponse = webClient.get();
 		timer.toc();
 
-		log.debug(cxfResponse.getStatus() + " " + webClient.getCurrentURI() + " took " + timer.getDifference() + "ms");
+		log.trace(cxfResponse.getStatus() + " " + webClient.getCurrentURI() + " took " + timer.getDifference() + "ms");
 
 		Response<T> response = toResponse(timer, cxfResponse, request);
-
-		log.debug(response);
 
 		return response;
 	}
@@ -133,17 +131,14 @@ public abstract class AbstractApitraryClient {
 		webClient = RequestUtil.resolveAndSetQueryPart(request, webClient);
 
 		String payload = RequestUtil.getRequestPayload(request);
-		log.debug(payload);
 
 		Timer timer = Timer.tic();
 		javax.ws.rs.core.Response cxfResponse = webClient.post(payload);
 		timer.toc();
 
-		log.debug(cxfResponse.getStatus() + " " + webClient.getCurrentURI() + " took " + timer.getDifference() + "ms");
+		log.trace(cxfResponse.getStatus() + " " + webClient.getCurrentURI() + " took " + timer.getDifference() + "ms");
 
 		Response<T> response = toResponse(timer, cxfResponse, request);
-
-		log.debug(response);
 
 		return response;
 	}
@@ -166,17 +161,14 @@ public abstract class AbstractApitraryClient {
 		webClient = RequestUtil.resolveAndSetQueryPart(request, webClient);
 
 		String payload = RequestUtil.getRequestPayload(request);
-		log.debug(payload);
 
 		Timer timer = Timer.tic();
 		javax.ws.rs.core.Response cxfResponse = webClient.put(payload);
 		timer.toc();
 
-		log.debug(cxfResponse.getStatus() + " " + webClient.getCurrentURI() + " took " + timer.getDifference() + "ms");
+		log.trace(cxfResponse.getStatus() + " " + webClient.getCurrentURI() + " took " + timer.getDifference() + "ms");
 
 		Response<T> response = toResponse(timer, cxfResponse, request);
-
-		log.debug(response);
 
 		return response;
 	}
@@ -202,11 +194,9 @@ public abstract class AbstractApitraryClient {
 		javax.ws.rs.core.Response cxfResponse = webClient.delete();
 		timer.toc();
 
-		log.debug(cxfResponse.getStatus() + " " + webClient.getCurrentURI() + " took " + timer.getDifference() + "ms");
+		log.trace(cxfResponse.getStatus() + " " + webClient.getCurrentURI() + " took " + timer.getDifference() + "ms");
 
 		Response<T> response = toResponse(timer, cxfResponse, request);
-
-		log.debug(response);
 
 		return response;
 	}

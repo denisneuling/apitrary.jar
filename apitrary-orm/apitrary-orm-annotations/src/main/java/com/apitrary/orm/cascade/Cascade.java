@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Denis Neuling 
+ * Copyright 2012-2013 Denis Neuling 
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License.
@@ -13,32 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.orm.core.mapping.api;
-
-import java.util.List;
-
-import com.apitrary.api.response.Response;
+package com.apitrary.orm.cascade;
 
 /**
- * <p>
- * ListMapper interface.
- * </p>
- * 
+ * <p>Cascade class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
-public interface ListMapper<T extends Response<T>> {
+public enum Cascade {
 
+	NOP(0),
+	SAVE(1)
+//	,
+//	UPDATE(2)
+//	,
+//	DELETE(3)
+	;
+	
+	private int code;
+	private Cascade(int code){
+		this.code = code;
+	}
 	/**
-	 * <p>
-	 * unMarshall.
-	 * </p>
-	 * 
-	 * @param response
-	 *            a {@link com.apitrary.api.response.Response} object.
-	 * @param entity
-	 *            a {@link java.lang.Class} object.
-	 * @return a {@link java.util.List} object.
+	 * <p>Getter for the field <code>code</code>.</p>
+	 *
+	 * @return a int.
 	 */
-	public List<Object> unMarshall(Response<T> response, Class<?> entity);
+	public int getCode(){
+		return code;
+	}
 }

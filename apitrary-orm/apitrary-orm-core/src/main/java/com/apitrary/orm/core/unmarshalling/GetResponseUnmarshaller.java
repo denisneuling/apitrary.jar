@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.orm.core.mapping;
+package com.apitrary.orm.core.unmarshalling;
 
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.JsonParser;
@@ -21,24 +21,39 @@ import org.codehaus.jackson.JsonParser;
 import com.apitrary.api.client.util.ClassUtil;
 import com.apitrary.api.response.GetResponse;
 import com.apitrary.api.response.Response;
+import com.apitrary.orm.annotations.Column;
+import com.apitrary.orm.annotations.Reference;
+import com.apitrary.orm.core.ApitraryDaoSupport;
 import com.apitrary.orm.core.exception.MappingException;
-import com.apitrary.orm.core.mapping.api.Mapper;
+import com.apitrary.orm.core.unmarshalling.api.Unmarshaller;
+import com.apitrary.orm.core.util.ProxyUtil;
 
 /**
  * <p>
  * GetResponseMapper class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
-public class GetResponseMapper extends JsonResponseConsumer implements Mapper<GetResponse> {
+public class GetResponseUnmarshaller extends JsonResponseConsumer implements Unmarshaller<GetResponse> {
 	protected Logger log = Logger.getLogger(getClass());
 
 	private boolean found = false;
 	private boolean resultStarted = false;
 	private Object entity;
 
+	private ApitraryDaoSupport daoSupport;
+	
+	/**
+	 * <p>Constructor for GetResponseUnmarshaller.</p>
+	 *
+	 * @param daoSupport a {@link com.apitrary.orm.core.ApitraryDaoSupport} object.
+	 */
+	public GetResponseUnmarshaller(ApitraryDaoSupport daoSupport){
+		this.daoSupport = daoSupport;
+	}
+	
 	/** {@inheritDoc} */
 	@Override
 	public Object unMarshall(Response<GetResponse> response, Object entity) {
@@ -135,7 +150,14 @@ public class GetResponseMapper extends JsonResponseConsumer implements Mapper<Ge
 
 		if (resultStarted) {
 			found = true;
-			ClassUtil.setSilent(entity, fieldName, text);
+			java.lang.reflect.Field field = ClassUtil.getDeclaredFieldSilent(entity.getClass(), fieldName);
+			if(field!=null){
+				if(field.isAnnotationPresent(Reference.class)){
+					ClassUtil.setSilent(entity, fieldName, ProxyUtil.createLazyProxy(field.getType(), daoSupport, text));
+				}else if(field.isAnnotationPresent(Column.class)){
+					ClassUtil.setSilent(entity, fieldName, text);
+				}
+			}
 		}
 	}
 }

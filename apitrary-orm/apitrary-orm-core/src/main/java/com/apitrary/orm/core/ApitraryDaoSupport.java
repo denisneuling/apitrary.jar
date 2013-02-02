@@ -19,12 +19,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
-import org.codehaus.jackson.annotate.JsonMethod;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.ObjectWriter;
-import org.codehaus.jackson.map.ser.impl.SimpleBeanPropertyFilter;
-import org.codehaus.jackson.map.ser.impl.SimpleFilterProvider;
 
 import com.apitrary.api.client.ApitraryClient;
 import com.apitrary.api.client.common.HttpStatus;
@@ -47,31 +42,30 @@ import com.apitrary.orm.annotations.Entity;
 import com.apitrary.orm.annotations.Id;
 import com.apitrary.orm.core.exception.ApitraryOrmDeleteException;
 import com.apitrary.orm.core.exception.ApitraryOrmException;
+import com.apitrary.orm.core.exception.ApitraryOrmIdDefinitionsException;
 import com.apitrary.orm.core.exception.ApitraryOrmIdException;
 import com.apitrary.orm.core.exception.ApitraryOrmUpdateException;
 import com.apitrary.orm.core.exception.DaoSupportUninitializedException;
 import com.apitrary.orm.core.exception.MappingException;
-import com.apitrary.orm.core.json.filter.PropertyFilterMixIn;
-import com.apitrary.orm.core.mapping.DeleteResponseMapper;
-import com.apitrary.orm.core.mapping.GetResponseMapper;
-import com.apitrary.orm.core.mapping.PostResponseMapper;
-import com.apitrary.orm.core.mapping.PutResponseMapper;
-import com.apitrary.orm.core.mapping.QueriedGetResponseMapper;
-import com.apitrary.orm.core.scheme.SchemeCache;
+import com.apitrary.orm.core.marshalling.PayloadMarshaller;
+import com.apitrary.orm.core.unmarshalling.DeleteResponseUnmarshaller;
+import com.apitrary.orm.core.unmarshalling.GetResponseUnmarshaller;
+import com.apitrary.orm.core.unmarshalling.PostResponseUnmarshaller;
+import com.apitrary.orm.core.unmarshalling.PutResponseUnmarshaller;
+import com.apitrary.orm.core.unmarshalling.QueriedGetResponseUnmarshaller;
 import com.apitrary.orm.core.util.StringUtil;
 
 /**
  * <p>
  * ApitraryDaoSupport class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
 public class ApitraryDaoSupport {
 	protected Logger log = Logger.getLogger(getClass());
 
-	protected SchemeCache schemeCache = new SchemeCache();
 	protected ApitraryClient apitraryClient;
 
 	/**
@@ -86,7 +80,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * Getter for the field <code>apitraryClient</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link com.apitrary.api.client.ApitraryClient} object.
 	 */
 	public ApitraryClient getApitraryClient() {
@@ -97,7 +91,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * Setter for the field <code>apitraryClient</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param apitraryClient
 	 *            a {@link com.apitrary.api.client.ApitraryClient} object.
 	 */
@@ -109,7 +103,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * save.
 	 * </p>
-	 * 
+	 *
 	 * @param entity
 	 *            a T object.
 	 * @param <T>
@@ -118,13 +112,18 @@ public class ApitraryDaoSupport {
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> T save(T entity) {
+		if(entity == null){
+			throw new ApitraryOrmException("Cannot persist null entity");
+		}
+		log.debug("Saving "+entity.getClass());
+		
 		PostRequest request = new PostRequest();
 		request.setEntity(resolveApitraryEntity(entity));
-		request.setRequestPayload(dump(entity));
+		request.setRequestPayload(marshall(entity));
 		PostResponse response = resolveApitraryClient().send(request);
 
 		if (HttpStatus.Created.ordinal() == response.getStatusCode()) {
-			return (T) new PostResponseMapper().unMarshall(response, entity);
+			return (T) new PostResponseUnmarshaller().unMarshall(response, entity);
 		} else {
 			throw new ApitraryOrmException(response.getResult());
 		}
@@ -134,7 +133,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * update.
 	 * </p>
-	 * 
+	 *
 	 * @param entity
 	 *            a T object.
 	 * @param <T>
@@ -142,10 +141,16 @@ public class ApitraryDaoSupport {
 	 * @return a T object.
 	 */
 	public <T> T update(T entity) {
+		if(entity == null){
+			throw new ApitraryOrmException("Cannot update null entity");
+		}
+		
+		log.debug("Updating "+entity.getClass());
+		
 		PutRequest request = new PutRequest();
 		request.setEntity(resolveApitraryEntity(entity));
 		request.setId(resolveApitraryEntityId(entity));
-		request.setRequestPayload(dump(entity));
+		request.setRequestPayload(marshall(entity));
 
 		PutResponse response = resolveApitraryClient().send(request);
 
@@ -153,7 +158,7 @@ public class ApitraryDaoSupport {
 			if (HttpStatus.Not_Found.ordinal() == response.getStatusCode()) {
 				throw new ApitraryOrmUpdateException("Cannot update object: object with given id does not exist.");
 			} else {
-				String statusMessage = (String) new PutResponseMapper().unMarshall(response, entity);
+				String statusMessage = (String) new PutResponseUnmarshaller().unMarshall(response, entity);
 				throw new ApitraryOrmUpdateException(statusMessage);
 			}
 		}
@@ -164,13 +169,19 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * delete.
 	 * </p>
-	 * 
+	 *
 	 * @param entity
 	 *            a T object.
 	 * @param <T>
 	 *            a T object.
 	 */
 	public <T> void delete(T entity) {
+		if(entity == null){
+			throw new ApitraryOrmException("Cannot delete null entity");
+		}
+		
+		log.debug("Deleting "+entity.getClass());
+
 		DeleteRequest request = new DeleteRequest();
 		request.setEntity(resolveApitraryEntity(entity));
 		String id = resolveApitraryEntityId(entity);
@@ -181,7 +192,7 @@ public class ApitraryDaoSupport {
 			if (HttpStatus.Not_Found.ordinal() == response.getStatusCode()) {
 				throw new ApitraryOrmDeleteException("Object with id " + id + " does not exist.");
 			} else {
-				String statusMessage = (String) new DeleteResponseMapper().unMarshall(response, entity);
+				String statusMessage = (String) new DeleteResponseUnmarshaller().unMarshall(response, entity);
 				throw new ApitraryOrmDeleteException(statusMessage);
 			}
 		}
@@ -191,7 +202,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * findById.
 	 * </p>
-	 * 
+	 *
 	 * @param id
 	 *            a {@link java.lang.String} object.
 	 * @param entity
@@ -202,15 +213,21 @@ public class ApitraryDaoSupport {
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> T findById(String id, Class<T> entity) {
+		if(entity == null){
+			throw new ApitraryOrmException("Cannot access null entity");
+		}
 		if (id == null || id.isEmpty()) {
 			return null;
 		}
+		
+		log.debug("Searching "+entity+" "+id);
+		
 		GetRequest request = new GetRequest();
 		request.setEntity(resolveApitraryEntity(entity));
 		request.setId(id);
 		GetResponse response = resolveApitraryClient().send(request);
 
-		T result = (T) new GetResponseMapper().unMarshall(response, entity);
+		T result = (T) new GetResponseUnmarshaller(this).unMarshall(response, entity);
 
 		if (result != null) {
 			List<Field> fields = ClassUtil.getAnnotatedFields(entity, Id.class);
@@ -227,7 +244,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * find.
 	 * </p>
-	 * 
+	 *
 	 * @param riakQuery
 	 *            a {@link java.lang.String} object.
 	 * @param entity
@@ -238,19 +255,24 @@ public class ApitraryDaoSupport {
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> List<T> find(String riakQuery, Class<T> entity) {
+		if(entity == null){
+			throw new ApitraryOrmException("Cannot access null entity");
+		}
+		log.debug("Searching "+entity+" "+riakQuery);
+
 		QueriedGetRequest request = new QueriedGetRequest();
 		request.setEntity(resolveApitraryEntity(entity));
 		request.setQuery(riakQuery);
 		QueriedGetResponse response = resolveApitraryClient().send(request);
 
-		return (List<T>) new QueriedGetResponseMapper().unMarshall(response, entity);
+		return (List<T>) new QueriedGetResponseUnmarshaller(this).unMarshall(response, entity);
 	}
 
 	/**
 	 * <p>
 	 * findAll.
 	 * </p>
-	 * 
+	 *
 	 * @param entity
 	 *            a {@link java.lang.Class} object.
 	 * @param <T>
@@ -259,12 +281,18 @@ public class ApitraryDaoSupport {
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> List<T> findAll(Class<T> entity) {
+		if(entity == null){
+			throw new ApitraryOrmException("Cannot access null entity");
+		}
+		
+		log.debug("Loading all "+entity);
+		
 		QueriedGetRequest request = new QueriedGetRequest();
 		request.setEntity(resolveApitraryEntity(entity));
 		QueriedGetResponse response = resolveApitraryClient().send(request);
 
 		if (HttpStatus.OK.ordinal() == response.getStatusCode()) {
-			return (List<T>) new QueriedGetResponseMapper().unMarshall(response, entity);
+			return (List<T>) new QueriedGetResponseUnmarshaller(this).unMarshall(response, entity);
 		} else {
 			/*
 			 * happens more often than expected...
@@ -282,7 +310,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * getAPIState.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link com.apitrary.orm.core.internal.model.APIState} object.
 	 */
 	public APIState getAPIState() {
@@ -307,9 +335,37 @@ public class ApitraryDaoSupport {
 
 	/**
 	 * <p>
+	 * resolveApitraryEntityId.
+	 * </p>
+	 *
+	 * @param entity
+	 *            a T object.
+	 * @param <T>
+	 *            a T object.
+	 * @return a {@link java.lang.String} object.
+	 */
+	public <T> String resolveApitraryEntityId(T entity) {
+		List<java.lang.reflect.Field> fields = ClassUtil.getAnnotatedFields(entity.getClass(), Id.class);
+		if (fields.isEmpty()) {
+			throw new ApitraryOrmIdDefinitionsException("Apitrary entity must own an annotated ID field.");
+		}
+		if (fields.size() > 1) {
+			throw new ApitraryOrmIdDefinitionsException("Apitrary entity can not have more than one ID field.");
+		}
+
+		java.lang.reflect.Field field = fields.get(0);
+		String id = ClassUtil.getValueOf(field, entity, entity.getClass(), String.class);
+		if (id == null || id.isEmpty()) {
+			throw new ApitraryOrmIdException("Entity lacks ID and is probably not persisted.");
+		}
+		return id;
+	}
+	
+	/**
+	 * <p>
 	 * resolveApitraryEntity.
 	 * </p>
-	 * 
+	 *
 	 * @param entity
 	 *            a T object.
 	 * @param <T>
@@ -328,7 +384,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * resolveApitraryEntity.
 	 * </p>
-	 * 
+	 *
 	 * @param entity
 	 *            a {@link java.lang.Class} object.
 	 * @param <T>
@@ -344,60 +400,14 @@ public class ApitraryDaoSupport {
 	}
 
 	/**
-	 * <p>
-	 * resolveApitraryEntityId.
-	 * </p>
-	 * 
-	 * @param entity
-	 *            a T object.
-	 * @param <T>
-	 *            a T object.
+	 * <p>marshall.</p>
+	 *
+	 * @param entity a T object.
+	 * @param <T> a T object.
 	 * @return a {@link java.lang.String} object.
 	 */
-	protected <T> String resolveApitraryEntityId(T entity) {
-		List<java.lang.reflect.Field> fields = ClassUtil.getAnnotatedFields(entity.getClass(), Id.class);
-		if (fields.isEmpty()) {
-			throw new ApitraryOrmIdException("Apitrary entity must own an annotated ID field.");
-		}
-		if (fields.size() > 1) {
-			throw new ApitraryOrmIdException("Apitrary entity can not have more than one ID field.");
-		}
-
-		java.lang.reflect.Field field = fields.get(0);
-		String id = ClassUtil.getValueOf(field, entity, entity.getClass(), String.class);
-		if (id == null || id.isEmpty()) {
-			throw new ApitraryOrmIdException("Entity lacks ID and is probably not persisted.");
-		}
-		return id;
-	}
-
-	/**
-	 * <p>
-	 * dump.
-	 * </p>
-	 * 
-	 * @param entity
-	 *            a T object.
-	 * @param <T>
-	 *            a T object.
-	 * @return a {@link java.lang.String} object.
-	 */
-	protected <T> String dump(T entity) {
-		try {
-			ObjectMapper objectMapper = new ObjectMapper().setVisibility(JsonMethod.FIELD, Visibility.ANY);
-			objectMapper.getSerializationConfig().addMixInAnnotations(Object.class, PropertyFilterMixIn.class);
-			SimpleFilterProvider filters = new SimpleFilterProvider();
-			List<java.lang.reflect.Field> fields = ClassUtil.getAnnotatedFields(entity.getClass(), Id.class);
-			String[] ignorableFieldNames = new String[fields.size()];
-			for (int i = 0; i < fields.size(); i++) {
-				ignorableFieldNames[i] = fields.get(i).getName();
-			}
-			filters.addFilter("IdFilter", SimpleBeanPropertyFilter.serializeAllExcept(ignorableFieldNames));
-			ObjectWriter objectWriter = objectMapper.writer(filters);
-			return objectWriter.writeValueAsString(entity);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+	protected <T> String marshall(T entity) {
+		return new PayloadMarshaller(this).marshall(entity);
 	}
 	
 	private ApitraryClient resolveApitraryClient(){

@@ -19,7 +19,7 @@ package com.apitrary.orm.core.exception;
  * <p>
  * DaoSupportUninitializedException class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
@@ -30,7 +30,7 @@ public class DaoSupportUninitializedException  extends ApitraryOrmException {
 	 * <p>
 	 * Constructor for DaoSupportUninitializedException.
 	 * </p>
-	 * 
+	 *
 	 * @param message
 	 *            a {@link java.lang.String} object.
 	 */

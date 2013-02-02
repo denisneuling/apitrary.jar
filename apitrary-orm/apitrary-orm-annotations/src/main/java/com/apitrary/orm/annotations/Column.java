@@ -13,16 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.orm.core.scheme;
+package com.apitrary.orm.annotations;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Inherited;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * <p>
- * SchemeCache class.
+ * Field class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
-public class SchemeCache {
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+@Inherited
+public @interface Column {
 
+	/**
+	 * The field's name
+	 */
+	String value() default "";
 }

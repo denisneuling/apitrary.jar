@@ -13,9 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.orm.core.mapping;
+package com.apitrary.orm.core.unmarshalling;
 
-import java.lang.reflect.Field;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,20 +24,24 @@ import org.codehaus.jackson.JsonParser;
 import com.apitrary.api.client.util.ClassUtil;
 import com.apitrary.api.response.QueriedGetResponse;
 import com.apitrary.api.response.Response;
+import com.apitrary.orm.annotations.Column;
 import com.apitrary.orm.annotations.Id;
+import com.apitrary.orm.annotations.Reference;
+import com.apitrary.orm.core.ApitraryDaoSupport;
 import com.apitrary.orm.core.exception.ApitraryOrmIdException;
 import com.apitrary.orm.core.exception.MappingException;
-import com.apitrary.orm.core.mapping.api.ListMapper;
+import com.apitrary.orm.core.unmarshalling.api.ListUnmarshaller;
+import com.apitrary.orm.core.util.ProxyUtil;
 
 /**
  * <p>
  * QueriedGetResponseMapper class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
-public class QueriedGetResponseMapper extends JsonResponseConsumer implements ListMapper<QueriedGetResponse> {
+public class QueriedGetResponseUnmarshaller extends JsonResponseConsumer implements ListUnmarshaller<QueriedGetResponse> {
 	protected Logger log = Logger.getLogger(getClass());
 
 	private Class<?> entityClazz;
@@ -49,6 +52,17 @@ public class QueriedGetResponseMapper extends JsonResponseConsumer implements Li
 
 	private List<Object> resultSet = new LinkedList<Object>();
 	private Object entityInstance;
+	
+	private ApitraryDaoSupport daoSupport;
+	
+	/**
+	 * <p>Constructor for QueriedGetResponseUnmarshaller.</p>
+	 *
+	 * @param daoSupport a {@link com.apitrary.orm.core.ApitraryDaoSupport} object.
+	 */
+	public QueriedGetResponseUnmarshaller(ApitraryDaoSupport daoSupport){
+		this.daoSupport = daoSupport;
+	}
 
 	/** {@inheritDoc} */
 	@Override
@@ -143,7 +157,7 @@ public class QueriedGetResponseMapper extends JsonResponseConsumer implements Li
 
 		if (resultStarted && entityStarted) {
 			if (!idFound) {
-				List<Field> fields = ClassUtil.getAnnotatedFields(getEntityInstance().getClass(), Id.class);
+				List<java.lang.reflect.Field> fields = ClassUtil.getAnnotatedFields(getEntityInstance().getClass(), Id.class);
 				if (fields.isEmpty() || fields.size() > 1) {
 					throw new ApitraryOrmIdException("Illegal amount of annotated id properties of class " + getEntityInstance().getClass().getName());
 				} else {
@@ -151,7 +165,14 @@ public class QueriedGetResponseMapper extends JsonResponseConsumer implements Li
 					idFound = true;
 				}
 			} else if (text != null && idFound) {
-				ClassUtil.setSilent(getEntityInstance(), fieldName, text);
+				java.lang.reflect.Field field = ClassUtil.getDeclaredFieldSilent(getEntityInstance().getClass(), fieldName);
+				if(field!=null){
+					if(field.isAnnotationPresent(Reference.class)){
+						ClassUtil.setSilent(getEntityInstance(), fieldName, ProxyUtil.createLazyProxy(field.getType(), daoSupport, text));
+					}else if(field.isAnnotationPresent(Column.class)){
+						ClassUtil.setSilent(getEntityInstance(), fieldName, text);
+					}
+				}
 			}
 		}
 	}
@@ -160,7 +181,7 @@ public class QueriedGetResponseMapper extends JsonResponseConsumer implements Li
 	 * <p>
 	 * newEntityInstance.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.Object} object.
 	 */
 	protected Object newEntityInstance() {
@@ -171,7 +192,7 @@ public class QueriedGetResponseMapper extends JsonResponseConsumer implements Li
 	 * <p>
 	 * Getter for the field <code>entityInstance</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.Object} object.
 	 */
 	protected Object getEntityInstance() {
@@ -182,7 +203,7 @@ public class QueriedGetResponseMapper extends JsonResponseConsumer implements Li
 	 * <p>
 	 * Getter for the field <code>resultSet</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.util.List} object.
 	 */
 	protected List<Object> getResultSet() {

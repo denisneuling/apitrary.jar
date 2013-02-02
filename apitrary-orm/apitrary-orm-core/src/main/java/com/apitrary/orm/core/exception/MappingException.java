@@ -19,7 +19,7 @@ package com.apitrary.orm.core.exception;
  * <p>
  * MappingException class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
@@ -30,7 +30,7 @@ public class MappingException extends RuntimeException {
 	 * <p>
 	 * Constructor for MappingException.
 	 * </p>
-	 * 
+	 *
 	 * @param throwable
 	 *            a {@link java.lang.Throwable} object.
 	 */
