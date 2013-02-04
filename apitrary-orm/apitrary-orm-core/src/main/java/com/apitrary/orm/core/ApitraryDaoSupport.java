@@ -40,6 +40,7 @@ import com.apitrary.api.response.PutResponse;
 import com.apitrary.api.response.QueriedGetResponse;
 import com.apitrary.orm.annotations.Entity;
 import com.apitrary.orm.annotations.Id;
+import com.apitrary.orm.core.cascade.CascadeDeleteWorker;
 import com.apitrary.orm.core.exception.ApitraryOrmDeleteException;
 import com.apitrary.orm.core.exception.ApitraryOrmException;
 import com.apitrary.orm.core.exception.ApitraryOrmIdDefinitionsException;
@@ -119,7 +120,11 @@ public class ApitraryDaoSupport {
 		
 		PostRequest request = new PostRequest();
 		request.setEntity(resolveApitraryEntity(entity));
-		request.setRequestPayload(marshall(entity));
+
+		String payload = marshall(entity);
+		
+		request.setRequestPayload(payload);
+		
 		PostResponse response = resolveApitraryClient().send(request);
 
 		if (HttpStatus.Created.ordinal() == response.getStatusCode()) {
@@ -150,7 +155,10 @@ public class ApitraryDaoSupport {
 		PutRequest request = new PutRequest();
 		request.setEntity(resolveApitraryEntity(entity));
 		request.setId(resolveApitraryEntityId(entity));
-		request.setRequestPayload(marshall(entity));
+		
+		String payload = marshall(entity);
+		
+		request.setRequestPayload(payload);
 
 		PutResponse response = resolveApitraryClient().send(request);
 
@@ -187,6 +195,8 @@ public class ApitraryDaoSupport {
 		String id = resolveApitraryEntityId(entity);
 		request.setId(id);
 
+		new CascadeDeleteWorker(this).deleteCascades(entity);
+		
 		DeleteResponse response = resolveApitraryClient().send(request);
 		if (HttpStatus.OK.ordinal() != response.getStatusCode()) {
 			if (HttpStatus.Not_Found.ordinal() == response.getStatusCode()) {
