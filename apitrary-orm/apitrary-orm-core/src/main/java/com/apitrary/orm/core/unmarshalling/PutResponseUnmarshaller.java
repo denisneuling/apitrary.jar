@@ -26,7 +26,7 @@ import com.apitrary.orm.core.unmarshalling.api.Unmarshaller;
  * <p>
  * PutResponseMapper class.
  * </p>
- *
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */

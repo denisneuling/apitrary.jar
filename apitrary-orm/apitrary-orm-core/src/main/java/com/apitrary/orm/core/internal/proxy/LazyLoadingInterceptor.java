@@ -25,8 +25,10 @@ import net.sf.cglib.proxy.MethodProxy;
 import com.apitrary.orm.core.ApitraryDaoSupport;
 
 /**
- * <p>LazyLoadingInterceptor class.</p>
- *
+ * <p>
+ * LazyLoadingInterceptor class.
+ * </p>
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
@@ -41,18 +43,23 @@ public class LazyLoadingInterceptor implements MethodInterceptor {
 	private boolean loaded = false;
 
 	/**
-	 * <p>Constructor for LazyLoadingInterceptor.</p>
-	 *
-	 * @param loaded a {@link java.lang.Class} object.
-	 * @param daoSupport a {@link com.apitrary.orm.core.ApitraryDaoSupport} object.
-	 * @param id a {@link java.lang.String} object.
+	 * <p>
+	 * Constructor for LazyLoadingInterceptor.
+	 * </p>
+	 * 
+	 * @param loaded
+	 *            a {@link java.lang.Class} object.
+	 * @param daoSupport
+	 *            a {@link com.apitrary.orm.core.ApitraryDaoSupport} object.
+	 * @param id
+	 *            a {@link java.lang.String} object.
 	 */
 	public LazyLoadingInterceptor(Class<?> loaded, ApitraryDaoSupport daoSupport, String id) {
 		this.daoSupport = daoSupport;
 		this.id = id;
 		this.targetedLoad = loaded;
 	}
-	
+
 	/** {@inheritDoc} */
 	@Override
 	public Object intercept(Object proxy, Method method, Object[] args, MethodProxy arg3) throws Throwable {
@@ -64,7 +71,7 @@ public class LazyLoadingInterceptor implements MethodInterceptor {
 				loadedTarget = daoSupport.findById(id, targetedLoad);
 				loaded = true;
 			}
-			
+
 			return method.invoke(loadedTarget, args);
 		} catch (Throwable thr) {
 			thr.printStackTrace();
@@ -86,6 +93,5 @@ public class LazyLoadingInterceptor implements MethodInterceptor {
 			throw new UndeclaredThrowableException(thr);
 		}
 	}
-
 
 }

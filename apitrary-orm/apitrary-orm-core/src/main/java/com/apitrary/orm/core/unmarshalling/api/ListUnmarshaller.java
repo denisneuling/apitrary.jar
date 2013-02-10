@@ -23,7 +23,7 @@ import com.apitrary.api.response.Response;
  * <p>
  * ListMapper interface.
  * </p>
- *
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
@@ -33,7 +33,7 @@ public interface ListUnmarshaller<T extends Response<T>> {
 	 * <p>
 	 * unMarshall.
 	 * </p>
-	 *
+	 * 
 	 * @param response
 	 *            a {@link com.apitrary.api.response.Response} object.
 	 * @param entity

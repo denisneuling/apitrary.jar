@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Denis Neuling 
+ * Copyright 2012-2013 Denis Neuling 
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License.
@@ -13,28 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.orm.core.exception;
+package com.apitrary.orm.annotations.cascade;
 
 /**
  * <p>
- * ApitraryORMException class.
+ * Cascade class.
  * </p>
  * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
-public class ApitraryOrmException extends RuntimeException {
-	private static final long serialVersionUID = -7542464634115383578L;
+public enum Cascade {
+
+	SAVE(1)
+	/*
+	 * TODO , UPDATE(2) is currently not supported
+	 */
+	, DELETE(3);
+
+	private int code;
+
+	private Cascade(int code) {
+		this.code = code;
+	}
 
 	/**
 	 * <p>
-	 * Constructor for ApitraryOrmException.
+	 * Getter for the field <code>code</code>.
 	 * </p>
 	 * 
-	 * @param message
-	 *            a {@link java.lang.String} object.
+	 * @return a int.
 	 */
-	public ApitraryOrmException(String message) {
-		super(message);
+	public int getCode() {
+		return code;
 	}
 }

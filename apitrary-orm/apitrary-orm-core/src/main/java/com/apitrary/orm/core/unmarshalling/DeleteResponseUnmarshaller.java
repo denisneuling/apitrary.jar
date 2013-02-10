@@ -26,7 +26,7 @@ import com.apitrary.orm.core.unmarshalling.api.Unmarshaller;
  * <p>
  * DeleteResponseMapper class.
  * </p>
- *
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */

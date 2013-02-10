@@ -16,19 +16,21 @@
 package com.apitrary.orm.core.exception;
 
 /**
- * <p>ApitraryOrmIdDefinitionsException class.</p>
- *
+ * <p>
+ * ApitraryOrmIdDefinitionsException class.
+ * </p>
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
-public class ApitraryOrmIdDefinitionsException extends ApitraryOrmException {
+public class ApitraryOrmIdDefinitionsException extends ApitraryOrmIdException {
 	private static final long serialVersionUID = 3366863680783503466L;
 
 	/**
 	 * <p>
 	 * Constructor for ApitraryOrmIdDefinitionsException.
 	 * </p>
-	 *
+	 * 
 	 * @param message
 	 *            a {@link java.lang.String} object.
 	 */

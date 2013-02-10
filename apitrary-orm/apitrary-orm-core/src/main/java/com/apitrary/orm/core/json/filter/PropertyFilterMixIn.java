@@ -21,7 +21,7 @@ import org.codehaus.jackson.map.annotate.JsonFilter;
  * <p>
  * PropertyFilterMixIn class.
  * </p>
- *
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */

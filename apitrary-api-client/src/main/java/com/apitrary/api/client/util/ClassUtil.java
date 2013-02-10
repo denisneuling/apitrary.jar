@@ -62,7 +62,20 @@ public class ClassUtil {
 		}
 		return value;
 	}
-	
+
+	/**
+	 * <p>
+	 * getAnnotatedFields.
+	 * </p>
+	 * 
+	 * @param object
+	 *            a {@link java.lang.Object} object.
+	 * @param annotationClass
+	 *            a {@link java.lang.Class} object.
+	 * @param <T>
+	 *            a T object.
+	 * @return a {@link java.util.List} object.
+	 */
 	public static <T> List<Field> getAnnotatedFields(Object object, Class<? extends Annotation> annotationClass) {
 		return getAnnotatedFields(object.getClass(), annotationClass);
 	}
@@ -90,16 +103,42 @@ public class ClassUtil {
 		}
 		return annotatedFields;
 	}
-	
-	public static <T> List<Field> getAnnotatedFields(Object object, Class<? extends Annotation>...annotationClasses) {
+
+	/**
+	 * <p>
+	 * getAnnotatedFields.
+	 * </p>
+	 * 
+	 * @param object
+	 *            a {@link java.lang.Object} object.
+	 * @param annotationClasses
+	 *            a {@link java.lang.Class} object.
+	 * @param <T>
+	 *            a T object.
+	 * @return a {@link java.util.List} object.
+	 */
+	public static <T> List<Field> getAnnotatedFields(Object object, Class<? extends Annotation>... annotationClasses) {
 		return getAnnotatedFields(object.getClass(), annotationClasses);
 	}
-	
-	@SuppressWarnings({"unchecked", "rawtypes"})
-	public static <T> List<Field> getAnnotatedFields(Class<?> clazz, Class<? extends Annotation>...annotationClasses) {
+
+	/**
+	 * <p>
+	 * getAnnotatedFields.
+	 * </p>
+	 * 
+	 * @param clazz
+	 *            a {@link java.lang.Class} object.
+	 * @param annotationClasses
+	 *            a {@link java.lang.Class} object.
+	 * @param <T>
+	 *            a T object.
+	 * @return a {@link java.util.List} object.
+	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public static <T> List<Field> getAnnotatedFields(Class<?> clazz, Class<? extends Annotation>... annotationClasses) {
 		Set<Field> annotatedFields = new HashSet<Field>();
 		Field[] allFields = getAllDeclaredFields(clazz);
-		for(Class annotationClass : annotationClasses){
+		for (Class annotationClass : annotationClasses) {
 			for (Field field : allFields) {
 				if (null != (field.getAnnotation(annotationClass))) {
 					annotatedFields.add(field);
@@ -138,6 +177,8 @@ public class ClassUtil {
 	 *            a {@link java.lang.Object} object.
 	 * @param referenceClazz
 	 *            a {@link java.lang.Class} object.
+	 * @param referenceClazz
+	 *            a {@link java.lang.Class} object.
 	 * @param valueType
 	 *            a {@link java.lang.Class} object.
 	 * @param <T>
@@ -167,6 +208,8 @@ public class ClassUtil {
 	 *            a {@link java.lang.String} object.
 	 * @param reference
 	 *            a {@link java.lang.Object} object.
+	 * @param referenceClazz
+	 *            a {@link java.lang.Class} object.
 	 * @param referenceClazz
 	 *            a {@link java.lang.Class} object.
 	 * @param valueType
@@ -211,8 +254,13 @@ public class ClassUtil {
 	}
 
 	/**
+	 * <p>
+	 * newInstance.
+	 * </p>
+	 * 
 	 * @param entity
-	 * @return
+	 *            a {@link java.lang.Class} object.
+	 * @return a {@link java.lang.Object} object.
 	 */
 	public static Object newInstance(Class<?> entity) {
 		if (entity == null) {
@@ -225,6 +273,19 @@ public class ClassUtil {
 		}
 	}
 
+	/**
+	 * <p>
+	 * setSilent.
+	 * </p>
+	 * 
+	 * @param target
+	 *            a {@link java.lang.Object} object.
+	 * @param fieldName
+	 *            a {@link java.lang.String} object.
+	 * @param value
+	 *            a {@link java.lang.Object} object.
+	 * @return a {@link java.lang.Object} object.
+	 */
 	public static Object setSilent(Object target, String fieldName, Object value) {
 		Class<?> targetClass = target.getClass();
 		try {
@@ -237,15 +298,26 @@ public class ClassUtil {
 		}
 	}
 
+	/**
+	 * <p>
+	 * box.
+	 * </p>
+	 * 
+	 * @param property
+	 *            a {@link java.lang.Object} object.
+	 * @param to
+	 *            a {@link java.lang.Class} object.
+	 * @return a {@link java.lang.Object} object.
+	 */
 	public static Object box(Object property, Class<?> to) {
-		if(property instanceof Exception){
-			((Exception)property).printStackTrace();
+		if (property instanceof Exception) {
+			throw new RuntimeException((Exception) property);
 		}
 		if (property == null) {
 			return property;
 		}
-		
-		if(property.getClass().equals(to)){
+
+		if (property.getClass().equals(to)) {
 			return property;
 		}
 
@@ -275,7 +347,7 @@ public class ClassUtil {
 			}
 			return new Long(property.toString());
 		}
-		
+
 		if ((property instanceof String || property instanceof Double) && Double.class.isAssignableFrom(to)) {
 			if (((String) property).isEmpty()) {
 				return 0D;
@@ -285,25 +357,53 @@ public class ClassUtil {
 
 		return to.cast(property);
 	}
-	
-	public static Field getDeclaredFieldSilent(Class<?> target, String fieldName){
+
+	/**
+	 * <p>
+	 * getDeclaredFieldSilent.
+	 * </p>
+	 * 
+	 * @param target
+	 *            a {@link java.lang.Class} object.
+	 * @param fieldName
+	 *            a {@link java.lang.String} object.
+	 * @return a {@link java.lang.reflect.Field} object.
+	 */
+	public static Field getDeclaredFieldSilent(Class<?> target, String fieldName) {
 		try {
 			return target.getDeclaredField(fieldName);
 		} catch (Exception e) {
 			return null;
 		}
 	}
-	
+
+	/**
+	 * <p>
+	 * getFieldAnnotationValue.
+	 * </p>
+	 * 
+	 * @param annotationProperty
+	 *            a {@link java.lang.String} object.
+	 * @param field
+	 *            a {@link java.lang.reflect.Field} object.
+	 * @param annotationClass
+	 *            a {@link java.lang.Class} object.
+	 * @param ofType
+	 *            a {@link java.lang.Class} object.
+	 * @param <T>
+	 *            a T object.
+	 * @return a T object.
+	 */
 	@SuppressWarnings("unchecked")
-	public static <T> T getFieldAnnotationValue(String annotationProperty, Field field, Class<? extends Annotation> annotationClass, Class<T> ofType){
+	public static <T> T getFieldAnnotationValue(String annotationProperty, Field field, Class<? extends Annotation> annotationClass, Class<T> ofType) {
 		Object annotation = field.getAnnotation(annotationClass);
-		
+
 		T result = null;
-		if(annotation!=null){
-			try{
-				Method method = annotationClass.getMethod(annotationProperty, new Class[]{});
-				result = (T) method.invoke(annotation, new Object[]{});
-			}catch(Exception e){
+		if (annotation != null) {
+			try {
+				Method method = annotationClass.getMethod(annotationProperty, new Class[] {});
+				result = (T) method.invoke(annotation, new Object[] {});
+			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}
 		}

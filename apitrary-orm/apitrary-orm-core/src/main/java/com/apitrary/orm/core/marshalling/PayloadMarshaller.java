@@ -33,32 +33,37 @@ import org.codehaus.jackson.node.ObjectNode;
 import com.apitrary.api.client.util.ClassUtil;
 import com.apitrary.orm.annotations.Column;
 import com.apitrary.orm.annotations.Reference;
-import com.apitrary.orm.cascade.Cascade;
+import com.apitrary.orm.annotations.cascade.Cascade;
 import com.apitrary.orm.core.ApitraryDaoSupport;
 import com.apitrary.orm.core.exception.ApitraryOrmIdException;
 import com.apitrary.orm.core.json.filter.PropertyFilterMixIn;
 import com.apitrary.orm.core.marshalling.api.Marshaller;
 
 /**
- * <p>PayloadMarshaller class.</p>
- *
+ * <p>
+ * PayloadMarshaller class.
+ * </p>
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
-public class PayloadMarshaller implements Marshaller{
+public class PayloadMarshaller implements Marshaller {
 	protected Logger log = Logger.getLogger(getClass());
 
 	private ApitraryDaoSupport apitraryDaoSupport;
-	
+
 	/**
-	 * <p>Constructor for PayloadMarshaller.</p>
-	 *
-	 * @param apitraryDaoSupport a {@link com.apitrary.orm.core.ApitraryDaoSupport} object.
+	 * <p>
+	 * Constructor for PayloadMarshaller.
+	 * </p>
+	 * 
+	 * @param apitraryDaoSupport
+	 *            a {@link com.apitrary.orm.core.ApitraryDaoSupport} object.
 	 */
-	public PayloadMarshaller(ApitraryDaoSupport apitraryDaoSupport){
+	public PayloadMarshaller(ApitraryDaoSupport apitraryDaoSupport) {
 		this.apitraryDaoSupport = apitraryDaoSupport;
 	}
-	
+
 	/** {@inheritDoc} */
 	@Override
 	public <T> String marshall(T entity) {
@@ -66,39 +71,42 @@ public class PayloadMarshaller implements Marshaller{
 			ObjectMapper objectMapper = new ObjectMapper().setVisibility(JsonMethod.FIELD, Visibility.ANY);
 			objectMapper.getSerializationConfig().addMixInAnnotations(Object.class, PropertyFilterMixIn.class);
 			SimpleFilterProvider filters = new SimpleFilterProvider();
-			
+
 			List<java.lang.reflect.Field> fields = ClassUtil.getAnnotatedFields(entity, Column.class);
 			String[] targetedFieldNames = new String[fields.size()];
 			for (int i = 0; i < fields.size(); i++) {
 				targetedFieldNames[i] = fields.get(i).getName();
 			}
-			
+
 			filters.addFilter("PropertyFilter", SimpleBeanPropertyFilter.filterOutAllExcept(targetedFieldNames));
 			ObjectWriter objectWriter = objectMapper.writer(filters);
-			String json =  objectWriter.writeValueAsString(entity);
-			
+			String json = objectWriter.writeValueAsString(entity);
+
 			List<java.lang.reflect.Field> referencedEntities = ClassUtil.getAnnotatedFields(entity, Reference.class);
-			for(java.lang.reflect.Field field : referencedEntities){
+			for (java.lang.reflect.Field field : referencedEntities) {
 				Cascade[] cascades = ClassUtil.getFieldAnnotationValue("cascade", field, Reference.class, Cascade[].class);
-				if(cascades != null){
+				if (cascades != null) {
 					List<Cascade> cascadeList = Arrays.asList(cascades);
 					Object referencedEntity = ClassUtil.getValueOfField(field, entity);
-					if(referencedEntity!=null){
+					if (referencedEntity != null) {
 						String referencedEntityId = null;
-						try{
+						try {
 							referencedEntityId = apitraryDaoSupport.resolveApitraryEntityId(referencedEntity);
-						}catch(ApitraryOrmIdException aoie){
-							if(cascadeList.contains(Cascade.SAVE)){
+						} catch (ApitraryOrmIdException aoie) {
+							if (cascadeList.contains(Cascade.SAVE)) {
 								referencedEntity = apitraryDaoSupport.save(referencedEntity);
 								referencedEntityId = apitraryDaoSupport.resolveApitraryEntityId(referencedEntity);
-								
+
 								/*
 								 * TODO implements cascading: UPDATE and DELETE
 								 */
-//							}else if(cascadeList.contains(Cascade.UPDATE)){
-//								referencedEntity = apitraryDaoSupport.update(referencedEntity);
-//								referencedEntityId = apitraryDaoSupport.resolveApitraryEntityId(referencedEntity);
-							}else{
+								// }else
+								// if(cascadeList.contains(Cascade.UPDATE)){
+								// referencedEntity =
+								// apitraryDaoSupport.update(referencedEntity);
+								// referencedEntityId =
+								// apitraryDaoSupport.resolveApitraryEntityId(referencedEntity);
+							} else {
 								continue;
 							}
 						}
@@ -111,9 +119,9 @@ public class PayloadMarshaller implements Marshaller{
 			throw new RuntimeException(e);
 		}
 	}
-	
-	private String addNode(String json, String fieldName, String id){
-		
+
+	private String addNode(String json, String fieldName, String id) {
+
 		JsonFactory jsonFactory = new JsonFactory();
 		ObjectMapper objectMapper = new ObjectMapper();
 		StringWriter stringWriter = new StringWriter();

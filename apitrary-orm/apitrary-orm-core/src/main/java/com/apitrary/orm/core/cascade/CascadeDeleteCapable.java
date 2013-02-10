@@ -23,29 +23,55 @@ import org.apache.log4j.Logger;
 
 import com.apitrary.api.client.util.ClassUtil;
 import com.apitrary.orm.annotations.Reference;
-import com.apitrary.orm.cascade.Cascade;
+import com.apitrary.orm.annotations.cascade.Cascade;
 import com.apitrary.orm.core.ApitraryDaoSupport;
+import com.apitrary.orm.core.exception.ApitraryOrmIdException;
 
 /**
+ * <p>
+ * CascadeDeleteCapable class.
+ * </p>
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
-public class CascadeDeleteWorker {
+public class CascadeDeleteCapable {
 	protected Logger log = Logger.getLogger(getClass());
 
 	private ApitraryDaoSupport apitraryDaoSupport;
-	
-	public CascadeDeleteWorker(ApitraryDaoSupport apitraryDaoSupport){
+
+	/**
+	 * <p>
+	 * Constructor for CascadeDeleteCapable.
+	 * </p>
+	 * 
+	 * @param apitraryDaoSupport
+	 *            a {@link com.apitrary.orm.core.ApitraryDaoSupport} object.
+	 */
+	public CascadeDeleteCapable(ApitraryDaoSupport apitraryDaoSupport) {
 		this.apitraryDaoSupport = apitraryDaoSupport;
 	}
-	
-	public void deleteCascades(Object entity){
-		if(entity!=null){
+
+	/**
+	 * <p>
+	 * deleteCascades.
+	 * </p>
+	 * 
+	 * @param entity
+	 *            a {@link java.lang.Object} object.
+	 */
+	public void deleteCascades(Object entity) {
+		if (entity != null) {
 			List<Field> fields = ClassUtil.getAnnotatedFields(entity.getClass(), Reference.class);
-			for(Field field: fields){
+			for (Field field : fields) {
 				Cascade[] cascades = ClassUtil.getFieldAnnotationValue("cascade", field, Reference.class, Cascade[].class);
-				if(Arrays.asList(cascades).contains(Cascade.DELETE)){
+				if (Arrays.asList(cascades).contains(Cascade.DELETE)) {
 					Object referencedEntity = ClassUtil.getValueOfField(field, entity);
+					try {
+						apitraryDaoSupport.resolveApitraryEntityId(referencedEntity);
+					} catch (ApitraryOrmIdException aoie) {
+						log.trace("Referenced entity cannot be null. Skipping.");
+					}
 					apitraryDaoSupport.delete(referencedEntity);
 				}
 			}

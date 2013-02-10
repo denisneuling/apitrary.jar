@@ -40,7 +40,7 @@ import com.apitrary.api.response.PutResponse;
 import com.apitrary.api.response.QueriedGetResponse;
 import com.apitrary.orm.annotations.Entity;
 import com.apitrary.orm.annotations.Id;
-import com.apitrary.orm.core.cascade.CascadeDeleteWorker;
+import com.apitrary.orm.core.cascade.CascadeDeleteCapable;
 import com.apitrary.orm.core.exception.ApitraryOrmDeleteException;
 import com.apitrary.orm.core.exception.ApitraryOrmException;
 import com.apitrary.orm.core.exception.ApitraryOrmIdDefinitionsException;
@@ -60,7 +60,7 @@ import com.apitrary.orm.core.util.StringUtil;
  * <p>
  * ApitraryDaoSupport class.
  * </p>
- *
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
@@ -81,7 +81,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * Getter for the field <code>apitraryClient</code>.
 	 * </p>
-	 *
+	 * 
 	 * @return a {@link com.apitrary.api.client.ApitraryClient} object.
 	 */
 	public ApitraryClient getApitraryClient() {
@@ -92,7 +92,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * Setter for the field <code>apitraryClient</code>.
 	 * </p>
-	 *
+	 * 
 	 * @param apitraryClient
 	 *            a {@link com.apitrary.api.client.ApitraryClient} object.
 	 */
@@ -104,7 +104,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * save.
 	 * </p>
-	 *
+	 * 
 	 * @param entity
 	 *            a T object.
 	 * @param <T>
@@ -113,18 +113,18 @@ public class ApitraryDaoSupport {
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> T save(T entity) {
-		if(entity == null){
+		if (entity == null) {
 			throw new ApitraryOrmException("Cannot persist null entity");
 		}
-		log.debug("Saving "+entity.getClass());
-		
+		log.debug("Saving " + entity.getClass());
+
 		PostRequest request = new PostRequest();
 		request.setEntity(resolveApitraryEntity(entity));
 
 		String payload = marshall(entity);
-		
+
 		request.setRequestPayload(payload);
-		
+
 		PostResponse response = resolveApitraryClient().send(request);
 
 		if (HttpStatus.Created.ordinal() == response.getStatusCode()) {
@@ -138,7 +138,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * update.
 	 * </p>
-	 *
+	 * 
 	 * @param entity
 	 *            a T object.
 	 * @param <T>
@@ -146,18 +146,18 @@ public class ApitraryDaoSupport {
 	 * @return a T object.
 	 */
 	public <T> T update(T entity) {
-		if(entity == null){
+		if (entity == null) {
 			throw new ApitraryOrmException("Cannot update null entity");
 		}
-		
-		log.debug("Updating "+entity.getClass());
-		
+
+		log.debug("Updating " + entity.getClass());
+
 		PutRequest request = new PutRequest();
 		request.setEntity(resolveApitraryEntity(entity));
 		request.setId(resolveApitraryEntityId(entity));
-		
+
 		String payload = marshall(entity);
-		
+
 		request.setRequestPayload(payload);
 
 		PutResponse response = resolveApitraryClient().send(request);
@@ -177,26 +177,26 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * delete.
 	 * </p>
-	 *
+	 * 
 	 * @param entity
 	 *            a T object.
 	 * @param <T>
 	 *            a T object.
 	 */
 	public <T> void delete(T entity) {
-		if(entity == null){
+		if (entity == null) {
 			throw new ApitraryOrmException("Cannot delete null entity");
 		}
-		
-		log.debug("Deleting "+entity.getClass());
+
+		log.debug("Deleting " + entity.getClass());
 
 		DeleteRequest request = new DeleteRequest();
 		request.setEntity(resolveApitraryEntity(entity));
 		String id = resolveApitraryEntityId(entity);
 		request.setId(id);
 
-		new CascadeDeleteWorker(this).deleteCascades(entity);
-		
+		new CascadeDeleteCapable(this).deleteCascades(entity);
+
 		DeleteResponse response = resolveApitraryClient().send(request);
 		if (HttpStatus.OK.ordinal() != response.getStatusCode()) {
 			if (HttpStatus.Not_Found.ordinal() == response.getStatusCode()) {
@@ -212,7 +212,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * findById.
 	 * </p>
-	 *
+	 * 
 	 * @param id
 	 *            a {@link java.lang.String} object.
 	 * @param entity
@@ -223,15 +223,15 @@ public class ApitraryDaoSupport {
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> T findById(String id, Class<T> entity) {
-		if(entity == null){
+		if (entity == null) {
 			throw new ApitraryOrmException("Cannot access null entity");
 		}
 		if (id == null || id.isEmpty()) {
 			return null;
 		}
-		
-		log.debug("Searching "+entity+" "+id);
-		
+
+		log.debug("Searching " + entity + " " + id);
+
 		GetRequest request = new GetRequest();
 		request.setEntity(resolveApitraryEntity(entity));
 		request.setId(id);
@@ -254,7 +254,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * find.
 	 * </p>
-	 *
+	 * 
 	 * @param riakQuery
 	 *            a {@link java.lang.String} object.
 	 * @param entity
@@ -265,10 +265,10 @@ public class ApitraryDaoSupport {
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> List<T> find(String riakQuery, Class<T> entity) {
-		if(entity == null){
+		if (entity == null) {
 			throw new ApitraryOrmException("Cannot access null entity");
 		}
-		log.debug("Searching "+entity+" "+riakQuery);
+		log.debug("Searching " + entity + " " + riakQuery);
 
 		QueriedGetRequest request = new QueriedGetRequest();
 		request.setEntity(resolveApitraryEntity(entity));
@@ -282,7 +282,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * findAll.
 	 * </p>
-	 *
+	 * 
 	 * @param entity
 	 *            a {@link java.lang.Class} object.
 	 * @param <T>
@@ -291,12 +291,12 @@ public class ApitraryDaoSupport {
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> List<T> findAll(Class<T> entity) {
-		if(entity == null){
+		if (entity == null) {
 			throw new ApitraryOrmException("Cannot access null entity");
 		}
-		
-		log.debug("Loading all "+entity);
-		
+
+		log.debug("Loading all " + entity);
+
 		QueriedGetRequest request = new QueriedGetRequest();
 		request.setEntity(resolveApitraryEntity(entity));
 		QueriedGetResponse response = resolveApitraryClient().send(request);
@@ -320,7 +320,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * getAPIState.
 	 * </p>
-	 *
+	 * 
 	 * @return a {@link com.apitrary.orm.core.internal.model.APIState} object.
 	 */
 	public APIState getAPIState() {
@@ -347,7 +347,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * resolveApitraryEntityId.
 	 * </p>
-	 *
+	 * 
 	 * @param entity
 	 *            a T object.
 	 * @param <T>
@@ -355,6 +355,9 @@ public class ApitraryDaoSupport {
 	 * @return a {@link java.lang.String} object.
 	 */
 	public <T> String resolveApitraryEntityId(T entity) {
+		if (entity == null) {
+			throw new ApitraryOrmIdDefinitionsException("Apitrary entity has not to be null.");
+		}
 		List<java.lang.reflect.Field> fields = ClassUtil.getAnnotatedFields(entity.getClass(), Id.class);
 		if (fields.isEmpty()) {
 			throw new ApitraryOrmIdDefinitionsException("Apitrary entity must own an annotated ID field.");
@@ -370,12 +373,12 @@ public class ApitraryDaoSupport {
 		}
 		return id;
 	}
-	
+
 	/**
 	 * <p>
 	 * resolveApitraryEntity.
 	 * </p>
-	 *
+	 * 
 	 * @param entity
 	 *            a T object.
 	 * @param <T>
@@ -394,7 +397,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * resolveApitraryEntity.
 	 * </p>
-	 *
+	 * 
 	 * @param entity
 	 *            a {@link java.lang.Class} object.
 	 * @param <T>
@@ -410,18 +413,22 @@ public class ApitraryDaoSupport {
 	}
 
 	/**
-	 * <p>marshall.</p>
-	 *
-	 * @param entity a T object.
-	 * @param <T> a T object.
+	 * <p>
+	 * marshall.
+	 * </p>
+	 * 
+	 * @param entity
+	 *            a T object.
+	 * @param <T>
+	 *            a T object.
 	 * @return a {@link java.lang.String} object.
 	 */
 	protected <T> String marshall(T entity) {
 		return new PayloadMarshaller(this).marshall(entity);
 	}
-	
-	private ApitraryClient resolveApitraryClient(){
-		if(apitraryClient == null){
+
+	private ApitraryClient resolveApitraryClient() {
+		if (apitraryClient == null) {
 			throw new DaoSupportUninitializedException("ApitraryClient was not set.");
 		}
 		return apitraryClient;

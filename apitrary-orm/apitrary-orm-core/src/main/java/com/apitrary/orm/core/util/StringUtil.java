@@ -19,7 +19,7 @@ package com.apitrary.orm.core.util;
  * <p>
  * StringUtil class.
  * </p>
- *
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
@@ -29,7 +29,7 @@ public class StringUtil {
 	 * <p>
 	 * toVerb.
 	 * </p>
-	 *
+	 * 
 	 * @param string
 	 *            a {@link java.lang.String} object.
 	 * @return a {@link java.lang.String} object.

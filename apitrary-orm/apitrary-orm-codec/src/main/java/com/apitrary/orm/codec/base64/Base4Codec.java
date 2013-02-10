@@ -13,34 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.orm.cascade;
+package com.apitrary.orm.codec.base64;
+
+import org.apache.commons.codec.binary.Base64;
+
+import com.apitrary.orm.annotations.codec.Codec;
 
 /**
- * <p>Cascade class.</p>
- *
+ * <p>
+ * Base4Codec class.
+ * </p>
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
-public enum Cascade {
+public class Base4Codec extends Codec<byte[]> {
 
-	NOP(0),
-	SAVE(1)
-//	,
-//	UPDATE(2)
-	,
-	DELETE(3)
-	;
-	
-	private int code;
-	private Cascade(int code){
-		this.code = code;
+	/** {@inheritDoc} */
+	@Override
+	public byte[] decode(String value) {
+		return Base64.decodeBase64(value);
 	}
-	/**
-	 * <p>Getter for the field <code>code</code>.</p>
-	 *
-	 * @return a int.
-	 */
-	public int getCode(){
-		return code;
+
+	/** {@inheritDoc} */
+	@Override
+	public String encode(byte[] object) {
+		return Base64.encodeBase64String(object);
 	}
+
 }

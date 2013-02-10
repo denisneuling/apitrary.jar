@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Denis Neuling 
+ * Copyright 2012-2013 Denis Neuling 
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License.
@@ -13,28 +13,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.orm.core.exception;
+package com.apitrary.orm.annotations.codec;
 
 /**
  * <p>
- * ApitraryORMException class.
+ * Abstract Codec class.
  * </p>
  * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
-public class ApitraryOrmException extends RuntimeException {
-	private static final long serialVersionUID = -7542464634115383578L;
+public abstract class Codec<T> {
 
 	/**
 	 * <p>
-	 * Constructor for ApitraryOrmException.
+	 * decode.
 	 * </p>
 	 * 
-	 * @param message
+	 * @param value
 	 *            a {@link java.lang.String} object.
+	 * @return a T object.
 	 */
-	public ApitraryOrmException(String message) {
-		super(message);
-	}
+	public abstract T decode(String value);
+
+	/**
+	 * <p>
+	 * encode.
+	 * </p>
+	 * 
+	 * @param object
+	 *            a T object.
+	 * @return a {@link java.lang.String} object.
+	 */
+	public abstract String encode(T object);
 }

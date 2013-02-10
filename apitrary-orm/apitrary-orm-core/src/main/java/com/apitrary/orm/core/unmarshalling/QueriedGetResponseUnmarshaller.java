@@ -37,7 +37,7 @@ import com.apitrary.orm.core.util.ProxyUtil;
  * <p>
  * QueriedGetResponseMapper class.
  * </p>
- *
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
@@ -52,15 +52,18 @@ public class QueriedGetResponseUnmarshaller extends JsonResponseConsumer impleme
 
 	private List<Object> resultSet = new LinkedList<Object>();
 	private Object entityInstance;
-	
+
 	private ApitraryDaoSupport daoSupport;
-	
+
 	/**
-	 * <p>Constructor for QueriedGetResponseUnmarshaller.</p>
-	 *
-	 * @param daoSupport a {@link com.apitrary.orm.core.ApitraryDaoSupport} object.
+	 * <p>
+	 * Constructor for QueriedGetResponseUnmarshaller.
+	 * </p>
+	 * 
+	 * @param daoSupport
+	 *            a {@link com.apitrary.orm.core.ApitraryDaoSupport} object.
 	 */
-	public QueriedGetResponseUnmarshaller(ApitraryDaoSupport daoSupport){
+	public QueriedGetResponseUnmarshaller(ApitraryDaoSupport daoSupport) {
 		this.daoSupport = daoSupport;
 	}
 
@@ -124,8 +127,8 @@ public class QueriedGetResponseUnmarshaller extends JsonResponseConsumer impleme
 	@Override
 	protected void onBoolean(Boolean bool, String fieldName, JsonParser jp) {
 		log.trace(fieldName + " " + bool);
-		
-		if (resultStarted && entityStarted && idFound && fieldName!=null && bool!=null) {
+
+		if (resultStarted && entityStarted && idFound && fieldName != null && bool != null) {
 			ClassUtil.setSilent(getEntityInstance(), fieldName, bool);
 		}
 	}
@@ -134,8 +137,8 @@ public class QueriedGetResponseUnmarshaller extends JsonResponseConsumer impleme
 	@Override
 	protected void onInt(Integer val, String fieldName, JsonParser jp) {
 		log.trace(fieldName + " " + val);
-		
-		if (resultStarted && entityStarted && idFound && fieldName!=null && val!=null) {
+
+		if (resultStarted && entityStarted && idFound && fieldName != null && val != null) {
 			ClassUtil.setSilent(getEntityInstance(), fieldName, val);
 		}
 	}
@@ -144,8 +147,8 @@ public class QueriedGetResponseUnmarshaller extends JsonResponseConsumer impleme
 	@Override
 	protected void onDouble(Double floating, String fieldName, JsonParser jp) {
 		log.trace(fieldName + " " + floating);
-		
-		if (resultStarted && entityStarted && idFound && fieldName!=null && floating!=null) {
+
+		if (resultStarted && entityStarted && idFound && fieldName != null && floating != null) {
 			ClassUtil.setSilent(getEntityInstance(), fieldName, floating);
 		}
 	}
@@ -166,10 +169,10 @@ public class QueriedGetResponseUnmarshaller extends JsonResponseConsumer impleme
 				}
 			} else if (text != null && idFound) {
 				java.lang.reflect.Field field = ClassUtil.getDeclaredFieldSilent(getEntityInstance().getClass(), fieldName);
-				if(field!=null){
-					if(field.isAnnotationPresent(Reference.class)){
+				if (field != null) {
+					if (field.isAnnotationPresent(Reference.class)) {
 						ClassUtil.setSilent(getEntityInstance(), fieldName, ProxyUtil.createLazyProxy(field.getType(), daoSupport, text));
-					}else if(field.isAnnotationPresent(Column.class)){
+					} else if (field.isAnnotationPresent(Column.class)) {
 						ClassUtil.setSilent(getEntityInstance(), fieldName, text);
 					}
 				}
@@ -181,7 +184,7 @@ public class QueriedGetResponseUnmarshaller extends JsonResponseConsumer impleme
 	 * <p>
 	 * newEntityInstance.
 	 * </p>
-	 *
+	 * 
 	 * @return a {@link java.lang.Object} object.
 	 */
 	protected Object newEntityInstance() {
@@ -192,7 +195,7 @@ public class QueriedGetResponseUnmarshaller extends JsonResponseConsumer impleme
 	 * <p>
 	 * Getter for the field <code>entityInstance</code>.
 	 * </p>
-	 *
+	 * 
 	 * @return a {@link java.lang.Object} object.
 	 */
 	protected Object getEntityInstance() {
@@ -203,7 +206,7 @@ public class QueriedGetResponseUnmarshaller extends JsonResponseConsumer impleme
 	 * <p>
 	 * Getter for the field <code>resultSet</code>.
 	 * </p>
-	 *
+	 * 
 	 * @return a {@link java.util.List} object.
 	 */
 	protected List<Object> getResultSet() {

@@ -25,7 +25,7 @@ import java.lang.annotation.Target;
  * <p>
  * Field class.
  * </p>
- *
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */

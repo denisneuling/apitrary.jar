@@ -21,7 +21,7 @@ import com.apitrary.api.response.Response;
  * <p>
  * Mapper interface.
  * </p>
- *
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
@@ -31,7 +31,7 @@ public interface Unmarshaller<T extends Response<T>> {
 	 * <p>
 	 * unMarshall.
 	 * </p>
-	 *
+	 * 
 	 * @param response
 	 *            a {@link com.apitrary.api.response.Response} object.
 	 * @param entity
@@ -44,7 +44,7 @@ public interface Unmarshaller<T extends Response<T>> {
 	 * <p>
 	 * unMarshall.
 	 * </p>
-	 *
+	 * 
 	 * @param response
 	 *            a {@link com.apitrary.api.response.Response} object.
 	 * @param entity

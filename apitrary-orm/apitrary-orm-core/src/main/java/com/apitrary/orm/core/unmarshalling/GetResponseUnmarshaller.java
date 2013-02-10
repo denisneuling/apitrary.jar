@@ -32,7 +32,7 @@ import com.apitrary.orm.core.util.ProxyUtil;
  * <p>
  * GetResponseMapper class.
  * </p>
- *
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
@@ -44,16 +44,19 @@ public class GetResponseUnmarshaller extends JsonResponseConsumer implements Unm
 	private Object entity;
 
 	private ApitraryDaoSupport daoSupport;
-	
+
 	/**
-	 * <p>Constructor for GetResponseUnmarshaller.</p>
-	 *
-	 * @param daoSupport a {@link com.apitrary.orm.core.ApitraryDaoSupport} object.
+	 * <p>
+	 * Constructor for GetResponseUnmarshaller.
+	 * </p>
+	 * 
+	 * @param daoSupport
+	 *            a {@link com.apitrary.orm.core.ApitraryDaoSupport} object.
 	 */
-	public GetResponseUnmarshaller(ApitraryDaoSupport daoSupport){
+	public GetResponseUnmarshaller(ApitraryDaoSupport daoSupport) {
 		this.daoSupport = daoSupport;
 	}
-	
+
 	/** {@inheritDoc} */
 	@Override
 	public Object unMarshall(Response<GetResponse> response, Object entity) {
@@ -151,10 +154,10 @@ public class GetResponseUnmarshaller extends JsonResponseConsumer implements Unm
 		if (resultStarted) {
 			found = true;
 			java.lang.reflect.Field field = ClassUtil.getDeclaredFieldSilent(entity.getClass(), fieldName);
-			if(field!=null){
-				if(field.isAnnotationPresent(Reference.class)){
+			if (field != null) {
+				if (field.isAnnotationPresent(Reference.class)) {
 					ClassUtil.setSilent(entity, fieldName, ProxyUtil.createLazyProxy(field.getType(), daoSupport, text));
-				}else if(field.isAnnotationPresent(Column.class)){
+				} else if (field.isAnnotationPresent(Column.class)) {
 					ClassUtil.setSilent(entity, fieldName, text);
 				}
 			}

@@ -23,23 +23,16 @@ import java.lang.annotation.Target;
 
 /**
  * <p>
- * MarshallingStrategy class.
+ * Codec class.
  * </p>
- *
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
- *
- *         TODO: implement this to have an aspect to flag the serialization to
- *         use a custom marshalling service for the annotated property
  * 
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 @Inherited
-public @interface MarshallingStrategy {
+public @interface Codec {
 
-	/**
-	 * The MarshallingStrategy's class to define serialization method and vice
-	 * versa
-	 */
-	Class<?> value();
+	Class<com.apitrary.orm.annotations.codec.Codec> value();
 }

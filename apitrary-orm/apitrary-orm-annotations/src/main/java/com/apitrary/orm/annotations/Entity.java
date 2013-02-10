@@ -24,7 +24,7 @@ import java.lang.annotation.Target;
  * <p>
  * Entity class.
  * </p>
- *
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */

@@ -28,56 +28,72 @@ public enum HttpMethod {
 	/**
 	 * Http GET method descriptor.
 	 * 
-	 * @see http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#Get
+	 * @see <a
+	 *      href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#Get">rfc2616
+	 *      GET</a>
 	 */
 	GET,
 
 	/**
 	 * HTTP POST method descriptor.
 	 * 
-	 * @see http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#Post
+	 * @see <a
+	 *      href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#Post">rfc2616
+	 *      POST</a>
 	 */
 	POST,
 
 	/**
 	 * HTTP PUT method descriptor.
 	 * 
-	 * @see http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#Put
+	 * @see <a
+	 *      href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#Put">rfc2616
+	 *      PUT</a>
 	 */
 	PUT,
 
 	/**
 	 * HTTP DELETE method descriptor.
 	 * 
-	 * @see http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#Delete
+	 * @see <a
+	 *      href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#Delete">rfc2616
+	 *      DELETE</a>
 	 */
 	DELETE,
 
 	/**
 	 * HTTP HEAD method descriptor.
 	 * 
-	 * @see http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#Head
+	 * @see <a
+	 *      href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#Head">rfc2616
+	 *      HEAD</a>
 	 */
 	HEAD,
 
 	/**
 	 * HTTP TRACE method descriptor.
 	 * 
-	 * @see http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#Trace
+	 * @see <a
+	 *      href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#Trace">rfc2616
+	 *      TRACE</a>
 	 */
 	TRACE,
 
 	/**
 	 * HTTP CONNECT method descriptor.
 	 * 
-	 * @see http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#Connect
+	 * @see <a
+	 *      href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#Connect">rfc2616
+	 *      CONNECT</a>
 	 */
 	CONNECT,
 
 	/**
 	 * HTTP OPTIONS method descriptor.
 	 * 
-	 * @see http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#Options
+	 * @see <a
+	 *      href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#Options">rfc2616
+	 *      OPTIONS</a>
 	 */
 	OPTIONS;
 

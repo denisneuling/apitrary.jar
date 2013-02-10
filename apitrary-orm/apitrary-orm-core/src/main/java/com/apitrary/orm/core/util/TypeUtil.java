@@ -24,18 +24,23 @@ import java.lang.reflect.Proxy;
  * <p>
  * TypeUtil class.
  * </p>
- *
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
 public class TypeUtil {
 
 	/**
-	 * <p>as.</p>
-	 *
-	 * @param t a {@link java.lang.Class} object.
-	 * @param obj a {@link java.lang.Object} object.
-	 * @param <T> a T object.
+	 * <p>
+	 * as.
+	 * </p>
+	 * 
+	 * @param t
+	 *            a {@link java.lang.Class} object.
+	 * @param obj
+	 *            a {@link java.lang.Object} object.
+	 * @param <T>
+	 *            a T object.
 	 * @return a T object.
 	 */
 	@SuppressWarnings("unchecked")
@@ -52,11 +57,14 @@ public class TypeUtil {
 			}
 		});
 	}
-	
+
 	/**
-	 * <p>printGettersSetters.</p>
-	 *
-	 * @param aClass a {@link java.lang.Class} object.
+	 * <p>
+	 * printGettersSetters.
+	 * </p>
+	 * 
+	 * @param aClass
+	 *            a {@link java.lang.Class} object.
 	 */
 	public static void printGettersSetters(Class<?> aClass) {
 		Method[] methods = aClass.getMethods();
@@ -70,74 +78,89 @@ public class TypeUtil {
 	}
 
 	/**
-	 * <p>isGetter.</p>
-	 *
-	 * @param method a {@link java.lang.reflect.Method} object.
+	 * <p>
+	 * isGetter.
+	 * </p>
+	 * 
+	 * @param method
+	 *            a {@link java.lang.reflect.Method} object.
 	 * @return a boolean.
 	 */
-	public static boolean isGetter(Method method){
-		  if(!method.getName().startsWith("get")){
-			  return false;
-		  }
-		  if(method.getParameterTypes().length != 0){
-			  return false;  
-		  }
-		  if(void.class.equals(method.getReturnType())){
-			  return false;
-		  }
-		  return true;
-		}
-
-	/**
-	 * <p>isSetter.</p>
-	 *
-	 * @param method a {@link java.lang.reflect.Method} object.
-	 * @return a boolean.
-	 */
-	public static boolean isSetter(Method method) {
-		if (!method.getName().startsWith("set")){
+	public static boolean isGetter(Method method) {
+		if (!method.getName().startsWith("get")) {
 			return false;
 		}
-		if (method.getParameterTypes().length != 1){
+		if (method.getParameterTypes().length != 0) {
+			return false;
+		}
+		if (void.class.equals(method.getReturnType())) {
 			return false;
 		}
 		return true;
 	}
-	
+
 	/**
-	 * <p>isToString.</p>
-	 *
-	 * @param method a {@link java.lang.reflect.Method} object.
+	 * <p>
+	 * isSetter.
+	 * </p>
+	 * 
+	 * @param method
+	 *            a {@link java.lang.reflect.Method} object.
+	 * @return a boolean.
+	 */
+	public static boolean isSetter(Method method) {
+		if (!method.getName().startsWith("set")) {
+			return false;
+		}
+		if (method.getParameterTypes().length != 1) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * <p>
+	 * isToString.
+	 * </p>
+	 * 
+	 * @param method
+	 *            a {@link java.lang.reflect.Method} object.
 	 * @return a boolean.
 	 */
 	public static boolean isToString(Method method) {
-		if (method.getName().equals("toString")){
+		if (method.getName().equals("toString")) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	/**
-	 * <p>isHashCode.</p>
-	 *
-	 * @param method a {@link java.lang.reflect.Method} object.
+	 * <p>
+	 * isHashCode.
+	 * </p>
+	 * 
+	 * @param method
+	 *            a {@link java.lang.reflect.Method} object.
 	 * @return a boolean.
 	 */
 	public static boolean isHashCode(Method method) {
-		if (method.getName().equals("hashCode")){
+		if (method.getName().equals("hashCode")) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	/**
-	 * <p>isEquals.</p>
-	 *
-	 * @param method a {@link java.lang.reflect.Method} object.
+	 * <p>
+	 * isEquals.
+	 * </p>
+	 * 
+	 * @param method
+	 *            a {@link java.lang.reflect.Method} object.
 	 * @return a boolean.
 	 */
 	public static boolean isEquals(Method method) {
-		if (method.getName().equals("equals")){
+		if (method.getName().equals("equals")) {
 			return true;
 		}
 		return false;
