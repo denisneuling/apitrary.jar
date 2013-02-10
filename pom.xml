@@ -9,7 +9,7 @@
 
 	<groupId>com.apitrary</groupId>
 	<artifactId>apitrary-jar</artifactId>
-	<version>0.1</version>
+	<version>0.1.1-SNAPSHOT</version>
 
 	<packaging>pom</packaging>
 	<name>${project.artifactId}</name>
