@@ -34,15 +34,15 @@ public class PayloadMarshallerTest {
 
 	private PayloadMarshaller payloadMarshaller;
 	private DumbEntity entity;
-	
+
 	private String intialBValue = "asdasdasdwdqwqdwqd";
-	
+
 	@Before
-	public void setUp(){
+	public void setUp() {
 		payloadMarshaller = new PayloadMarshaller(null);
 		entity = new DumbEntity("a", intialBValue);
 	}
-	
+
 	@Test
 	public void test_marshall() {
 		String val = payloadMarshaller.marshall(entity);

@@ -26,33 +26,26 @@ import com.apitrary.orm.core.marshalling.dumb.DumbEntity;
 
 /**
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
 public class GetResponseUnmarshallerTest {
 
 	private GetResponseUnmarshaller getResponseUnmarshaller;
 	private ApitraryDaoSupport apitraryDaoSupport;
-	
-	private String result = 
-			"{" + 
-					"\"result\": {" +
-						"\"a\":\"a\",\"b\":\"encoded\"" +
-					"}," +
-					"\"statusMessage\": \"OK\"," +
-					"\"statusCode\": 200" + 
-			"}";
-	
+
+	private String result = "{" + "\"result\": {" + "\"a\":\"a\",\"b\":\"encoded\"" + "}," + "\"statusMessage\": \"OK\"," + "\"statusCode\": 200" + "}";
+
 	@Before
-	public void setUp(){
+	public void setUp() {
 		getResponseUnmarshaller = new GetResponseUnmarshaller(apitraryDaoSupport);
 	}
-	
+
 	@Test
-	public void test_unMarshall(){
+	public void test_unMarshall() {
 		GetResponse getResponse = new GetResponse();
 		getResponse.setResult(result);
-		
-		DumbEntity dumbEntity = (DumbEntity)getResponseUnmarshaller.unMarshall(getResponse, DumbEntity.class);
+
+		DumbEntity dumbEntity = (DumbEntity) getResponseUnmarshaller.unMarshall(getResponse, DumbEntity.class);
 		Assert.assertEquals("decoded", dumbEntity.getB());
 	}
 }

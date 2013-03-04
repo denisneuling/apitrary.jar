@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Denis Neuling 
+ * Copyright 2012-2013 Denis Neuling 
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ import com.apitrary.api.response.QueriedGetResponse;
 @Method(HttpMethod.GET)
 @Path("/${entity}")
 /* a/id || a?q= */
-public class QueriedGetRequest extends Request<QueriedGetResponse> implements Serializable{
+public class QueriedGetRequest extends Request<QueriedGetResponse> implements Serializable {
 	private static final long serialVersionUID = 7586680719718414828L;
 
 	@Required

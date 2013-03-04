@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Denis Neuling 
+ * Copyright 2012-2013 Denis Neuling 
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License.
@@ -43,19 +43,19 @@ public abstract class AbstractApitraryClient {
 
 	/** Constant <code>apitraryUrl="api.apitrary.com"</code> */
 	protected static final String apitraryUrl = "api.apitrary.com";
-	
+
 	/** Constant <code>protocol="http://"</code> */
-	protected static final String protocol = "https://";
-	
+	protected static final String protocol = "http://";
+
 	/** Constant <code>apiAuthHeaderKey="X-Api-Key"</code> */
 	protected static final String apiAuthHeaderKey = "X-Api-Key";
-	
+
 	/** Constant <code>contentType="application/json"</code> */
 	protected static final String contentType = "application/json";
 
 	/** Constant <code>DEFAULTCONNECTIONTIMEOUT=60000</code> */
 	protected static final int DEFAULTCONNECTIONTIMEOUT = 60000;
-	
+
 	/** Constant <code>DEFAULTRECEIVETIMEOUT=60000</code> */
 	protected static final int DEFAULTRECEIVETIMEOUT = 60000;
 

@@ -82,18 +82,19 @@ public class PayloadMarshaller implements Marshaller {
 			 * Collect all column fields
 			 */
 			List<java.lang.reflect.Field> allFields = ClassUtil.getAnnotatedFields(entity, Column.class);
-			
+
 			/*
 			 * Prepare property filter...
 			 */
 			List<java.lang.reflect.Field> fields = new LinkedList<java.lang.reflect.Field>();
-			for(java.lang.reflect.Field field : allFields){
-				if(!field.isAnnotationPresent(com.apitrary.orm.core.annotations.Codec.class)){
+			for (java.lang.reflect.Field field : allFields) {
+				if (!field.isAnnotationPresent(com.apitrary.orm.core.annotations.Codec.class)) {
 					fields.add(field);
 				}
 			}
 			/*
-			 *  ... and filter out all properties not referencing types or demand custom encoding
+			 * ... and filter out all properties not referencing types or demand
+			 * custom encoding
 			 */
 			String[] targetedFieldNames = new String[fields.size()];
 			for (int i = 0; i < fields.size(); i++) {
@@ -108,15 +109,15 @@ public class PayloadMarshaller implements Marshaller {
 			 */
 			List<java.lang.reflect.Field> customEncodedProperties = ClassUtil.getAnnotatedFields(entity, com.apitrary.orm.core.annotations.Codec.class);
 			for (java.lang.reflect.Field field : customEncodedProperties) {
-				
+
 				Class<? extends Codec> codecClazz = ClassUtil.getFieldAnnotationValue("value", field, com.apitrary.orm.core.annotations.Codec.class, Class.class);
 				Codec codec = (Codec) ClassUtil.newInstance(codecClazz);
-				
+
 				Object value = ClassUtil.getValueOfField(field, entity);
 				String stringValue = codec.encode(value);
 				json = addNode(json, field.getName(), stringValue);
 			}
-			
+
 			/*
 			 * Perform entity refs
 			 */

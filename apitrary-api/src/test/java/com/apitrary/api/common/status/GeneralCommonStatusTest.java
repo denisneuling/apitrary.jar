@@ -23,12 +23,12 @@ import org.junit.Test;
 
 /**
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
 public class GeneralCommonStatusTest {
 
 	@Test
-	public void test_isSerializable(){
+	public void test_isSerializable() {
 		Assert.assertTrue(Serializable.class.isAssignableFrom(API.class));
 		Assert.assertTrue(Serializable.class.isAssignableFrom(APIState.class));
 		Assert.assertTrue(Serializable.class.isAssignableFrom(Info.class));

@@ -22,25 +22,25 @@ import com.apitrary.orm.core.annotations.Id;
 
 /**
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
 @Entity
-public class DumbEntity{
-	
+public class DumbEntity {
+
 	@Id
 	private String id;
-	
+
 	@Column
 	private String a;
-	
+
 	@Column
 	@Codec(DumbCodec.class)
 	private String b;
-	
-	public DumbEntity(){
+
+	public DumbEntity() {
 	}
-	
-	public DumbEntity(String a, String b){
+
+	public DumbEntity(String a, String b) {
 		this.a = a;
 		this.b = b;
 	}

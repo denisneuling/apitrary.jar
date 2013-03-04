@@ -23,12 +23,12 @@ import org.junit.Test;
 
 /**
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
 public class GeneralRequestTest {
-	
+
 	@Test
-	public void test_isSerializable(){
+	public void test_isSerializable() {
 		Assert.assertTrue(Serializable.class.isAssignableFrom(APIStateRequest.class));
 		Assert.assertTrue(Serializable.class.isAssignableFrom(GetRequest.class));
 		Assert.assertTrue(Serializable.class.isAssignableFrom(DeleteRequest.class));

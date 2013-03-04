@@ -17,9 +17,9 @@ package com.apitrary.orm.core.marshalling.dumb;
 
 /**
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
-public class DumbCodec extends com.apitrary.orm.core.codec.Codec<String>{
+public class DumbCodec extends com.apitrary.orm.core.codec.Codec<String> {
 
 	@Override
 	public String decode(String value) {

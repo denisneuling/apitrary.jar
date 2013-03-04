@@ -25,9 +25,9 @@ package com.apitrary.orm.core.codec;
  */
 public abstract class Codec<T> {
 
-	public Codec(){
+	public Codec() {
 	}
-	
+
 	/**
 	 * <p>
 	 * decode.

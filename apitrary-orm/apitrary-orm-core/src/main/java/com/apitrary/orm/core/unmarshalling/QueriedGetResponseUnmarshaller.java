@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Denis Neuling 
+ * Copyright 2012-2013 Denis Neuling 
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License.
@@ -175,14 +175,14 @@ public class QueriedGetResponseUnmarshaller extends JsonResponseConsumer impleme
 					if (field.isAnnotationPresent(Reference.class)) {
 						ClassUtil.setSilent(getEntityInstance(), fieldName, ProxyUtil.createLazyProxy(field.getType(), daoSupport, text));
 					} else if (field.isAnnotationPresent(Column.class)) {
-						if(field.isAnnotationPresent(Codec.class)){
+						if (field.isAnnotationPresent(Codec.class)) {
 							Class<? extends com.apitrary.orm.core.codec.Codec> codecClazz = ClassUtil.getFieldAnnotationValue("value", field, Codec.class, Class.class);
 							com.apitrary.orm.core.codec.Codec codec = (com.apitrary.orm.core.codec.Codec) ClassUtil.newInstance(codecClazz);
 							Object value = codec.decode(text);
-							
+
 							ClassUtil.setSilent(getEntityInstance(), fieldName, value);
-						}else{
-						ClassUtil.setSilent(getEntityInstance(), fieldName, text);
+						} else {
+							ClassUtil.setSilent(getEntityInstance(), fieldName, text);
 						}
 					}
 				}

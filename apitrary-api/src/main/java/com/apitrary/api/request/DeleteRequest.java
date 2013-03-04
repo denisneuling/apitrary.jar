@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Denis Neuling 
+ * Copyright 2012-2013 Denis Neuling 
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ import com.apitrary.api.response.DeleteResponse;
  */
 @Method(HttpMethod.DELETE)
 @Path("/${entity}/${id}")
-public class DeleteRequest extends Request<DeleteResponse> implements Serializable{
+public class DeleteRequest extends Request<DeleteResponse> implements Serializable {
 	private static final long serialVersionUID = -8265792383976749317L;
 
 	@Required

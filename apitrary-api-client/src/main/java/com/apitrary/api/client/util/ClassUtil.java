@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Denis Neuling 
+ * Copyright 2012-2013 Denis Neuling 
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@ public class ClassUtil {
 			try {
 				value = (T) instance.annotationType().getMethod(attributeName).invoke(instance);
 			} catch (Exception ex) {
-				log.warning(ex.getClass().getSimpleName()+": "+ex.getMessage());
+				log.warning(ex.getClass().getSimpleName() + ": " + ex.getMessage());
 			}
 		}
 		return value;
@@ -198,7 +198,7 @@ public class ClassUtil {
 			}
 			return (T) toReturn;
 		} catch (Exception e) {
-			log.warning(e.getClass().getSimpleName()+": "+e.getMessage());
+			log.warning(e.getClass().getSimpleName() + ": " + e.getMessage());
 			return null;
 		}
 	}
@@ -231,7 +231,7 @@ public class ClassUtil {
 			T toReturn = (T) field.get(reference);
 			return toReturn;
 		} catch (Exception e) {
-			log.warning(e.getClass().getSimpleName()+": "+e.getMessage());
+			log.warning(e.getClass().getSimpleName() + ": " + e.getMessage());
 			return null;
 		}
 	}
@@ -253,9 +253,9 @@ public class ClassUtil {
 		try {
 			value = field.get(ref);
 		} catch (IllegalArgumentException e) {
-			log.warning(e.getClass().getSimpleName()+": "+e.getMessage());
+			log.warning(e.getClass().getSimpleName() + ": " + e.getMessage());
 		} catch (IllegalAccessException e) {
-			log.warning(e.getClass().getSimpleName()+": "+e.getMessage());
+			log.warning(e.getClass().getSimpleName() + ": " + e.getMessage());
 		}
 		return value;
 	}
