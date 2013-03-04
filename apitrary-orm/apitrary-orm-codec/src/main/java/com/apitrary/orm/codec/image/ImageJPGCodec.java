@@ -30,15 +30,18 @@ import com.apitrary.orm.core.codec.Codec;
 
 /**
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
-public class ImageJPGCodec extends Codec<Image>{
+public class ImageJPGCodec extends Codec<Image> {
 
 	private static final String FORMAT = "jpg";
-	
+
 	/** {@inheritDoc} */
 	@Override
 	public Image decode(String value) {
+		if (value == null || value.isEmpty()) {
+			return null;
+		}
 		byte[] buffer = Base64.decodeBase64(value);
 		InputStream in = new ByteArrayInputStream(buffer);
 		BufferedImage bImageFromConvert;
@@ -53,9 +56,12 @@ public class ImageJPGCodec extends Codec<Image>{
 	/** {@inheritDoc} */
 	@Override
 	public String encode(Image image) {
+		if (image == null) {
+			return null;
+		}
 		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-	    try {
-			ImageIO.write((BufferedImage)image, FORMAT, byteArrayOutputStream);
+		try {
+			ImageIO.write((BufferedImage) image, FORMAT, byteArrayOutputStream);
 			byte[] imageData = byteArrayOutputStream.toByteArray();
 			return Base64.encodeBase64String(imageData);
 		} catch (IOException e) {
