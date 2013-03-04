@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.orm.annotations;
+package com.apitrary.orm.core.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
@@ -23,7 +23,7 @@ import java.lang.annotation.Target;
 
 /**
  * <p>
- * Field class.
+ * Codec class.
  * </p>
  * 
  * @author Denis Neuling (denisneuling@gmail.com)
@@ -32,10 +32,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 @Inherited
-public @interface Column {
+public @interface Codec {
 
-	/**
-	 * The field's name
-	 */
-	String value() default "";
+	@SuppressWarnings("rawtypes")
+	Class<? extends com.apitrary.orm.core.codec.Codec> value();
 }

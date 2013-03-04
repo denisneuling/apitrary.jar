@@ -46,7 +46,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.apitrary</groupId>
-			<artifactId>apitrary-orm-annotations</artifactId>
+			<artifactId>apitrary-orm-core</artifactId>
 			<version>0.1</version>
 		</dependency>
 

@@ -15,6 +15,8 @@
  */
 package com.apitrary.api.request;
 
+import java.io.Serializable;
+
 import com.apitrary.api.annotation.Body;
 import com.apitrary.api.annotation.Method;
 import com.apitrary.api.annotation.Path;
@@ -33,7 +35,7 @@ import com.apitrary.api.response.PostResponse;
  */
 @Method(HttpMethod.POST)
 @Path("/${entity}")
-public class PostRequest extends Request<PostResponse> {
+public class PostRequest extends Request<PostResponse> implements Serializable{
 	private static final long serialVersionUID = 7454490450438849781L;
 
 	@Required

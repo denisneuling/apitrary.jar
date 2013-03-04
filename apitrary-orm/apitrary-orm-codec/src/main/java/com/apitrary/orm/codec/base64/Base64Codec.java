@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Denis Neuling 
+ * Copyright 2012-2013 Denis Neuling 
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License.
@@ -13,20 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.api.response;
+package com.apitrary.orm.codec.base64;
 
-import com.apitrary.api.annotation.Normalized;
+import org.apache.commons.codec.binary.Base64;
+
+import com.apitrary.orm.core.codec.Codec;
 
 /**
  * <p>
- * APIStateResponse class.
+ * Base64Codec class.
  * </p>
  * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
-@Normalized
-public class APIStateResponse extends Response<APIStateResponse> {
-	private static final long serialVersionUID = 3881869281324737452L;
+public class Base64Codec extends Codec<byte[]> {
 
+	/** {@inheritDoc} */
+	@Override
+	public byte[] decode(String value) {
+		return Base64.decodeBase64(value);
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public String encode(byte[] object) {
+		return Base64.encodeBase64String(object);
+	}
 }

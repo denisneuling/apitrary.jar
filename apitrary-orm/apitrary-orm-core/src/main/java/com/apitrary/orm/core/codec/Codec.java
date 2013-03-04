@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Denis Neuling 
+ * Copyright 2012-2013 Denis Neuling 
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License.
@@ -13,20 +13,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.api.response;
-
-import com.apitrary.api.annotation.Normalized;
+package com.apitrary.orm.core.codec;
 
 /**
  * <p>
- * APIStateResponse class.
+ * Abstract Codec class.
  * </p>
  * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
-@Normalized
-public class APIStateResponse extends Response<APIStateResponse> {
-	private static final long serialVersionUID = 3881869281324737452L;
+public abstract class Codec<T> {
 
+	public Codec(){
+	}
+	
+	/**
+	 * <p>
+	 * decode.
+	 * </p>
+	 * 
+	 * @param value
+	 *            a {@link java.lang.String} object.
+	 * @return a T object.
+	 */
+	public abstract T decode(String value);
+
+	/**
+	 * <p>
+	 * encode.
+	 * </p>
+	 * 
+	 * @param object
+	 *            a T object.
+	 * @return a {@link java.lang.String} object.
+	 */
+	public abstract String encode(T object);
 }

@@ -54,11 +54,6 @@
 			<artifactId>apitrary-api-client</artifactId>
 			<version>0.1</version>
 		</dependency>
-		<dependency>
-			<groupId>com.apitrary</groupId>
-			<artifactId>apitrary-orm-annotations</artifactId>
-			<version>0.1</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>

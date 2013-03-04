@@ -15,6 +15,8 @@
  */
 package com.apitrary.api.request;
 
+import java.io.Serializable;
+
 import com.apitrary.api.annotation.Method;
 import com.apitrary.api.annotation.Path;
 import com.apitrary.api.annotation.PathVariable;
@@ -34,7 +36,7 @@ import com.apitrary.api.response.QueriedGetResponse;
 @Method(HttpMethod.GET)
 @Path("/${entity}")
 /* a/id || a?q= */
-public class QueriedGetRequest extends Request<QueriedGetResponse> {
+public class QueriedGetRequest extends Request<QueriedGetResponse> implements Serializable{
 	private static final long serialVersionUID = 7586680719718414828L;
 
 	@Required

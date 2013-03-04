@@ -15,6 +15,8 @@
  */
 package com.apitrary.api.request;
 
+import java.io.Serializable;
+
 import com.apitrary.api.annotation.Body;
 import com.apitrary.api.annotation.Method;
 import com.apitrary.api.annotation.Path;
@@ -33,7 +35,7 @@ import com.apitrary.api.response.PutResponse;
  */
 @Method(HttpMethod.PUT)
 @Path("/${entity}/${id}")
-public class PutRequest extends Request<PutResponse> {
+public class PutRequest extends Request<PutResponse> implements Serializable{
 	private static final long serialVersionUID = 7880320624981198826L;
 
 	@Required

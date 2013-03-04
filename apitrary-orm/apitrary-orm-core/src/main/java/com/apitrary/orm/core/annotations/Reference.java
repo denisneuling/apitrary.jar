@@ -13,28 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.orm.annotations;
+package com.apitrary.orm.core.annotations;
 
 import java.lang.annotation.ElementType;
+import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import com.apitrary.orm.core.annotations.cascade.Cascade;
+
 /**
  * <p>
- * Entity class.
+ * References class.
  * </p>
  * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-public @interface Entity {
+@Target(ElementType.FIELD)
+@Inherited
+public @interface Reference {
 
-	/**
-	 * The entity's/table's name.
-	 */
-	String value() default "";
-
+	Cascade[] cascade() default {};
 }

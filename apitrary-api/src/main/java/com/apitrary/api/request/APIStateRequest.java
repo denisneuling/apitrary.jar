@@ -15,6 +15,8 @@
  */
 package com.apitrary.api.request;
 
+import java.io.Serializable;
+
 import com.apitrary.api.annotation.Method;
 import com.apitrary.api.annotation.Path;
 import com.apitrary.api.common.HttpMethod;
@@ -30,7 +32,7 @@ import com.apitrary.api.response.APIStateResponse;
  */
 @Method(HttpMethod.GET)
 @Path("/")
-public class APIStateRequest extends Request<APIStateResponse> {
+public class APIStateRequest extends Request<APIStateResponse> implements Serializable{
 	private static final long serialVersionUID = -2599282917840158769L;
 
 	/**

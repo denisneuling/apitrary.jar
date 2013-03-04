@@ -43,15 +43,19 @@ public abstract class AbstractApitraryClient {
 
 	/** Constant <code>apitraryUrl="api.apitrary.com"</code> */
 	protected static final String apitraryUrl = "api.apitrary.com";
+	
 	/** Constant <code>protocol="http://"</code> */
-	protected static final String protocol = "http://";
+	protected static final String protocol = "https://";
+	
 	/** Constant <code>apiAuthHeaderKey="X-Api-Key"</code> */
 	protected static final String apiAuthHeaderKey = "X-Api-Key";
+	
 	/** Constant <code>contentType="application/json"</code> */
 	protected static final String contentType = "application/json";
 
 	/** Constant <code>DEFAULTCONNECTIONTIMEOUT=60000</code> */
 	protected static final int DEFAULTCONNECTIONTIMEOUT = 60000;
+	
 	/** Constant <code>DEFAULTRECEIVETIMEOUT=60000</code> */
 	protected static final int DEFAULTRECEIVETIMEOUT = 60000;
 

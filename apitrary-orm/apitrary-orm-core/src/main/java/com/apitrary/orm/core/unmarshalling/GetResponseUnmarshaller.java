@@ -21,9 +21,10 @@ import org.codehaus.jackson.JsonParser;
 import com.apitrary.api.client.util.ClassUtil;
 import com.apitrary.api.response.GetResponse;
 import com.apitrary.api.response.Response;
-import com.apitrary.orm.annotations.Column;
-import com.apitrary.orm.annotations.Reference;
 import com.apitrary.orm.core.ApitraryDaoSupport;
+import com.apitrary.orm.core.annotations.Codec;
+import com.apitrary.orm.core.annotations.Column;
+import com.apitrary.orm.core.annotations.Reference;
 import com.apitrary.orm.core.exception.MappingException;
 import com.apitrary.orm.core.unmarshalling.api.Unmarshaller;
 import com.apitrary.orm.core.util.ProxyUtil;
@@ -148,6 +149,7 @@ public class GetResponseUnmarshaller extends JsonResponseConsumer implements Unm
 
 	/** {@inheritDoc} */
 	@Override
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	protected void onString(String text, String fieldName, JsonParser jp) {
 		log.trace(fieldName + " " + text);
 
@@ -158,7 +160,15 @@ public class GetResponseUnmarshaller extends JsonResponseConsumer implements Unm
 				if (field.isAnnotationPresent(Reference.class)) {
 					ClassUtil.setSilent(entity, fieldName, ProxyUtil.createLazyProxy(field.getType(), daoSupport, text));
 				} else if (field.isAnnotationPresent(Column.class)) {
-					ClassUtil.setSilent(entity, fieldName, text);
+					if(field.isAnnotationPresent(Codec.class)){
+						Class<? extends com.apitrary.orm.core.codec.Codec> codecClazz = ClassUtil.getFieldAnnotationValue("value", field, Codec.class, Class.class);
+						com.apitrary.orm.core.codec.Codec codec = (com.apitrary.orm.core.codec.Codec) ClassUtil.newInstance(codecClazz);
+						Object value = codec.decode(text);
+						
+						ClassUtil.setSilent(entity, fieldName, value);
+					}else{
+						ClassUtil.setSilent(entity, fieldName, text);
+					}
 				}
 			}
 		}

@@ -24,10 +24,11 @@ import org.codehaus.jackson.JsonParser;
 import com.apitrary.api.client.util.ClassUtil;
 import com.apitrary.api.response.QueriedGetResponse;
 import com.apitrary.api.response.Response;
-import com.apitrary.orm.annotations.Column;
-import com.apitrary.orm.annotations.Id;
-import com.apitrary.orm.annotations.Reference;
 import com.apitrary.orm.core.ApitraryDaoSupport;
+import com.apitrary.orm.core.annotations.Codec;
+import com.apitrary.orm.core.annotations.Column;
+import com.apitrary.orm.core.annotations.Id;
+import com.apitrary.orm.core.annotations.Reference;
 import com.apitrary.orm.core.exception.ApitraryOrmIdException;
 import com.apitrary.orm.core.exception.MappingException;
 import com.apitrary.orm.core.unmarshalling.api.ListUnmarshaller;
@@ -154,6 +155,7 @@ public class QueriedGetResponseUnmarshaller extends JsonResponseConsumer impleme
 	}
 
 	/** {@inheritDoc} */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	protected void onString(String text, String fieldName, JsonParser jp) {
 		log.trace(fieldName + " " + text);
@@ -173,7 +175,15 @@ public class QueriedGetResponseUnmarshaller extends JsonResponseConsumer impleme
 					if (field.isAnnotationPresent(Reference.class)) {
 						ClassUtil.setSilent(getEntityInstance(), fieldName, ProxyUtil.createLazyProxy(field.getType(), daoSupport, text));
 					} else if (field.isAnnotationPresent(Column.class)) {
+						if(field.isAnnotationPresent(Codec.class)){
+							Class<? extends com.apitrary.orm.core.codec.Codec> codecClazz = ClassUtil.getFieldAnnotationValue("value", field, Codec.class, Class.class);
+							com.apitrary.orm.core.codec.Codec codec = (com.apitrary.orm.core.codec.Codec) ClassUtil.newInstance(codecClazz);
+							Object value = codec.decode(text);
+							
+							ClassUtil.setSilent(getEntityInstance(), fieldName, value);
+						}else{
 						ClassUtil.setSilent(getEntityInstance(), fieldName, text);
+						}
 					}
 				}
 			}

@@ -11,10 +11,8 @@
 
 	<modules>
 		<module>apitrary-orm-core</module>
-		<module>apitrary-orm-annotations</module>
 		<module>apitrary-orm-codec</module>
 	</modules>
-
 
 	<scm>
 		<url>https://github.com/denisneuling/apitrary.jar</url>

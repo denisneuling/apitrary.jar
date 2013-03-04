@@ -22,9 +22,9 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.apitrary.api.client.util.ClassUtil;
-import com.apitrary.orm.annotations.Reference;
-import com.apitrary.orm.annotations.cascade.Cascade;
 import com.apitrary.orm.core.ApitraryDaoSupport;
+import com.apitrary.orm.core.annotations.Reference;
+import com.apitrary.orm.core.annotations.cascade.Cascade;
 import com.apitrary.orm.core.exception.ApitraryOrmIdException;
 
 /**

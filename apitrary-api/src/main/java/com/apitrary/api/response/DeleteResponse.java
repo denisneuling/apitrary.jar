@@ -27,5 +27,6 @@ import com.apitrary.api.annotation.Normalized;
  */
 @Normalized
 public class DeleteResponse extends Response<DeleteResponse> {
+	private static final long serialVersionUID = -4818084375753188141L;
 
 }

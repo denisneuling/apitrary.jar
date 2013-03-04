@@ -105,11 +105,6 @@ public enum HttpStatus {
 		return status;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Enum#toString()
-	 */
 	/** {@inheritDoc} */
 	@Override
 	public String toString() {
