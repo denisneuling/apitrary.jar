@@ -13,20 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.api.response;
+package com.apitrary.orm.core.annotations;
 
-import com.apitrary.api.annotation.Normalized;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Inherited;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * <p>
- * APIStateResponse class.
+ * Field class.
  * </p>
  * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
-@Normalized
-public class APIStateResponse extends Response<APIStateResponse> {
-	private static final long serialVersionUID = 3881869281324737452L;
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+@Inherited
+public @interface Column {
 
+	/**
+	 * The field's name
+	 */
+	String value() default "";
 }

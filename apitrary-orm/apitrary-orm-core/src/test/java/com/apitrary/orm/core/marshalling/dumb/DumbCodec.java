@@ -13,38 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.orm.annotations.cascade;
+package com.apitrary.orm.core.marshalling.dumb;
 
 /**
- * <p>
- * Cascade class.
- * </p>
- * 
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
-public enum Cascade {
+public class DumbCodec extends com.apitrary.orm.core.codec.Codec<String>{
 
-	SAVE(1)
-	/*
-	 * TODO , UPDATE(2) is currently not supported
-	 */
-	, DELETE(3);
-
-	private int code;
-
-	private Cascade(int code) {
-		this.code = code;
+	@Override
+	public String decode(String value) {
+		return "decoded";
 	}
 
-	/**
-	 * <p>
-	 * Getter for the field <code>code</code>.
-	 * </p>
-	 * 
-	 * @return a int.
-	 */
-	public int getCode() {
-		return code;
+	/** {@inheritDoc} */
+	@Override
+	public String encode(String object) {
+		return "encoded";
 	}
 }

@@ -22,6 +22,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
 /**
  * <p>
@@ -32,6 +33,7 @@ import java.util.Set;
  * 
  */
 public class ClassUtil {
+	private static Logger log = Logger.getLogger(NormalizationUtil.class.getName());
 
 	/**
 	 * <p>
@@ -58,6 +60,7 @@ public class ClassUtil {
 			try {
 				value = (T) instance.annotationType().getMethod(attributeName).invoke(instance);
 			} catch (Exception ex) {
+				log.warning(ex.getClass().getSimpleName()+": "+ex.getMessage());
 			}
 		}
 		return value;
@@ -195,6 +198,7 @@ public class ClassUtil {
 			}
 			return (T) toReturn;
 		} catch (Exception e) {
+			log.warning(e.getClass().getSimpleName()+": "+e.getMessage());
 			return null;
 		}
 	}
@@ -227,6 +231,7 @@ public class ClassUtil {
 			T toReturn = (T) field.get(reference);
 			return toReturn;
 		} catch (Exception e) {
+			log.warning(e.getClass().getSimpleName()+": "+e.getMessage());
 			return null;
 		}
 	}
@@ -248,7 +253,9 @@ public class ClassUtil {
 		try {
 			value = field.get(ref);
 		} catch (IllegalArgumentException e) {
+			log.warning(e.getClass().getSimpleName()+": "+e.getMessage());
 		} catch (IllegalAccessException e) {
+			log.warning(e.getClass().getSimpleName()+": "+e.getMessage());
 		}
 		return value;
 	}

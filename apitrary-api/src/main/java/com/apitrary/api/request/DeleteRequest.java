@@ -15,6 +15,8 @@
  */
 package com.apitrary.api.request;
 
+import java.io.Serializable;
+
 import com.apitrary.api.annotation.Method;
 import com.apitrary.api.annotation.Path;
 import com.apitrary.api.annotation.PathVariable;
@@ -32,7 +34,7 @@ import com.apitrary.api.response.DeleteResponse;
  */
 @Method(HttpMethod.DELETE)
 @Path("/${entity}/${id}")
-public class DeleteRequest extends Request<DeleteResponse> {
+public class DeleteRequest extends Request<DeleteResponse> implements Serializable{
 	private static final long serialVersionUID = -8265792383976749317L;
 
 	@Required

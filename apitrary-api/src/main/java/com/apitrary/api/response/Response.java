@@ -15,6 +15,8 @@
  */
 package com.apitrary.api.response;
 
+import java.io.Serializable;
+
 /**
  * <p>
  * Abstract Response class.
@@ -23,8 +25,9 @@ package com.apitrary.api.response;
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
-public abstract class Response<T> {
-
+public abstract class Response<T> implements Serializable{
+	private static final long serialVersionUID = 5050233742143155805L;
+	
 	protected String result;
 	protected String statusMessage;
 	protected int statusCode;

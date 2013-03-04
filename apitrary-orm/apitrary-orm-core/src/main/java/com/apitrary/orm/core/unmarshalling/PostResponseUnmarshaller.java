@@ -22,7 +22,7 @@ import org.codehaus.jackson.JsonParser;
 import com.apitrary.api.client.util.ClassUtil;
 import com.apitrary.api.response.PostResponse;
 import com.apitrary.api.response.Response;
-import com.apitrary.orm.annotations.Id;
+import com.apitrary.orm.core.annotations.Id;
 import com.apitrary.orm.core.exception.ApitraryOrmIdException;
 import com.apitrary.orm.core.exception.MappingException;
 import com.apitrary.orm.core.unmarshalling.api.Unmarshaller;

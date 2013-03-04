@@ -29,9 +29,11 @@ import org.apache.cxf.transports.http.configuration.HTTPClientPolicy;
 import com.apitrary.api.client.exception.CommunicationErrorException;
 import com.apitrary.api.client.exception.SerializationException;
 import com.apitrary.api.client.support.AbstractApitraryClient;
+import com.apitrary.api.client.util.NormalizationUtil;
 import com.apitrary.api.client.util.RequestUtil;
 import com.apitrary.api.request.Request;
 import com.apitrary.api.response.Response;
+import com.apitrary.api.response.normalized.Normalizer;
 
 /**
  * <p>
@@ -45,11 +47,15 @@ public class ApitraryClient extends AbstractApitraryClient {
 
 	private ApitraryApi api;
 
-	private int connectionTimeOut = DEFAULTCONNECTIONTIMEOUT;
+	private int connectionTimeout = DEFAULTCONNECTIONTIMEOUT;
 	private int receiveTimeout = DEFAULTRECEIVETIMEOUT;
 
-	private ApitraryClient(ApitraryApi api) {
+	protected ApitraryClient(ApitraryApi api) {
 		this.api = api;
+	}
+
+	protected ApitraryClient() {
+		throw new RuntimeException("Apitrary Client needs to connect to the targeted API. Hint: Use factory method #connectTo(ApitraryApi api)");
 	}
 
 	/**
@@ -99,6 +105,10 @@ public class ApitraryClient extends AbstractApitraryClient {
 	@Override
 	protected <T> Response<T> deserialize(String response, Request<T> request) {
 		Response<T> target = RequestUtil.getInstanceOfParameterizedType(request);
+
+		Normalizer normalizer = NormalizationUtil.getNormalizer(target);
+		response = normalizer.normalize(response);
+
 		target.setResult(response);
 		return target;
 	}
@@ -132,8 +142,8 @@ public class ApitraryClient extends AbstractApitraryClient {
 		params.setDisableCNCheck(true);
 
 		HTTPClientPolicy policy = new HTTPClientPolicy();
-		policy.setConnectionTimeout(connectionTimeOut);
-		policy.setReceiveTimeout(receiveTimeout);
+		policy.setConnectionTimeout(getConnectionTimeout());
+		policy.setReceiveTimeout(getReceiveTimeout());
 		policy.setAllowChunking(false);
 		conduit.setClient(policy);
 
@@ -142,25 +152,25 @@ public class ApitraryClient extends AbstractApitraryClient {
 
 	/**
 	 * <p>
-	 * Getter for the field <code>connectionTimeOut</code>.
+	 * Getter for the field <code>connectionTimeout</code>.
 	 * </p>
 	 * 
 	 * @return a int.
 	 */
-	public int getConnectionTimeOut() {
-		return connectionTimeOut;
+	public int getConnectionTimeout() {
+		return connectionTimeout;
 	}
 
 	/**
 	 * <p>
-	 * Setter for the field <code>connectionTimeOut</code>.
+	 * Setter for the field <code>connectionTimeout</code>.
 	 * </p>
 	 * 
-	 * @param connectionTimeOut
+	 * @param connectionTimeout
 	 *            a int.
 	 */
-	public void setConnectionTimeOut(int connectionTimeOut) {
-		this.connectionTimeOut = connectionTimeOut;
+	public void setConnectionTimeout(int connectionTimeout) {
+		this.connectionTimeout = connectionTimeout;
 	}
 
 	/**

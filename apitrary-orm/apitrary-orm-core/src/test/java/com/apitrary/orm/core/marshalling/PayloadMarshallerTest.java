@@ -13,32 +13,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.orm.codec.base64;
+package com.apitrary.orm.core.marshalling;
 
-import org.apache.commons.codec.binary.Base64;
+import junit.framework.Assert;
 
-import com.apitrary.orm.annotations.codec.Codec;
+import org.junit.Before;
+import org.junit.Test;
+
+import com.apitrary.orm.core.marshalling.dumb.DumbEntity;
 
 /**
  * <p>
- * Base4Codec class.
+ * PayloadMarshaller class.
  * </p>
  * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
-public class Base4Codec extends Codec<byte[]> {
+public class PayloadMarshallerTest {
 
-	/** {@inheritDoc} */
-	@Override
-	public byte[] decode(String value) {
-		return Base64.decodeBase64(value);
+	private PayloadMarshaller payloadMarshaller;
+	private DumbEntity entity;
+	
+	private String intialBValue = "asdasdasdwdqwqdwqd";
+	
+	@Before
+	public void setUp(){
+		payloadMarshaller = new PayloadMarshaller(null);
+		entity = new DumbEntity("a", intialBValue);
 	}
-
-	/** {@inheritDoc} */
-	@Override
-	public String encode(byte[] object) {
-		return Base64.encodeBase64String(object);
+	
+	@Test
+	public void test_marshall() {
+		String val = payloadMarshaller.marshall(entity);
+		Assert.assertEquals("{\"a\":\"a\",\"b\":\"encoded\"}", val);
 	}
-
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Denis Neuling 
+ * Copyright 2012-2013 Denis Neuling 
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License.
@@ -13,26 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.orm.annotations;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+package com.apitrary.orm.core.annotations.cascade;
 
 /**
  * <p>
- * Codec class.
+ * Cascade class.
  * </p>
  * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-@Inherited
-public @interface Codec {
+public enum Cascade {
 
-	Class<com.apitrary.orm.annotations.codec.Codec> value();
+	SAVE(1)
+	/*
+	 * TODO , UPDATE(2) is currently not supported
+	 */
+	, DELETE(3);
+
+	private int code;
+
+	private Cascade(int code) {
+		this.code = code;
+	}
+
+	/**
+	 * <p>
+	 * Getter for the field <code>code</code>.
+	 * </p>
+	 * 
+	 * @return a int.
+	 */
+	public int getCode() {
+		return code;
+	}
 }

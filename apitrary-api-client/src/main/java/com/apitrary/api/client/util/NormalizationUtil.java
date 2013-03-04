@@ -15,6 +15,8 @@
  */
 package com.apitrary.api.client.util;
 
+import java.util.logging.Logger;
+
 import com.apitrary.api.annotation.Normalized;
 import com.apitrary.api.response.Response;
 import com.apitrary.api.response.normalized.Normalizer;
@@ -28,6 +30,7 @@ import com.apitrary.api.response.normalized.Normalizer;
  * 
  */
 public class NormalizationUtil {
+	private static Logger log = Logger.getLogger(NormalizationUtil.class.getName());
 
 	/**
 	 * <p>
@@ -43,12 +46,14 @@ public class NormalizationUtil {
 	@SuppressWarnings("unchecked")
 	public static <T> Normalizer getNormalizer(Response<T> response) {
 		Normalizer normalizer = new Normalizer();
-		Class<Normalizer> standardizerClazz = ClassUtil.getClassAnnotationValue(response.getClass(), Normalized.class, "value", Class.class);
-		if (standardizerClazz != null) {
+		Class<Normalizer> normalizerClazz = ClassUtil.getClassAnnotationValue(response.getClass(), Normalized.class, "value", Class.class);
+		if (normalizerClazz != null) {
 			try {
-				normalizer = standardizerClazz.newInstance();
+				normalizer = normalizerClazz.newInstance();
 			} catch (InstantiationException e) {
+				log.warning(e.getClass().getSimpleName()+": "+e.getMessage());
 			} catch (IllegalAccessException e) {
+				log.warning(e.getClass().getSimpleName()+": "+e.getMessage());
 			}
 		}
 		return normalizer;
