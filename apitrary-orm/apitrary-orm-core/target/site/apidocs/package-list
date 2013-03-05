@@ -1,0 +1,14 @@
+com.apitrary.orm.core
+com.apitrary.orm.core.annotations
+com.apitrary.orm.core.annotations.cascade
+com.apitrary.orm.core.cascade
+com.apitrary.orm.core.codec
+com.apitrary.orm.core.exception
+com.apitrary.orm.core.internal.conf
+com.apitrary.orm.core.internal.proxy
+com.apitrary.orm.core.json.filter
+com.apitrary.orm.core.marshalling
+com.apitrary.orm.core.marshalling.api
+com.apitrary.orm.core.unmarshalling
+com.apitrary.orm.core.unmarshalling.api
+com.apitrary.orm.core.util
