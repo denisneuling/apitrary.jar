@@ -22,24 +22,24 @@ import org.junit.Test;
 
 /**
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
 public class Base64CodecTest {
 
 	private Base64Codec codec;
-	
+
 	private String string = "abcdefghijklmnopqrstuvwxyz0123456789";
-	
+
 	@Before
-	public void setUp(){
+	public void setUp() {
 		codec = new Base64Codec();
 	}
-	
+
 	@Test
-	public void test_encode(){
+	public void test_encode() {
 		byte[] buffer = codec.decode(string);
 		String result = codec.encode(buffer);
-		
+
 		Assert.assertEquals(string, result);
 	}
 }

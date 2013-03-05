@@ -25,9 +25,9 @@ import java.net.URL;
  */
 public class ResourceBasedTest {
 
-	protected InputStream resolveResourceInputStream(String fileName){
+	protected InputStream resolveResourceInputStream(String fileName) {
 		String base = this.getClass().getName().replace(this.getClass().getSimpleName(), "").replace(".", "/");
-		URL url = ResourceBasedTest.class.getClassLoader().getResource(base+"/"+fileName);
+		URL url = ResourceBasedTest.class.getClassLoader().getResource(base + "/" + fileName);
 		try {
 			return url.openStream();
 		} catch (IOException e) {

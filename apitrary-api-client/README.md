@@ -2,6 +2,7 @@
 
 Maven parent project, which contains the Java [apitrary Backend as a Service](http://apitrary.com/) client and orm modules.
 
+
 ### Getting Started
 ---
 
@@ -24,6 +25,7 @@ The latest apitrary artifacts are published to maven central. Bringing apitrary 
     </dependency>
   </dependencies>
 ```
+
 
 ### Requirements
 ---
@@ -66,7 +68,19 @@ For Maven: [Building a Project with Maven](http://maven.apache.org/run-maven/ind
 * [apitrary-api-client](https://github.com/denisneuling/apitrary.jar/tree/master/apitrary-api-client/)
 * [apitrary-orm](https://github.com/denisneuling/apitrary.jar/tree/master/apitrary-orm/)
 
+
 ### Interested into somewhat like build stability?
 ---
 
 * Have a look at [Apitrary.jar at Travis CI](https://travis-ci.org/denisneuling/apitrary.jar)
+
+
+### What about interface documentation? - Javadoc.
+---
+
+* [apitrary-api Javadoc](http://denisneuling.github.com/apitrary.jar/apitrary-api/)
+* [apitrary-api-client Javadoc](http://denisneuling.github.com/apitrary.jar/apitrary-api-client/)
+* [apitrary-orm-core Javadoc](http://denisneuling.github.com/apitrary.jar/apitrary-orm/apitrary-orm-core/)
+* [apitrary-orm-codec Javadoc](http://denisneuling.github.com/apitrary.jar/apitrary-orm/apitrary-orm-codec/)
+
+_Note: The Javadoc will be exported once a release, so it might differ from the current master branch implementation._

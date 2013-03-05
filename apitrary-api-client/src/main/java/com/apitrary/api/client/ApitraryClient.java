@@ -50,10 +50,25 @@ public class ApitraryClient extends AbstractApitraryClient {
 	private int connectionTimeout = DEFAULTCONNECTIONTIMEOUT;
 	private int receiveTimeout = DEFAULTRECEIVETIMEOUT;
 
+	/**
+	 * <p>
+	 * Constructor for ApitraryClient.
+	 * </p>
+	 * 
+	 * @param api
+	 *            a {@link com.apitrary.api.client.ApitraryApi} object.
+	 */
 	protected ApitraryClient(ApitraryApi api) {
 		this.api = api;
 	}
 
+	/**
+	 * <p>
+	 * Constructor for ApitraryClient.
+	 * </p>
+	 * 
+	 * @since 0.1.1
+	 */
 	protected ApitraryClient() {
 		throw new RuntimeException("Apitrary Client needs to connect to the targeted API. Hint: Use factory method #connectTo(ApitraryApi api)");
 	}
@@ -156,6 +171,7 @@ public class ApitraryClient extends AbstractApitraryClient {
 	 * </p>
 	 * 
 	 * @return a int.
+	 * @since 0.1.1
 	 */
 	public int getConnectionTimeout() {
 		return connectionTimeout;
@@ -168,6 +184,7 @@ public class ApitraryClient extends AbstractApitraryClient {
 	 * 
 	 * @param connectionTimeout
 	 *            a int.
+	 * @since 0.1.1
 	 */
 	public void setConnectionTimeout(int connectionTimeout) {
 		this.connectionTimeout = connectionTimeout;

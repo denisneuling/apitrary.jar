@@ -34,39 +34,39 @@ import com.apitrary.orm.codec.test.support.ResourceBasedTest;
 
 /**
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
-public class ImageJPGCodecTest  extends ResourceBasedTest {
+public class ImageJPGCodecTest extends ResourceBasedTest {
 
 	private final String FORMAT = "jpg";
 	private final String file = "jpg.jpg";
 
 	private ImagePNGCodec codec;
-	
+
 	private InputStream inputStream;
 	private Image image;
 
 	@Before
 	public void setUp() throws IOException {
 		codec = new ImagePNGCodec();
-		
+
 		inputStream = this.resolveResourceInputStream(file);
 		image = ImageIO.read(inputStream);
 	}
 
 	@Test
-	public void test_codec() throws IOException{
+	public void test_codec() throws IOException {
 		String encoded = codec.encode(image);
 		Image decoded = codec.decode(encoded);
-		
+
 		Assert.assertTrue(Arrays.equals(asBuffer(image), asBuffer(decoded)));
 	}
-	
-	private byte[] asBuffer(Image image) throws IOException{
+
+	private byte[] asBuffer(Image image) throws IOException {
 		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-	    ImageIO.write((BufferedImage)image, FORMAT, byteArrayOutputStream);
-	    byte[] imageData = byteArrayOutputStream.toByteArray();
-	    return imageData;
+		ImageIO.write((BufferedImage) image, FORMAT, byteArrayOutputStream);
+		byte[] imageData = byteArrayOutputStream.toByteArray();
+		return imageData;
 	}
 
 	@After

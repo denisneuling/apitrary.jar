@@ -22,9 +22,15 @@ package com.apitrary.orm.core.codec;
  * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
+ * @since 0.1.1
  */
 public abstract class Codec<T> {
 
+	/**
+	 * <p>
+	 * Constructor for Codec.
+	 * </p>
+	 */
 	public Codec() {
 	}
 

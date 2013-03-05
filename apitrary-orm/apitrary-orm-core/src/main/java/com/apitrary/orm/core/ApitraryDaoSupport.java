@@ -49,6 +49,7 @@ import com.apitrary.orm.core.exception.ApitraryOrmUpdateException;
 import com.apitrary.orm.core.exception.DaoSupportUninitializedException;
 import com.apitrary.orm.core.exception.MappingException;
 import com.apitrary.orm.core.marshalling.PayloadMarshaller;
+import com.apitrary.orm.core.query.Query;
 import com.apitrary.orm.core.unmarshalling.DeleteResponseUnmarshaller;
 import com.apitrary.orm.core.unmarshalling.GetResponseUnmarshaller;
 import com.apitrary.orm.core.unmarshalling.PostResponseUnmarshaller;
@@ -273,6 +274,34 @@ public class ApitraryDaoSupport {
 		QueriedGetRequest request = new QueriedGetRequest();
 		request.setEntity(resolveApitraryEntity(entity));
 		request.setQuery(riakQuery);
+		QueriedGetResponse response = resolveApitraryClient().send(request);
+
+		return (List<T>) new QueriedGetResponseUnmarshaller(this).unMarshall(response, entity);
+	}
+	
+	/**
+	 * <p>
+	 * find.
+	 * </p>
+	 * 
+	 * @param riakQuery
+	 *            a {@link java.lang.String} object.
+	 * @param entity
+	 *            a {@link java.lang.Class} object.
+	 * @param <T>
+	 *            a T object.
+	 * @return a {@link java.util.List} object.
+	 */
+	@SuppressWarnings("unchecked")
+	public <T> List<T> find(Query query, Class<T> entity) {
+		if (entity == null) {
+			throw new ApitraryOrmException("Cannot access null entity");
+		}
+		log.debug("Searching " + entity + " " + query);
+
+		QueriedGetRequest request = new QueriedGetRequest();
+		request.setEntity(resolveApitraryEntity(entity));
+		request.setQuery(query.toString());
 		QueriedGetResponse response = resolveApitraryClient().send(request);
 
 		return (List<T>) new QueriedGetResponseUnmarshaller(this).unMarshall(response, entity);

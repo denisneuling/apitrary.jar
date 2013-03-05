@@ -40,8 +40,6 @@ public class LazyLoadingInterceptor implements MethodInterceptor {
 	private Class<?> targetedLoad;
 	private Object loadedTarget;
 
-	private boolean loaded = false;
-
 	/**
 	 * <p>
 	 * Constructor for LazyLoadingInterceptor.
@@ -67,9 +65,8 @@ public class LazyLoadingInterceptor implements MethodInterceptor {
 			throw new NullPointerException();
 		}
 		try {
-			if (!loaded) {
+			if (loadedTarget==null) {
 				loadedTarget = daoSupport.findById(id, targetedLoad);
-				loaded = true;
 			}
 
 			return method.invoke(loadedTarget, args);

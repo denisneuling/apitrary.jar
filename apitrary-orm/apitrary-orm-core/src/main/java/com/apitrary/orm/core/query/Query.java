@@ -13,32 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.orm.codec.base64;
-
-import org.apache.commons.codec.binary.Base64;
-
-import com.apitrary.orm.core.codec.Codec;
+package com.apitrary.orm.core.query;
 
 /**
- * <p>
- * Base64Codec class.
- * </p>
- * 
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
- * @since 0.1.1
+ *
  */
-public class Base64Codec extends Codec<byte[]> {
-
-	/** {@inheritDoc} */
-	@Override
-	public byte[] decode(String value) {
-		return Base64.decodeBase64(value);
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public String encode(byte[] object) {
-		return Base64.encodeBase64String(object);
-	}
+public interface Query {
+	
+	public String getQueryString(); 
 }

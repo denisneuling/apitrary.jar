@@ -58,7 +58,6 @@ public class ApitraryOrmConfiguration {
 			return true;
 		}
 		return false;
-		// return true;
 	}
 
 }

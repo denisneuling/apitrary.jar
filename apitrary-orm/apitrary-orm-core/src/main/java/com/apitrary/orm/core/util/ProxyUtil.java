@@ -56,7 +56,6 @@ public class ProxyUtil {
 			e.setCallback(new LazyLoadingInterceptor(target, apitraryDaoSupport, id));
 			return (T) e.create();
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
 	}

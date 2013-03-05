@@ -182,6 +182,14 @@ public class ClassUtil {
 	 *            a {@link java.lang.Class} object.
 	 * @param referenceClazz
 	 *            a {@link java.lang.Class} object.
+	 * @param referenceClazz
+	 *            a {@link java.lang.Class} object.
+	 * @param referenceClazz
+	 *            a {@link java.lang.Class} object.
+	 * @param referenceClazz
+	 *            a {@link java.lang.Class} object.
+	 * @param referenceClazz
+	 *            a {@link java.lang.Class} object.
 	 * @param valueType
 	 *            a {@link java.lang.Class} object.
 	 * @param <T>
@@ -212,6 +220,14 @@ public class ClassUtil {
 	 *            a {@link java.lang.String} object.
 	 * @param reference
 	 *            a {@link java.lang.Object} object.
+	 * @param referenceClazz
+	 *            a {@link java.lang.Class} object.
+	 * @param referenceClazz
+	 *            a {@link java.lang.Class} object.
+	 * @param referenceClazz
+	 *            a {@link java.lang.Class} object.
+	 * @param referenceClazz
+	 *            a {@link java.lang.Class} object.
 	 * @param referenceClazz
 	 *            a {@link java.lang.Class} object.
 	 * @param referenceClazz

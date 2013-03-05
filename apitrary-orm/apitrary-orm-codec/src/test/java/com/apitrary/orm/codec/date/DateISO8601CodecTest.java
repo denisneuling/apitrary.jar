@@ -13,32 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.orm.codec.base64;
+package com.apitrary.orm.codec.date;
 
-import org.apache.commons.codec.binary.Base64;
+import java.util.Date;
 
-import com.apitrary.orm.core.codec.Codec;
+import org.junit.Assert;
+
+import org.junit.Before;
+import org.junit.Test;
 
 /**
- * <p>
- * Base64Codec class.
- * </p>
- * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
- * @since 0.1.1
  */
-public class Base64Codec extends Codec<byte[]> {
+public class DateISO8601CodecTest {
 
-	/** {@inheritDoc} */
-	@Override
-	public byte[] decode(String value) {
-		return Base64.decodeBase64(value);
+	private DateISO8601Codec codec;
+	private Date date;
+
+	@Before
+	public void setUp() {
+		date = new Date();
+		codec = new DateISO8601Codec();
 	}
 
-	/** {@inheritDoc} */
-	@Override
-	public String encode(byte[] object) {
-		return Base64.encodeBase64String(object);
+	@Test
+	public void test_codec() {
+		String encoded = codec.encode(date);
+		Date result = codec.decode(encoded);
+
+		Assert.assertTrue((date.getTime()/1000) == (result.getTime()/1000));
 	}
+
 }

@@ -22,6 +22,7 @@ package com.apitrary.orm.core.annotations.cascade;
  * 
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
+ * @since 0.1.1
  */
 public enum Cascade {
 
