@@ -25,10 +25,10 @@ import java.lang.annotation.Target;
  * <p>
  * Codec class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
  * @since 0.1.1
+ *
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)

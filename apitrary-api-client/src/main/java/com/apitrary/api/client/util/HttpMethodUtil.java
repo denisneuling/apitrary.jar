@@ -23,9 +23,9 @@ import com.apitrary.api.request.Request;
  * <p>
  * HttpMethodUtil class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class HttpMethodUtil {
 
@@ -33,7 +33,7 @@ public class HttpMethodUtil {
 	 * <p>
 	 * retrieveMethod.
 	 * </p>
-	 * 
+	 *
 	 * @param request
 	 *            a {@link com.apitrary.api.request.Request} object.
 	 * @param <T>

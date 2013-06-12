@@ -19,9 +19,9 @@ package com.apitrary.api.response.normalized;
  * <p>
  * GetNormalizer class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class GetNormalizer extends Normalizer {
 

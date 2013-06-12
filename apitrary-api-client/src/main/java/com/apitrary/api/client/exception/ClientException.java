@@ -21,9 +21,9 @@ import com.apitrary.api.exception.ApiException;
  * <p>
  * ClientException class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class ClientException extends ApiException {
 	private static final long serialVersionUID = -3334422740923547404L;
@@ -32,7 +32,7 @@ public class ClientException extends ApiException {
 	 * <p>
 	 * Constructor for ClientException.
 	 * </p>
-	 * 
+	 *
 	 * @param th
 	 *            a {@link java.lang.Throwable} object.
 	 */
@@ -44,7 +44,7 @@ public class ClientException extends ApiException {
 	 * <p>
 	 * Constructor for ClientException.
 	 * </p>
-	 * 
+	 *
 	 * @param message
 	 *            a {@link java.lang.String} object.
 	 */

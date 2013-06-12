@@ -24,8 +24,11 @@ import java.util.GregorianCalendar;
 import com.apitrary.orm.core.codec.Codec;
 
 /**
+ * <p>DateISO8601Codec class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
+ * @since 0.1.1
  */
 public class DateISO8601Codec extends Codec<Date> {
 

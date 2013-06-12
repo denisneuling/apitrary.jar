@@ -21,9 +21,9 @@ import java.util.Arrays;
  * <p>
  * ArrayUtil class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class ArrayUtil {
 
@@ -31,7 +31,7 @@ public class ArrayUtil {
 	 * <p>
 	 * concat.
 	 * </p>
-	 * 
+	 *
 	 * @param first
 	 *            an array of T objects.
 	 * @param second

@@ -26,9 +26,9 @@ import com.apitrary.api.response.APIStateResponse;
  * <p>
  * APIStateRequest class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 @Method(HttpMethod.GET)
 @Path("/")

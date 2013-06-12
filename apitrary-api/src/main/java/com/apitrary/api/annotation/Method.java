@@ -26,9 +26,9 @@ import com.apitrary.api.common.HttpMethod;
  * <p>
  * Method class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

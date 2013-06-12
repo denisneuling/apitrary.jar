@@ -30,16 +30,23 @@ import com.apitrary.api.transport.Transport;
 import com.apitrary.api.transport.TransportResult;
 
 /**
+ * <p>CXFClientTransport class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class CXFClientTransport extends Transport {
 
+	/**
+	 * <p>Constructor for CXFClientTransport.</p>
+	 */
 	public CXFClientTransport() {
 	}
 
 	/**
-	 * @param apitraryApi
+	 * <p>Constructor for CXFClientTransport.</p>
+	 *
+	 * @param apitraryApi a {@link com.apitrary.api.ApitraryApi} object.
 	 */
 	public CXFClientTransport(ApitraryApi apitraryApi) {
 		super(apitraryApi);
@@ -57,6 +64,12 @@ public class CXFClientTransport extends Transport {
 	/** Constant <code>DEFAULTRECEIVETIMEOUT=60000</code> */
 	protected static final int DEFAULTRECEIVETIMEOUT = 60000;
 
+	/**
+	 * <p>instantiateWebClient.</p>
+	 *
+	 * @param uri a {@link java.net.URI} object.
+	 * @return a {@link org.apache.cxf.jaxrs.client.WebClient} object.
+	 */
 	protected WebClient instantiateWebClient(URI uri) {
 		WebClient webClient = WebClient.create(uri);
 		webClient = webClient.accept(MediaType.APPLICATION_JSON);

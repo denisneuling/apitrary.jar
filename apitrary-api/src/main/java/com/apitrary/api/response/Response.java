@@ -21,9 +21,9 @@ import java.io.Serializable;
  * <p>
  * Abstract Response class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public abstract class Response<T> implements Serializable {
 	private static final long serialVersionUID = 5050233742143155805L;
@@ -37,7 +37,7 @@ public abstract class Response<T> implements Serializable {
 	 * <p>
 	 * Getter for the field <code>result</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getResult() {
@@ -48,7 +48,7 @@ public abstract class Response<T> implements Serializable {
 	 * <p>
 	 * Setter for the field <code>result</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param result
 	 *            a {@link java.lang.String} object.
 	 */
@@ -60,7 +60,7 @@ public abstract class Response<T> implements Serializable {
 	 * <p>
 	 * Getter for the field <code>statusMessage</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getStatusMessage() {
@@ -71,7 +71,7 @@ public abstract class Response<T> implements Serializable {
 	 * <p>
 	 * Setter for the field <code>statusMessage</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param statusMessage
 	 *            a {@link java.lang.String} object.
 	 */
@@ -83,7 +83,7 @@ public abstract class Response<T> implements Serializable {
 	 * <p>
 	 * Getter for the field <code>statusCode</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a int.
 	 */
 	public int getStatusCode() {
@@ -94,7 +94,7 @@ public abstract class Response<T> implements Serializable {
 	 * <p>
 	 * Setter for the field <code>statusCode</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param statusCode
 	 *            a int.
 	 */
@@ -106,7 +106,7 @@ public abstract class Response<T> implements Serializable {
 	 * <p>
 	 * Getter for the field <code>responseTime</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a long.
 	 */
 	public long getResponseTime() {
@@ -117,7 +117,7 @@ public abstract class Response<T> implements Serializable {
 	 * <p>
 	 * Setter for the field <code>responseTime</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param responseTime
 	 *            a long.
 	 */

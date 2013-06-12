@@ -26,8 +26,10 @@ import com.apitrary.api.exception.ApiTransportException;
 import com.apitrary.api.transport.TransportResult;
 
 /**
+ * <p>CXFClientTransportResult class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class CXFClientTransportResult implements TransportResult {
 
@@ -35,6 +37,11 @@ public class CXFClientTransportResult implements TransportResult {
 	private int statusCode;
 	private String result;
 
+	/**
+	 * <p>Constructor for CXFClientTransportResult.</p>
+	 *
+	 * @param cxfResponse a {@link javax.ws.rs.core.Response} object.
+	 */
 	public CXFClientTransportResult(Response cxfResponse) {
 		this.cxfResponse = cxfResponse;
 		this.statusCode = cxfResponse.getStatus();

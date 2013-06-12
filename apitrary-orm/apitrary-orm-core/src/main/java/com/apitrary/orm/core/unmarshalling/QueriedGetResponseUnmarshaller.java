@@ -38,9 +38,9 @@ import com.apitrary.orm.core.util.ProxyUtil;
  * <p>
  * QueriedGetResponseMapper class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class QueriedGetResponseUnmarshaller extends JsonResponseConsumer implements ListUnmarshaller<QueriedGetResponse> {
 	protected Logger log = Logger.getLogger(getClass());
@@ -60,7 +60,7 @@ public class QueriedGetResponseUnmarshaller extends JsonResponseConsumer impleme
 	 * <p>
 	 * Constructor for QueriedGetResponseUnmarshaller.
 	 * </p>
-	 * 
+	 *
 	 * @param daoSupport
 	 *            a {@link com.apitrary.orm.core.ApitraryDaoSupport} object.
 	 */
@@ -194,7 +194,7 @@ public class QueriedGetResponseUnmarshaller extends JsonResponseConsumer impleme
 	 * <p>
 	 * newEntityInstance.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.Object} object.
 	 */
 	protected Object newEntityInstance() {
@@ -205,7 +205,7 @@ public class QueriedGetResponseUnmarshaller extends JsonResponseConsumer impleme
 	 * <p>
 	 * Getter for the field <code>entityInstance</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.Object} object.
 	 */
 	protected Object getEntityInstance() {
@@ -216,7 +216,7 @@ public class QueriedGetResponseUnmarshaller extends JsonResponseConsumer impleme
 	 * <p>
 	 * Getter for the field <code>resultSet</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.util.List} object.
 	 */
 	protected List<Object> getResultSet() {

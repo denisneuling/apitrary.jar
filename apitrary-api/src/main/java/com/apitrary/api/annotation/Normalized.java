@@ -26,9 +26,9 @@ import com.apitrary.api.response.normalized.Normalizer;
  * <p>
  * Normalized class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

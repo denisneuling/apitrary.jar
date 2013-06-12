@@ -23,9 +23,9 @@ import com.apitrary.api.annotation.Normalized;
  * <p>
  * UpdateResponse class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 @Normalized
 public class PutResponse extends Response<PutResponse> implements Serializable {

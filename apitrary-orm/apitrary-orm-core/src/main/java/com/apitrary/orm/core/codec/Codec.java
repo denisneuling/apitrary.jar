@@ -19,10 +19,10 @@ package com.apitrary.orm.core.codec;
  * <p>
  * Abstract Codec class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
  * @since 0.1.1
+ *
  */
 public abstract class Codec<T> {
 
@@ -38,7 +38,7 @@ public abstract class Codec<T> {
 	 * <p>
 	 * decode.
 	 * </p>
-	 * 
+	 *
 	 * @param value
 	 *            a {@link java.lang.String} object.
 	 * @return a T object.
@@ -49,7 +49,7 @@ public abstract class Codec<T> {
 	 * <p>
 	 * encode.
 	 * </p>
-	 * 
+	 *
 	 * @param object
 	 *            a T object.
 	 * @return a {@link java.lang.String} object.

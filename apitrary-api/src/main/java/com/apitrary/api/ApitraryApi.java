@@ -22,9 +22,10 @@ import java.net.URL;
  * <p>
  * ApitraryApi class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
+ * @since 0.1.1
  */
 public class ApitraryApi {
 
@@ -41,7 +42,7 @@ public class ApitraryApi {
 	 * <p>
 	 * Constructor for ApitraryApi.
 	 * </p>
-	 * 
+	 *
 	 * @param apiId
 	 *            a {@link java.lang.String} object.
 	 * @param apiKey
@@ -56,7 +57,7 @@ public class ApitraryApi {
 	 * <p>
 	 * Getter for the field <code>apiId</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getApiId() {
@@ -67,7 +68,7 @@ public class ApitraryApi {
 	 * <p>
 	 * Setter for the field <code>apiId</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param apiId
 	 *            a {@link java.lang.String} object.
 	 */
@@ -79,7 +80,7 @@ public class ApitraryApi {
 	 * <p>
 	 * Getter for the field <code>apiKey</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getApiKey() {
@@ -90,7 +91,7 @@ public class ApitraryApi {
 	 * <p>
 	 * Setter for the field <code>apiKey</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param apiKey
 	 *            a {@link java.lang.String} object.
 	 */
@@ -98,22 +99,48 @@ public class ApitraryApi {
 		this.apiKey = apiKey;
 	}
 
+	/**
+	 * <p>Getter for the field <code>apiVersion</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getApiVersion() {
 		return apiVersion;
 	}
 
+	/**
+	 * <p>Setter for the field <code>apiVersion</code>.</p>
+	 *
+	 * @param apiVersion a {@link java.lang.String} object.
+	 */
 	public void setApiVersion(String apiVersion) {
 		this.apiVersion = apiVersion;
 	}
 
+	/**
+	 * <p>Getter for the field <code>authority</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getAuthority() {
 		return authority;
 	}
 
+	/**
+	 * <p>Setter for the field <code>authority</code>.</p>
+	 *
+	 * @param authority a {@link java.lang.String} object.
+	 */
 	public void setAuthority(String authority) {
 		this.authority = authority;
 	}
 	
+	/**
+	 * <p>getURL.</p>
+	 *
+	 * @return a {@link java.net.URL} object.
+	 * @throws java.net.MalformedURLException if any.
+	 */
 	public URL getURL() throws MalformedURLException{
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(apiId);

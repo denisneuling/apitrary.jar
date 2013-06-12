@@ -24,10 +24,10 @@ import java.lang.annotation.Target;
  * <p>
  * Entity class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
  * @since 0.1.1
+ *
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

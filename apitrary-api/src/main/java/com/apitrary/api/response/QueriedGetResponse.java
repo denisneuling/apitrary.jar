@@ -23,9 +23,9 @@ import com.apitrary.api.annotation.Normalized;
  * <p>
  * SearchResponse class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 @Normalized
 public class QueriedGetResponse extends Response<QueriedGetResponse> implements Serializable {

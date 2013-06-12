@@ -21,9 +21,9 @@ import java.io.Serializable;
  * <p>
  * GetResponse class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class GetResponse extends Response<GetResponse> implements Serializable {
 	private static final long serialVersionUID = 7314685154749531515L;

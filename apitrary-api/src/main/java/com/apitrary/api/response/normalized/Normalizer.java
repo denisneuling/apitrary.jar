@@ -19,9 +19,9 @@ package com.apitrary.api.response.normalized;
  * <p>
  * Normalizer class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class Normalizer {
 
@@ -29,7 +29,7 @@ public class Normalizer {
 	 * <p>
 	 * normalize.
 	 * </p>
-	 * 
+	 *
 	 * @param jsonResponse
 	 *            a {@link java.lang.String} object.
 	 * @return a {@link java.lang.String} object.

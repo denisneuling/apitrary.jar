@@ -19,9 +19,9 @@ package com.apitrary.orm.core.exception;
  * <p>
  * MappingException class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class MappingException extends RuntimeException {
 	private static final long serialVersionUID = 9099619072469840872L;
@@ -30,7 +30,7 @@ public class MappingException extends RuntimeException {
 	 * <p>
 	 * Constructor for MappingException.
 	 * </p>
-	 * 
+	 *
 	 * @param throwable
 	 *            a {@link java.lang.Throwable} object.
 	 */

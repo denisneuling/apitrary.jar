@@ -28,15 +28,22 @@ import com.apitrary.api.transport.Transport;
 import com.apitrary.api.transport.TransportResult;
 
 /**
+ * <p>JavaNetClientTransport class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class JavaNetClientTransport extends Transport {
 
+	/**
+	 * <p>Constructor for JavaNetClientTransport.</p>
+	 */
 	public JavaNetClientTransport(){
 	}
 	/**
-	 * @param apitraryApi
+	 * <p>Constructor for JavaNetClientTransport.</p>
+	 *
+	 * @param apitraryApi a {@link com.apitrary.api.ApitraryApi} object.
 	 */
 	public JavaNetClientTransport(ApitraryApi apitraryApi) {
 		super(apitraryApi);
@@ -66,6 +73,14 @@ public class JavaNetClientTransport extends Transport {
 		return doit("DELETE", uri, null);
 	}
 	
+	/**
+	 * <p>doit.</p>
+	 *
+	 * @param method a {@link java.lang.String} object.
+	 * @param uri a {@link java.net.URI} object.
+	 * @param payload a {@link java.lang.String} object.
+	 * @return a {@link com.apitrary.api.transport.TransportResult} object.
+	 */
 	protected TransportResult doit(String method, URI uri, String payload){
 		HttpURLConnection httpConnection = null;
 		try {

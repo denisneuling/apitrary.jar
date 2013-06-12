@@ -21,9 +21,9 @@ import java.util.HashMap;
  * <p>
  * ApitraryOrmConfiguration class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class ApitraryOrmConfiguration {
 
@@ -49,7 +49,7 @@ public class ApitraryOrmConfiguration {
 	 * <p>
 	 * showJson.
 	 * </p>
-	 * 
+	 *
 	 * @return a boolean.
 	 */
 	public static boolean showJson() {

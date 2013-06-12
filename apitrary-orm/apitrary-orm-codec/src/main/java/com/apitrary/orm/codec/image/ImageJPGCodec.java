@@ -32,10 +32,10 @@ import com.apitrary.orm.core.codec.Codec;
  * <p>
  * ImageJPGCodec class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
  * @since 0.1.1
+ *
  */
 public class ImageJPGCodec extends Codec<Image> {
 

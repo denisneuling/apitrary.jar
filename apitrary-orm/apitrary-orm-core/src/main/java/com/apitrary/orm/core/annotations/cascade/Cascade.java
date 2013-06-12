@@ -19,10 +19,10 @@ package com.apitrary.orm.core.annotations.cascade;
  * <p>
  * Cascade class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
  * @since 0.1.1
+ *
  */
 public enum Cascade {
 
@@ -42,7 +42,7 @@ public enum Cascade {
 	 * <p>
 	 * Getter for the field <code>code</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a int.
 	 */
 	public int getCode() {

@@ -23,23 +23,40 @@ import com.apitrary.api.ApitraryApi;
 import com.apitrary.api.exception.ApiTransportException;
 
 /**
+ * <p>ApiClientTransportFactory class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
+ * @since 0.1.1
  */
 public class ApiClientTransportFactory {
 
 	private List<Class<Transport>> availableTransports = new LinkedList<Class<Transport>>();
 
+	/**
+	 * <p>Constructor for ApiClientTransportFactory.</p>
+	 */
 	public ApiClientTransportFactory() {
 		registerTransport("com.apitrary.api.transport.javanet.JavaNetClientTransport");
 		registerTransport("com.apitrary.api.transport.cxf.CXFClientTransport");
 		registerTransport("com.apitrary.api.transport.httpclient.HttpClientTransport");
 	}
 
+	/**
+	 * <p>Getter for the field <code>availableTransports</code>.</p>
+	 *
+	 * @return a {@link java.util.List} object.
+	 */
 	public List<Class<Transport>> getAvailableTransports() {
 		return availableTransports;
 	}
 
+	/**
+	 * <p>newTransport.</p>
+	 *
+	 * @param apitraryApi a {@link com.apitrary.api.ApitraryApi} object.
+	 * @return a {@link com.apitrary.api.transport.Transport} object.
+	 */
 	public Transport newTransport(ApitraryApi apitraryApi) {
 		List<Class<Transport>> knownTransports = getAvailableTransports();
 		if (knownTransports.isEmpty()) {
@@ -48,6 +65,13 @@ public class ApiClientTransportFactory {
 		return newTransport(apitraryApi, knownTransports.get(knownTransports.size() - 1));
 	}
 
+	/**
+	 * <p>newTransport.</p>
+	 *
+	 * @param apitraryApi a {@link com.apitrary.api.ApitraryApi} object.
+	 * @param transportClazz a {@link java.lang.Class} object.
+	 * @return a {@link com.apitrary.api.transport.Transport} object.
+	 */
 	public Transport newTransport(ApitraryApi apitraryApi, Class<Transport> transportClazz) {
 		try {
 			Transport transport = transportClazz.newInstance();
@@ -60,6 +84,11 @@ public class ApiClientTransportFactory {
 		}
 	}
 
+	/**
+	 * <p>registerTransport.</p>
+	 *
+	 * @param transportClazz a {@link java.lang.String} object.
+	 */
 	@SuppressWarnings("unchecked")
 	public void registerTransport(String transportClazz) {
 		if(transportClazz == null){
@@ -74,6 +103,11 @@ public class ApiClientTransportFactory {
 		}
 	}
 
+	/**
+	 * <p>registerTransport.</p>
+	 *
+	 * @param transportClazz a {@link java.lang.Class} object.
+	 */
 	public void registerTransport(Class<Transport> transportClazz) {
 		if(transportClazz == null){
 			return;

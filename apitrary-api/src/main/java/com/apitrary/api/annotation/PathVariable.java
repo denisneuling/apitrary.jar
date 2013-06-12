@@ -24,9 +24,9 @@ import java.lang.annotation.Target;
  * <p>
  * PathVariable class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(value = ElementType.FIELD)

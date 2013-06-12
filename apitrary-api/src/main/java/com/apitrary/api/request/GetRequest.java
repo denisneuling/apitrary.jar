@@ -29,9 +29,9 @@ import com.apitrary.api.response.GetResponse;
  * <p>
  * GetRequest class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 @Method(HttpMethod.GET)
 @Path("/${entity}/${id}")
@@ -58,7 +58,7 @@ public class GetRequest extends Request<GetResponse> implements Serializable {
 	 * <p>
 	 * Getter for the field <code>entity</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getEntity() {
@@ -69,7 +69,7 @@ public class GetRequest extends Request<GetResponse> implements Serializable {
 	 * <p>
 	 * Setter for the field <code>entity</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param entity
 	 *            a {@link java.lang.String} object.
 	 */
@@ -81,7 +81,7 @@ public class GetRequest extends Request<GetResponse> implements Serializable {
 	 * <p>
 	 * Getter for the field <code>id</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getId() {
@@ -92,7 +92,7 @@ public class GetRequest extends Request<GetResponse> implements Serializable {
 	 * <p>
 	 * Setter for the field <code>id</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param id
 	 *            a {@link java.lang.String} object.
 	 */

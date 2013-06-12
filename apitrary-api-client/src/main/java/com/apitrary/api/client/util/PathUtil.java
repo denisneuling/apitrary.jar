@@ -31,9 +31,9 @@ import com.apitrary.api.request.Request;
  * <p>
  * PathUtil class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class PathUtil {
 
@@ -43,7 +43,7 @@ public class PathUtil {
 	 * <p>
 	 * resolveResourcePath.
 	 * </p>
-	 * 
+	 *
 	 * @param request
 	 *            a {@link com.apitrary.api.request.Request} object.
 	 * @param <T>

@@ -21,9 +21,9 @@ import com.apitrary.api.annotation.Normalized;
  * <p>
  * APIStateResponse class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 @Normalized
 public class APIStateResponse extends Response<APIStateResponse> {

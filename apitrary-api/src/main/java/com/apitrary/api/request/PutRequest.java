@@ -29,9 +29,9 @@ import com.apitrary.api.response.PutResponse;
  * <p>
  * UpdateRequest class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 @Method(HttpMethod.PUT)
 @Path("/${entity}/${id}")
@@ -61,7 +61,7 @@ public class PutRequest extends Request<PutResponse> implements Serializable {
 	 * <p>
 	 * Getter for the field <code>entity</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getEntity() {
@@ -72,7 +72,7 @@ public class PutRequest extends Request<PutResponse> implements Serializable {
 	 * <p>
 	 * Setter for the field <code>entity</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param entity
 	 *            a {@link java.lang.String} object.
 	 */
@@ -84,7 +84,7 @@ public class PutRequest extends Request<PutResponse> implements Serializable {
 	 * <p>
 	 * Getter for the field <code>id</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getId() {
@@ -95,7 +95,7 @@ public class PutRequest extends Request<PutResponse> implements Serializable {
 	 * <p>
 	 * Setter for the field <code>id</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param id
 	 *            a {@link java.lang.String} object.
 	 */
@@ -107,7 +107,7 @@ public class PutRequest extends Request<PutResponse> implements Serializable {
 	 * <p>
 	 * Getter for the field <code>requestPayload</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getRequestPayload() {
@@ -118,7 +118,7 @@ public class PutRequest extends Request<PutResponse> implements Serializable {
 	 * <p>
 	 * Setter for the field <code>requestPayload</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param requestPayload
 	 *            a {@link java.lang.String} object.
 	 */

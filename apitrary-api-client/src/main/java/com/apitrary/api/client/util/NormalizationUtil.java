@@ -25,9 +25,9 @@ import com.apitrary.api.response.normalized.Normalizer;
  * <p>
  * NormalizationUtil class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class NormalizationUtil {
 	private static Logger log = Logger.getLogger(NormalizationUtil.class.getName());
@@ -36,7 +36,7 @@ public class NormalizationUtil {
 	 * <p>
 	 * getNormalizer.
 	 * </p>
-	 * 
+	 *
 	 * @param response
 	 *            a {@link com.apitrary.api.response.Response} object.
 	 * @param <T>

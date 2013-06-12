@@ -26,9 +26,9 @@ import com.apitrary.orm.core.unmarshalling.api.Unmarshaller;
  * <p>
  * DeleteResponseMapper class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class DeleteResponseUnmarshaller extends JsonResponseConsumer implements Unmarshaller<DeleteResponse> {
 

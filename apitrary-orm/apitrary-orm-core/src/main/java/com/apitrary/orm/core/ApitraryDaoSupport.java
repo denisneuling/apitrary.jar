@@ -61,9 +61,9 @@ import com.apitrary.orm.core.util.StringUtil;
  * <p>
  * ApitraryDaoSupport class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class ApitraryDaoSupport {
 	protected Logger log = Logger.getLogger(getClass());
@@ -82,7 +82,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * Getter for the field <code>apitraryClient</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link com.apitrary.api.client.ApitraryClient} object.
 	 */
 	public ApitraryClient getApitraryClient() {
@@ -93,7 +93,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * Setter for the field <code>apitraryClient</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param apitraryClient
 	 *            a {@link com.apitrary.api.client.ApitraryClient} object.
 	 */
@@ -105,7 +105,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * save.
 	 * </p>
-	 * 
+	 *
 	 * @param entity
 	 *            a T object.
 	 * @param <T>
@@ -139,7 +139,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * update.
 	 * </p>
-	 * 
+	 *
 	 * @param entity
 	 *            a T object.
 	 * @param <T>
@@ -178,7 +178,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * delete.
 	 * </p>
-	 * 
+	 *
 	 * @param entity
 	 *            a T object.
 	 * @param <T>
@@ -213,7 +213,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * findById.
 	 * </p>
-	 * 
+	 *
 	 * @param id
 	 *            a {@link java.lang.String} object.
 	 * @param entity
@@ -255,7 +255,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * find.
 	 * </p>
-	 * 
+	 *
 	 * @param riakQuery
 	 *            a {@link java.lang.String} object.
 	 * @param entity
@@ -283,14 +283,14 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * find.
 	 * </p>
-	 * 
-	 * @param riakQuery
-	 *            a {@link java.lang.String} object.
+	 *
 	 * @param entity
 	 *            a {@link java.lang.Class} object.
 	 * @param <T>
 	 *            a T object.
 	 * @return a {@link java.util.List} object.
+	 * @param query a {@link com.apitrary.orm.core.query.Query} object.
+	 * @since 0.1.1
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> List<T> find(Query query, Class<T> entity) {
@@ -311,7 +311,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * findAll.
 	 * </p>
-	 * 
+	 *
 	 * @param entity
 	 *            a {@link java.lang.Class} object.
 	 * @param <T>
@@ -349,7 +349,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * getAPIState.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link com.apitrary.orm.core.internal.model.APIState} object.
 	 */
 	public APIState getAPIState() {
@@ -376,7 +376,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * resolveApitraryEntityId.
 	 * </p>
-	 * 
+	 *
 	 * @param entity
 	 *            a T object.
 	 * @param <T>
@@ -407,7 +407,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * resolveApitraryEntity.
 	 * </p>
-	 * 
+	 *
 	 * @param entity
 	 *            a T object.
 	 * @param <T>
@@ -426,7 +426,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * resolveApitraryEntity.
 	 * </p>
-	 * 
+	 *
 	 * @param entity
 	 *            a {@link java.lang.Class} object.
 	 * @param <T>
@@ -445,7 +445,7 @@ public class ApitraryDaoSupport {
 	 * <p>
 	 * marshall.
 	 * </p>
-	 * 
+	 *
 	 * @param entity
 	 *            a T object.
 	 * @param <T>

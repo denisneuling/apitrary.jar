@@ -33,9 +33,9 @@ import com.apitrary.orm.core.util.ProxyUtil;
  * <p>
  * GetResponseMapper class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class GetResponseUnmarshaller extends JsonResponseConsumer implements Unmarshaller<GetResponse> {
 	protected Logger log = Logger.getLogger(getClass());
@@ -50,7 +50,7 @@ public class GetResponseUnmarshaller extends JsonResponseConsumer implements Unm
 	 * <p>
 	 * Constructor for GetResponseUnmarshaller.
 	 * </p>
-	 * 
+	 *
 	 * @param daoSupport
 	 *            a {@link com.apitrary.orm.core.ApitraryDaoSupport} object.
 	 */

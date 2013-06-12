@@ -28,9 +28,9 @@ import com.apitrary.api.response.normalized.Normalizer;
  * <p>
  * ApitraryClient class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class ApitraryClient extends AbstractApitraryClient {
 
@@ -38,7 +38,7 @@ public class ApitraryClient extends AbstractApitraryClient {
 	 * <p>
 	 * Constructor for ApitraryClient.
 	 * </p>
-	 * 
+	 *
 	 * @param api
 	 *            a {@link com.apitrary.api.ApitraryApi} object.
 	 */
@@ -50,7 +50,7 @@ public class ApitraryClient extends AbstractApitraryClient {
 	 * <p>
 	 * Constructor for ApitraryClient.
 	 * </p>
-	 * 
+	 *
 	 * @since 0.1.1
 	 */
 	protected ApitraryClient() {
@@ -61,7 +61,7 @@ public class ApitraryClient extends AbstractApitraryClient {
 	 * <p>
 	 * connectTo.
 	 * </p>
-	 * 
+	 *
 	 * @param api
 	 *            a {@link com.apitrary.api.ApitraryApi} object.
 	 * @return a {@link com.apitrary.api.client.ApitraryClient} object.
@@ -74,7 +74,7 @@ public class ApitraryClient extends AbstractApitraryClient {
 	 * <p>
 	 * send.
 	 * </p>
-	 * 
+	 *
 	 * @param request
 	 *            a {@link com.apitrary.api.request.Request} object.
 	 * @param <T>

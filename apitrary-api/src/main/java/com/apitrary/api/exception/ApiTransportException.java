@@ -16,8 +16,11 @@
 package com.apitrary.api.exception;
 
 /**
+ * <p>ApiTransportException class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
  *
+ * @since 0.1.1
  */
 public class ApiTransportException extends ApiException{
 	private static final long serialVersionUID = -1437773368782858652L;
@@ -26,7 +29,7 @@ public class ApiTransportException extends ApiException{
 	 * <p>
 	 * Constructor for ApiTransportException.
 	 * </p>
-	 * 
+	 *
 	 * @param th
 	 *            a {@link java.lang.Throwable} object.
 	 */
@@ -38,7 +41,7 @@ public class ApiTransportException extends ApiException{
 	 * <p>
 	 * Constructor for ApiTransportException.
 	 * </p>
-	 * 
+	 *
 	 * @param message
 	 *            a {@link java.lang.String} object.
 	 */

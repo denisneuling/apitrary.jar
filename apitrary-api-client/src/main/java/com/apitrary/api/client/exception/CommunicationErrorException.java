@@ -21,9 +21,9 @@ import com.apitrary.api.client.common.HttpStatus;
  * <p>
  * CommunicationErrorException class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class CommunicationErrorException extends ClientException {
 	private static final long serialVersionUID = 212232635139714702L;
@@ -32,7 +32,7 @@ public class CommunicationErrorException extends ClientException {
 	 * <p>
 	 * Constructor for CommunicationErrorException.
 	 * </p>
-	 * 
+	 *
 	 * @param message
 	 *            a {@link java.lang.String} object.
 	 */
@@ -44,7 +44,7 @@ public class CommunicationErrorException extends ClientException {
 	 * <p>
 	 * Constructor for CommunicationErrorException.
 	 * </p>
-	 * 
+	 *
 	 * @param th
 	 *            a {@link java.lang.Throwable} object.
 	 */
@@ -56,7 +56,7 @@ public class CommunicationErrorException extends ClientException {
 	 * <p>
 	 * Constructor for CommunicationErrorException.
 	 * </p>
-	 * 
+	 *
 	 * @param httpStatus
 	 *            a {@link com.apitrary.api.client.common.HttpStatus} object.
 	 * @param message
@@ -70,7 +70,7 @@ public class CommunicationErrorException extends ClientException {
 	 * <p>
 	 * Constructor for CommunicationErrorException.
 	 * </p>
-	 * 
+	 *
 	 * @param httpStatus
 	 *            a {@link com.apitrary.api.client.common.HttpStatus} object.
 	 */

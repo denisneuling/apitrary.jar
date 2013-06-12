@@ -28,9 +28,9 @@ import com.apitrary.orm.core.ApitraryDaoSupport;
  * <p>
  * LazyLoadingInterceptor class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class LazyLoadingInterceptor implements MethodInterceptor {
 
@@ -44,7 +44,7 @@ public class LazyLoadingInterceptor implements MethodInterceptor {
 	 * <p>
 	 * Constructor for LazyLoadingInterceptor.
 	 * </p>
-	 * 
+	 *
 	 * @param loaded
 	 *            a {@link java.lang.Class} object.
 	 * @param daoSupport

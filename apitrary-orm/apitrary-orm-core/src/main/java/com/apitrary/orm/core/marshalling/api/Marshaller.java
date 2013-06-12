@@ -19,9 +19,9 @@ package com.apitrary.orm.core.marshalling.api;
  * <p>
  * Marshaller interface.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public interface Marshaller {
 
@@ -29,7 +29,7 @@ public interface Marshaller {
 	 * <p>
 	 * marshall.
 	 * </p>
-	 * 
+	 *
 	 * @param entity
 	 *            a T object.
 	 * @param <T>

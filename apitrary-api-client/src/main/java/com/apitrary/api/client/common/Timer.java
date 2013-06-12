@@ -21,9 +21,9 @@ import java.util.Date;
  * <p>
  * Timer class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class Timer {
 
@@ -34,7 +34,7 @@ public class Timer {
 	 * <p>
 	 * tic.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link com.apitrary.api.client.common.Timer} object.
 	 */
 	public static Timer tic() {
@@ -47,7 +47,7 @@ public class Timer {
 	 * <p>
 	 * toc.
 	 * </p>
-	 * 
+	 *
 	 * @return a long.
 	 */
 	public long toc() {
@@ -61,7 +61,7 @@ public class Timer {
 	 * <p>
 	 * Getter for the field <code>difference</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a long.
 	 */
 	public long getDifference() {

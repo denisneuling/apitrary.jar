@@ -16,8 +16,11 @@
 package com.apitrary.api.exception;
 
 /**
+ * <p>ApiException class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
  *
+ * @since 0.1.1
  */
 public class ApiException extends RuntimeException {
 	private static final long serialVersionUID = 9009774228941080853L;
@@ -26,7 +29,7 @@ public class ApiException extends RuntimeException {
 	 * <p>
 	 * Constructor for ApiException.
 	 * </p>
-	 * 
+	 *
 	 * @param th
 	 *            a {@link java.lang.Throwable} object.
 	 */
@@ -38,7 +41,7 @@ public class ApiException extends RuntimeException {
 	 * <p>
 	 * Constructor for ApiException.
 	 * </p>
-	 * 
+	 *
 	 * @param message
 	 *            a {@link java.lang.String} object.
 	 */

@@ -19,9 +19,9 @@ package com.apitrary.api.common;
  * <p>
  * HttpMethod class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public enum HttpMethod {
 

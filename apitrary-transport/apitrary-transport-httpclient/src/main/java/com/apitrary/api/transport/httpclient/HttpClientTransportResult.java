@@ -24,6 +24,8 @@ import com.apitrary.api.exception.ApiTransportException;
 import com.apitrary.api.transport.TransportResult;
 
 /**
+ * <p>HttpClientTransportResult class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
  *
  */
@@ -34,6 +36,11 @@ public class HttpClientTransportResult implements TransportResult{
 	private int statusCode;
 	private String result;
 	
+	/**
+	 * <p>Constructor for HttpClientTransportResult.</p>
+	 *
+	 * @param response a {@link org.apache.http.HttpResponse} object.
+	 */
 	public HttpClientTransportResult(HttpResponse response){
 		this.response = response;
 		this.statusCode = response.getStatusLine().getStatusCode();
@@ -59,6 +66,11 @@ public class HttpClientTransportResult implements TransportResult{
 		}
 	}
 
+	/**
+	 * <p>Getter for the field <code>statusCode</code>.</p>
+	 *
+	 * @return a int.
+	 */
 	public int getStatusCode() {
 		return statusCode;
 	}

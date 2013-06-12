@@ -16,10 +16,18 @@
 package com.apitrary.orm.core.query;
 
 /**
+ * <p>Query interface.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
  *
+ * @since 0.1.1
  */
 public interface Query {
 	
+	/**
+	 * <p>getQueryString.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getQueryString(); 
 }

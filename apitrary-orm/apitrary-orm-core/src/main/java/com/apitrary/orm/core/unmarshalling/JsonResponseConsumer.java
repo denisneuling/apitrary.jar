@@ -34,9 +34,9 @@ import com.apitrary.orm.core.internal.conf.ApitraryOrmConfiguration;
  * <p>
  * Abstract JsonResponseConsumer class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public abstract class JsonResponseConsumer {
 	protected Logger log = Logger.getLogger(getClass());
@@ -45,7 +45,7 @@ public abstract class JsonResponseConsumer {
 	 * <p>
 	 * consume.
 	 * </p>
-	 * 
+	 *
 	 * @param json
 	 *            a {@link java.lang.String} object.
 	 * @throws org.codehaus.jackson.JsonParseException
@@ -75,7 +75,7 @@ public abstract class JsonResponseConsumer {
 	 * <p>
 	 * on.
 	 * </p>
-	 * 
+	 *
 	 * @param token
 	 *            a {@link org.codehaus.jackson.JsonToken} object.
 	 * @param fieldName
@@ -137,7 +137,7 @@ public abstract class JsonResponseConsumer {
 	 * <p>
 	 * onFieldName.
 	 * </p>
-	 * 
+	 *
 	 * @param fieldName
 	 *            a {@link java.lang.String} object.
 	 * @param jp
@@ -151,7 +151,7 @@ public abstract class JsonResponseConsumer {
 	 * <p>
 	 * onEndArray.
 	 * </p>
-	 * 
+	 *
 	 * @param fieldName
 	 *            a {@link java.lang.String} object.
 	 * @param jp
@@ -165,7 +165,7 @@ public abstract class JsonResponseConsumer {
 	 * <p>
 	 * onStartArray.
 	 * </p>
-	 * 
+	 *
 	 * @param fieldName
 	 *            a {@link java.lang.String} object.
 	 * @param jp
@@ -179,7 +179,7 @@ public abstract class JsonResponseConsumer {
 	 * <p>
 	 * onEndObject.
 	 * </p>
-	 * 
+	 *
 	 * @param fieldName
 	 *            a {@link java.lang.String} object.
 	 * @param jp
@@ -193,7 +193,7 @@ public abstract class JsonResponseConsumer {
 	 * <p>
 	 * onStartObject.
 	 * </p>
-	 * 
+	 *
 	 * @param fieldName
 	 *            a {@link java.lang.String} object.
 	 * @param jp
@@ -207,7 +207,7 @@ public abstract class JsonResponseConsumer {
 	 * <p>
 	 * onBoolean.
 	 * </p>
-	 * 
+	 *
 	 * @param bool
 	 *            a {@link java.lang.Boolean} object.
 	 * @param fieldName
@@ -223,7 +223,7 @@ public abstract class JsonResponseConsumer {
 	 * <p>
 	 * onInt.
 	 * </p>
-	 * 
+	 *
 	 * @param val
 	 *            a {@link java.lang.Integer} object.
 	 * @param fieldName
@@ -239,7 +239,7 @@ public abstract class JsonResponseConsumer {
 	 * <p>
 	 * onDouble.
 	 * </p>
-	 * 
+	 *
 	 * @param floating
 	 *            a {@link java.lang.Double} object.
 	 * @param fieldName
@@ -255,7 +255,7 @@ public abstract class JsonResponseConsumer {
 	 * <p>
 	 * onString.
 	 * </p>
-	 * 
+	 *
 	 * @param text
 	 *            a {@link java.lang.String} object.
 	 * @param fieldName
@@ -271,7 +271,7 @@ public abstract class JsonResponseConsumer {
 	 * <p>
 	 * onNull.
 	 * </p>
-	 * 
+	 *
 	 * @param fieldName
 	 *            a {@link java.lang.String} object.
 	 * @param jp
@@ -285,7 +285,7 @@ public abstract class JsonResponseConsumer {
 	 * <p>
 	 * showJson.
 	 * </p>
-	 * 
+	 *
 	 * @param json
 	 *            a {@link java.lang.String} object.
 	 */

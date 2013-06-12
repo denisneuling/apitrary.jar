@@ -42,9 +42,9 @@ import com.apitrary.api.transport.TransportResult;
  * <p>
  * Abstract AbstractApitraryClient class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public abstract class AbstractApitraryClient {
 	protected final Logger log = Logger.getLogger(this.getClass());
@@ -53,6 +53,12 @@ public abstract class AbstractApitraryClient {
 	
 	private ApiClientTransportFactory apiClientTransportFactory = new ApiClientTransportFactory();
 	
+	/**
+	 * <p>Getter for the field <code>apiClientTransportFactory</code>.</p>
+	 *
+	 * @return a {@link com.apitrary.api.transport.ApiClientTransportFactory} object.
+	 * @since 0.1.1
+	 */
 	public ApiClientTransportFactory getApiClientTransportFactory() {
 		return apiClientTransportFactory;
 	}
@@ -61,7 +67,7 @@ public abstract class AbstractApitraryClient {
 	 * <p>
 	 * dispatchByMethod.
 	 * </p>
-	 * 
+	 *
 	 * @param request
 	 *            a {@link com.apitrary.api.request.Request} object.
 	 * @param <T>
@@ -89,9 +95,7 @@ public abstract class AbstractApitraryClient {
 	 * <p>
 	 * doGet.
 	 * </p>
-	 * 
-	 * @param webClient
-	 *            a {@link org.apache.cxf.jaxrs.client.WebClient} object.
+	 *
 	 * @param request
 	 *            a {@link com.apitrary.api.request.Request} object.
 	 * @param <T>
@@ -118,9 +122,7 @@ public abstract class AbstractApitraryClient {
 	 * <p>
 	 * doPost.
 	 * </p>
-	 * 
-	 * @param webClient
-	 *            a {@link org.apache.cxf.jaxrs.client.WebClient} object.
+	 *
 	 * @param request
 	 *            a {@link com.apitrary.api.request.Request} object.
 	 * @param <T>
@@ -148,9 +150,7 @@ public abstract class AbstractApitraryClient {
 	 * <p>
 	 * doPut.
 	 * </p>
-	 * 
-	 * @param webClient
-	 *            a {@link org.apache.cxf.jaxrs.client.WebClient} object.
+	 *
 	 * @param request
 	 *            a {@link com.apitrary.api.request.Request} object.
 	 * @param <T>
@@ -178,9 +178,7 @@ public abstract class AbstractApitraryClient {
 	 * <p>
 	 * doDelete.
 	 * </p>
-	 * 
-	 * @param webClient
-	 *            a {@link org.apache.cxf.jaxrs.client.WebClient} object.
+	 *
 	 * @param request
 	 *            a {@link com.apitrary.api.request.Request} object.
 	 * @param <T>
@@ -203,6 +201,14 @@ public abstract class AbstractApitraryClient {
 		return response;
 	}
 	
+	/**
+	 * <p>buidURI.</p>
+	 *
+	 * @param request a {@link com.apitrary.api.request.Request} object.
+	 * @param <T> a T object.
+	 * @return a {@link java.net.URI} object.
+	 * @since 0.1.1
+	 */
 	protected <T> URI buidURI(Request<T> request){
 		URL url = null;
 		try {
@@ -242,7 +248,7 @@ public abstract class AbstractApitraryClient {
 	 * <p>
 	 * inquirePath.
 	 * </p>
-	 * 
+	 *
 	 * @param request
 	 *            a {@link com.apitrary.api.request.Request} object.
 	 * @param <T>
@@ -257,7 +263,7 @@ public abstract class AbstractApitraryClient {
 	 * <p>
 	 * deserialize.
 	 * </p>
-	 * 
+	 *
 	 * @param response
 	 *            a {@link java.lang.String} object.
 	 * @param request

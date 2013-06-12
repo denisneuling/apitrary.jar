@@ -24,8 +24,10 @@ import com.apitrary.api.exception.ApiTransportException;
 import com.apitrary.api.transport.TransportResult;
 
 /**
+ * <p>JavaNetClientTransportResult class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class JavaNetClientTransportResult implements TransportResult {
 
@@ -33,6 +35,11 @@ public class JavaNetClientTransportResult implements TransportResult {
 	private HttpURLConnection httpConnection;
 	private String result;
 
+	/**
+	 * <p>Constructor for JavaNetClientTransportResult.</p>
+	 *
+	 * @param httpConnection a {@link java.net.HttpURLConnection} object.
+	 */
 	public JavaNetClientTransportResult(HttpURLConnection httpConnection) {
 		this.httpConnection = httpConnection;
 		

@@ -21,9 +21,9 @@ import com.apitrary.api.annotation.Normalized;
  * <p>
  * DeleteResponse class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 @Normalized
 public class DeleteResponse extends Response<DeleteResponse> {

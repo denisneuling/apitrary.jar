@@ -23,8 +23,10 @@ import com.apitrary.api.exception.ApiTransportException;
 /**
  * Single argumentless constructor is needed! Otherwise we cannot instantiate
  * reflectively the new transport instance.
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
+ *
+ * @since 0.1.1
  */
 public abstract class Transport {
 
@@ -36,26 +38,74 @@ public abstract class Transport {
 
 	private ApitraryApi apitraryApi;
 
+	/**
+	 * <p>Constructor for Transport.</p>
+	 */
 	public Transport() {
 	}
 
+	/**
+	 * <p>Constructor for Transport.</p>
+	 *
+	 * @param apitraryApi a {@link com.apitrary.api.ApitraryApi} object.
+	 */
 	public Transport(ApitraryApi apitraryApi) {
 		this.apitraryApi = apitraryApi;
 	}
 
+	/**
+	 * <p>Getter for the field <code>apitraryApi</code>.</p>
+	 *
+	 * @return a {@link com.apitrary.api.ApitraryApi} object.
+	 */
 	public ApitraryApi getApitraryApi() {
 		return apitraryApi;
 	}
 
+	/**
+	 * <p>Setter for the field <code>apitraryApi</code>.</p>
+	 *
+	 * @param apitraryApi a {@link com.apitrary.api.ApitraryApi} object.
+	 */
 	public void setApitraryApi(ApitraryApi apitraryApi) {
 		this.apitraryApi = apitraryApi;
 	}
 
+	/**
+	 * <p>doGet.</p>
+	 *
+	 * @param uri a {@link java.net.URI} object.
+	 * @return a {@link com.apitrary.api.transport.TransportResult} object.
+	 * @throws com.apitrary.api.exception.ApiTransportException if any.
+	 */
 	public abstract TransportResult doGet(URI uri) throws ApiTransportException;
 
+	/**
+	 * <p>doPost.</p>
+	 *
+	 * @param uri a {@link java.net.URI} object.
+	 * @param payload a {@link java.lang.String} object.
+	 * @return a {@link com.apitrary.api.transport.TransportResult} object.
+	 * @throws com.apitrary.api.exception.ApiTransportException if any.
+	 */
 	public abstract TransportResult doPost(URI uri, String payload) throws ApiTransportException;
 
+	/**
+	 * <p>doPut.</p>
+	 *
+	 * @param uri a {@link java.net.URI} object.
+	 * @param payload a {@link java.lang.String} object.
+	 * @return a {@link com.apitrary.api.transport.TransportResult} object.
+	 * @throws com.apitrary.api.exception.ApiTransportException if any.
+	 */
 	public abstract TransportResult doPut(URI uri, String payload) throws ApiTransportException;
 
+	/**
+	 * <p>doDelete.</p>
+	 *
+	 * @param uri a {@link java.net.URI} object.
+	 * @return a {@link com.apitrary.api.transport.TransportResult} object.
+	 * @throws com.apitrary.api.exception.ApiTransportException if any.
+	 */
 	public abstract TransportResult doDelete(URI uri) throws ApiTransportException;
 }

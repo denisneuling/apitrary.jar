@@ -21,9 +21,9 @@ import java.io.Serializable;
  * <p>
  * API class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class API implements Serializable {
 	private static final long serialVersionUID = 1795632555829461430L;
@@ -43,7 +43,7 @@ public class API implements Serializable {
 	 * <p>
 	 * Getter for the field <code>api_id</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getApi_id() {
@@ -54,7 +54,7 @@ public class API implements Serializable {
 	 * <p>
 	 * Setter for the field <code>api_id</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param api_id
 	 *            a {@link java.lang.String} object.
 	 */
@@ -66,7 +66,7 @@ public class API implements Serializable {
 	 * <p>
 	 * Getter for the field <code>api_version</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getApi_version() {
@@ -77,7 +77,7 @@ public class API implements Serializable {
 	 * <p>
 	 * Setter for the field <code>api_version</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param api_version
 	 *            a {@link java.lang.String} object.
 	 */

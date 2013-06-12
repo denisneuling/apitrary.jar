@@ -23,10 +23,10 @@ import com.apitrary.orm.core.codec.Codec;
  * <p>
  * Base64Codec class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
  * @since 0.1.1
+ *
  */
 public class Base64Codec extends Codec<byte[]> {
 

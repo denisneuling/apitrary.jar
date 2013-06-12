@@ -23,9 +23,9 @@ import java.util.List;
  * <p>
  * ValidationConstraintViolationException class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class ValidationConstraintViolationException extends ClientException {
 	private static final long serialVersionUID = 8653296771499098292L;
@@ -37,7 +37,7 @@ public class ValidationConstraintViolationException extends ClientException {
 	 * <p>
 	 * Constructor for ValidationConstraintViolationException.
 	 * </p>
-	 * 
+	 *
 	 * @param th
 	 *            a {@link java.lang.Throwable} object.
 	 */
@@ -49,7 +49,7 @@ public class ValidationConstraintViolationException extends ClientException {
 	 * <p>
 	 * Constructor for ValidationConstraintViolationException.
 	 * </p>
-	 * 
+	 *
 	 * @param violations
 	 *            a {@link java.util.List} object.
 	 */
@@ -62,7 +62,7 @@ public class ValidationConstraintViolationException extends ClientException {
 	 * <p>
 	 * Constructor for ValidationConstraintViolationException.
 	 * </p>
-	 * 
+	 *
 	 * @param pre
 	 *            a {@link java.lang.String} object.
 	 * @param violations
@@ -77,7 +77,7 @@ public class ValidationConstraintViolationException extends ClientException {
 	 * <p>
 	 * Getter for the field <code>constraintViolations</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.util.List} object.
 	 */
 	public List<ConstraintViolation> getConstraintViolations() {

@@ -17,11 +17,24 @@ package com.apitrary.api.transport;
 
 
 /**
+ * <p>TransportResult interface.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
  *
+ * @since 0.1.1
  */
 public interface TransportResult {
 
+	/**
+	 * <p>getStatusCode.</p>
+	 *
+	 * @return a int.
+	 */
 	public int getStatusCode();
+	/**
+	 * <p>getResult.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getResult();
 }

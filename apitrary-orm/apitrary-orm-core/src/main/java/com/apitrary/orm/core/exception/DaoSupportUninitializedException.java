@@ -19,9 +19,9 @@ package com.apitrary.orm.core.exception;
  * <p>
  * DaoSupportUninitializedException class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class DaoSupportUninitializedException extends ApitraryOrmException {
 	private static final long serialVersionUID = -7712804435364904885L;
@@ -30,7 +30,7 @@ public class DaoSupportUninitializedException extends ApitraryOrmException {
 	 * <p>
 	 * Constructor for DaoSupportUninitializedException.
 	 * </p>
-	 * 
+	 *
 	 * @param message
 	 *            a {@link java.lang.String} object.
 	 */

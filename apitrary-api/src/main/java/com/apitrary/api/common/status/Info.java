@@ -24,9 +24,9 @@ import java.io.Serializable;
  * <p>
  * Info class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class Info implements Serializable {
 	private static final long serialVersionUID = 4234844873408763205L;
@@ -50,7 +50,7 @@ public class Info implements Serializable {
 	 * <p>
 	 * Getter for the field <code>name</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getName() {
@@ -61,7 +61,7 @@ public class Info implements Serializable {
 	 * <p>
 	 * Setter for the field <code>name</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param name
 	 *            a {@link java.lang.String} object.
 	 */
@@ -73,7 +73,7 @@ public class Info implements Serializable {
 	 * <p>
 	 * Getter for the field <code>copyright</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getCopyright() {
@@ -84,7 +84,7 @@ public class Info implements Serializable {
 	 * <p>
 	 * Setter for the field <code>copyright</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param copyright
 	 *            a {@link java.lang.String} object.
 	 */
@@ -96,7 +96,7 @@ public class Info implements Serializable {
 	 * <p>
 	 * Getter for the field <code>support</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getSupport() {
@@ -107,7 +107,7 @@ public class Info implements Serializable {
 	 * <p>
 	 * Setter for the field <code>support</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param support
 	 *            a {@link java.lang.String} object.
 	 */
@@ -119,7 +119,7 @@ public class Info implements Serializable {
 	 * <p>
 	 * Getter for the field <code>contact</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getContact() {
@@ -130,7 +130,7 @@ public class Info implements Serializable {
 	 * <p>
 	 * Setter for the field <code>contact</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param contact
 	 *            a {@link java.lang.String} object.
 	 */
@@ -142,7 +142,7 @@ public class Info implements Serializable {
 	 * <p>
 	 * Getter for the field <code>version</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getVersion() {
@@ -153,7 +153,7 @@ public class Info implements Serializable {
 	 * <p>
 	 * Setter for the field <code>version</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param version
 	 *            a {@link java.lang.String} object.
 	 */
@@ -165,7 +165,7 @@ public class Info implements Serializable {
 	 * <p>
 	 * Getter for the field <code>company</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getCompany() {
@@ -176,7 +176,7 @@ public class Info implements Serializable {
 	 * <p>
 	 * Setter for the field <code>company</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param company
 	 *            a {@link java.lang.String} object.
 	 */

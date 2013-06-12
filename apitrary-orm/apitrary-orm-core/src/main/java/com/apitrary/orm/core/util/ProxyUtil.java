@@ -24,9 +24,9 @@ import com.apitrary.orm.core.internal.proxy.LazyLoadingInterceptor;
  * <p>
  * ProxyUtil class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class ProxyUtil {
 
@@ -34,7 +34,7 @@ public class ProxyUtil {
 	 * <p>
 	 * createLazyProxy.
 	 * </p>
-	 * 
+	 *
 	 * @param target
 	 *            a {@link java.lang.Class} object.
 	 * @param apitraryDaoSupport

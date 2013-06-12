@@ -22,9 +22,9 @@ import java.util.Arrays;
  * <p>
  * APIState class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class APIState implements Serializable {
 	private static final long serialVersionUID = -1978346945071607803L;
@@ -45,7 +45,7 @@ public class APIState implements Serializable {
 	 * <p>
 	 * Getter for the field <code>info</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link com.apitrary.api.common.status.Info} object.
 	 */
 	public Info getInfo() {
@@ -56,7 +56,7 @@ public class APIState implements Serializable {
 	 * <p>
 	 * Setter for the field <code>info</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param info
 	 *            a {@link com.apitrary.api.common.status.Info} object.
 	 */
@@ -68,7 +68,7 @@ public class APIState implements Serializable {
 	 * <p>
 	 * Getter for the field <code>status</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link com.apitrary.api.common.status.Status} object.
 	 */
 	public Status getStatus() {
@@ -79,7 +79,7 @@ public class APIState implements Serializable {
 	 * <p>
 	 * Setter for the field <code>status</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param status
 	 *            a {@link com.apitrary.api.common.status.Status} object.
 	 */
@@ -91,7 +91,7 @@ public class APIState implements Serializable {
 	 * <p>
 	 * Getter for the field <code>schema</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return an array of {@link java.lang.String} objects.
 	 */
 	public String[] getSchema() {
@@ -102,7 +102,7 @@ public class APIState implements Serializable {
 	 * <p>
 	 * Setter for the field <code>schema</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param schema
 	 *            an array of {@link java.lang.String} objects.
 	 */

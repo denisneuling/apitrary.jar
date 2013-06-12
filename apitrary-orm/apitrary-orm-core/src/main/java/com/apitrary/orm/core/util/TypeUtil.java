@@ -24,9 +24,9 @@ import java.lang.reflect.Proxy;
  * <p>
  * TypeUtil class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class TypeUtil {
 
@@ -34,7 +34,7 @@ public class TypeUtil {
 	 * <p>
 	 * as.
 	 * </p>
-	 * 
+	 *
 	 * @param t
 	 *            a {@link java.lang.Class} object.
 	 * @param obj
@@ -62,7 +62,7 @@ public class TypeUtil {
 	 * <p>
 	 * printGettersSetters.
 	 * </p>
-	 * 
+	 *
 	 * @param aClass
 	 *            a {@link java.lang.Class} object.
 	 */
@@ -81,7 +81,7 @@ public class TypeUtil {
 	 * <p>
 	 * isGetter.
 	 * </p>
-	 * 
+	 *
 	 * @param method
 	 *            a {@link java.lang.reflect.Method} object.
 	 * @return a boolean.
@@ -103,7 +103,7 @@ public class TypeUtil {
 	 * <p>
 	 * isSetter.
 	 * </p>
-	 * 
+	 *
 	 * @param method
 	 *            a {@link java.lang.reflect.Method} object.
 	 * @return a boolean.
@@ -122,7 +122,7 @@ public class TypeUtil {
 	 * <p>
 	 * isToString.
 	 * </p>
-	 * 
+	 *
 	 * @param method
 	 *            a {@link java.lang.reflect.Method} object.
 	 * @return a boolean.
@@ -138,7 +138,7 @@ public class TypeUtil {
 	 * <p>
 	 * isHashCode.
 	 * </p>
-	 * 
+	 *
 	 * @param method
 	 *            a {@link java.lang.reflect.Method} object.
 	 * @return a boolean.
@@ -154,7 +154,7 @@ public class TypeUtil {
 	 * <p>
 	 * isEquals.
 	 * </p>
-	 * 
+	 *
 	 * @param method
 	 *            a {@link java.lang.reflect.Method} object.
 	 * @return a boolean.

@@ -34,9 +34,9 @@ import com.apitrary.api.response.Response;
  * <p>
  * RequestUtil class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class RequestUtil {
 
@@ -47,7 +47,7 @@ public class RequestUtil {
 	 * <p>
 	 * getInstanceOfParameterizedType.
 	 * </p>
-	 * 
+	 *
 	 * @param request
 	 *            a {@link com.apitrary.api.request.Request} object.
 	 * @param <T>
@@ -69,7 +69,7 @@ public class RequestUtil {
 	 * <p>
 	 * getRequestPayload.
 	 * </p>
-	 * 
+	 *
 	 * @param request
 	 *            a {@link com.apitrary.api.request.Request} object.
 	 * @param <T>
@@ -95,7 +95,7 @@ public class RequestUtil {
 	 * <p>
 	 * resolveQueryPart.
 	 * </p>
-	 * 
+	 *
 	 * @param request
 	 *            a {@link com.apitrary.api.request.Request} object.
 	 * @param <T>
@@ -127,7 +127,7 @@ public class RequestUtil {
 	 * <p>
 	 * validate.
 	 * </p>
-	 * 
+	 *
 	 * @param request
 	 *            a {@link com.apitrary.api.request.Request} object.
 	 * @param <T>

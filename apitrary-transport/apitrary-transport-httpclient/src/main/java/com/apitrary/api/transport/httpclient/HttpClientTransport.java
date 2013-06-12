@@ -33,16 +33,23 @@ import com.apitrary.api.transport.Transport;
 import com.apitrary.api.transport.TransportResult;
 
 /**
+ * <p>HttpClientTransport class.</p>
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class HttpClientTransport extends Transport {
 
+	/**
+	 * <p>Constructor for HttpClientTransport.</p>
+	 */
 	public HttpClientTransport(){
 	}
 	
 	/**
-	 * @param apitraryApi
+	 * <p>Constructor for HttpClientTransport.</p>
+	 *
+	 * @param apitraryApi a {@link com.apitrary.api.ApitraryApi} object.
 	 */
 	public HttpClientTransport(ApitraryApi apitraryApi) {
 		super(apitraryApi);
@@ -50,12 +57,7 @@ public class HttpClientTransport extends Transport {
 
 	private DefaultHttpClient client = new DefaultHttpClient();
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @throws IOException
-	 * @throws HttpException
-	 */
+	/** {@inheritDoc} */
 	@Override
 	public TransportResult doGet(URI uri) {
 		HttpGet request = new HttpGet(uri);

@@ -45,9 +45,9 @@ import com.apitrary.orm.core.marshalling.api.Marshaller;
  * <p>
  * PayloadMarshaller class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class PayloadMarshaller implements Marshaller {
 	protected Logger log = Logger.getLogger(getClass());
@@ -58,7 +58,7 @@ public class PayloadMarshaller implements Marshaller {
 	 * <p>
 	 * Constructor for PayloadMarshaller.
 	 * </p>
-	 * 
+	 *
 	 * @param apitraryDaoSupport
 	 *            a {@link com.apitrary.orm.core.ApitraryDaoSupport} object.
 	 */

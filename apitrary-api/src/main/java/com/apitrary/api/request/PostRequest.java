@@ -29,9 +29,9 @@ import com.apitrary.api.response.PostResponse;
  * <p>
  * AddRequest class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 @Method(HttpMethod.POST)
 @Path("/${entity}")
@@ -57,7 +57,7 @@ public class PostRequest extends Request<PostResponse> implements Serializable {
 	 * <p>
 	 * Getter for the field <code>entity</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getEntity() {
@@ -68,7 +68,7 @@ public class PostRequest extends Request<PostResponse> implements Serializable {
 	 * <p>
 	 * Setter for the field <code>entity</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param entity
 	 *            a {@link java.lang.String} object.
 	 */
@@ -80,7 +80,7 @@ public class PostRequest extends Request<PostResponse> implements Serializable {
 	 * <p>
 	 * Getter for the field <code>requestPayload</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getRequestPayload() {
@@ -91,7 +91,7 @@ public class PostRequest extends Request<PostResponse> implements Serializable {
 	 * <p>
 	 * Setter for the field <code>requestPayload</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param requestPayload
 	 *            a {@link java.lang.String} object.
 	 */

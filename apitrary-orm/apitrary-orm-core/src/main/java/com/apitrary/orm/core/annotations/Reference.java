@@ -27,10 +27,10 @@ import com.apitrary.orm.core.annotations.cascade.Cascade;
  * <p>
  * References class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
  * @since 0.1.1
+ *
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)

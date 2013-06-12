@@ -31,9 +31,9 @@ import com.apitrary.orm.core.exception.ApitraryOrmIdException;
  * <p>
  * CascadeDeleteCapable class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class CascadeDeleteCapable {
 	protected Logger log = Logger.getLogger(getClass());
@@ -44,7 +44,7 @@ public class CascadeDeleteCapable {
 	 * <p>
 	 * Constructor for CascadeDeleteCapable.
 	 * </p>
-	 * 
+	 *
 	 * @param apitraryDaoSupport
 	 *            a {@link com.apitrary.orm.core.ApitraryDaoSupport} object.
 	 */
@@ -56,7 +56,7 @@ public class CascadeDeleteCapable {
 	 * <p>
 	 * deleteCascades.
 	 * </p>
-	 * 
+	 *
 	 * @param entity
 	 *            a {@link java.lang.Object} object.
 	 */

@@ -21,9 +21,9 @@ import java.io.Serializable;
  * <p>
  * Status class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class Status implements Serializable {
 	private static final long serialVersionUID = -7581417160205836756L;
@@ -43,7 +43,7 @@ public class Status implements Serializable {
 	 * <p>
 	 * Getter for the field <code>db_status</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link java.lang.String} object.
 	 */
 	public String getDb_status() {
@@ -54,7 +54,7 @@ public class Status implements Serializable {
 	 * <p>
 	 * Setter for the field <code>db_status</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param db_status
 	 *            a {@link java.lang.String} object.
 	 */
@@ -66,7 +66,7 @@ public class Status implements Serializable {
 	 * <p>
 	 * Getter for the field <code>api</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return a {@link com.apitrary.api.common.status.API} object.
 	 */
 	public API getApi() {
@@ -77,7 +77,7 @@ public class Status implements Serializable {
 	 * <p>
 	 * Setter for the field <code>api</code>.
 	 * </p>
-	 * 
+	 *
 	 * @param api
 	 *            a {@link com.apitrary.api.common.status.API} object.
 	 */

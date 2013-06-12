@@ -28,9 +28,9 @@ import java.util.logging.Logger;
  * <p>
  * ClassUtil class.
  * </p>
- * 
+ *
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
 public class ClassUtil {
 	private static Logger log = Logger.getLogger(NormalizationUtil.class.getName());
@@ -39,7 +39,7 @@ public class ClassUtil {
 	 * <p>
 	 * getClassAnnotationValue.
 	 * </p>
-	 * 
+	 *
 	 * @param source
 	 *            a {@link java.lang.Class} object.
 	 * @param annotation
@@ -70,7 +70,7 @@ public class ClassUtil {
 	 * <p>
 	 * getAnnotatedFields.
 	 * </p>
-	 * 
+	 *
 	 * @param object
 	 *            a {@link java.lang.Object} object.
 	 * @param annotationClass
@@ -87,7 +87,7 @@ public class ClassUtil {
 	 * <p>
 	 * getAnnotatedFields.
 	 * </p>
-	 * 
+	 *
 	 * @param clazz
 	 *            a {@link java.lang.Class} object.
 	 * @param annotationClass
@@ -111,7 +111,7 @@ public class ClassUtil {
 	 * <p>
 	 * getAnnotatedFields.
 	 * </p>
-	 * 
+	 *
 	 * @param object
 	 *            a {@link java.lang.Object} object.
 	 * @param annotationClasses
@@ -128,7 +128,7 @@ public class ClassUtil {
 	 * <p>
 	 * getAnnotatedFields.
 	 * </p>
-	 * 
+	 *
 	 * @param clazz
 	 *            a {@link java.lang.Class} object.
 	 * @param annotationClasses
@@ -155,7 +155,7 @@ public class ClassUtil {
 	 * <p>
 	 * getAllDeclaredFields.
 	 * </p>
-	 * 
+	 *
 	 * @param clazz
 	 *            a {@link java.lang.Class} object.
 	 * @return an array of {@link java.lang.reflect.Field} objects.
@@ -173,23 +173,9 @@ public class ClassUtil {
 	 * <p>
 	 * getValueOf.
 	 * </p>
-	 * 
+	 *
 	 * @param field
 	 *            a {@link java.lang.reflect.Field} object.
-	 * @param reference
-	 *            a {@link java.lang.Object} object.
-	 * @param referenceClazz
-	 *            a {@link java.lang.Class} object.
-	 * @param referenceClazz
-	 *            a {@link java.lang.Class} object.
-	 * @param referenceClazz
-	 *            a {@link java.lang.Class} object.
-	 * @param referenceClazz
-	 *            a {@link java.lang.Class} object.
-	 * @param referenceClazz
-	 *            a {@link java.lang.Class} object.
-	 * @param referenceClazz
-	 *            a {@link java.lang.Class} object.
 	 * @param valueType
 	 *            a {@link java.lang.Class} object.
 	 * @param <T>
@@ -215,21 +201,9 @@ public class ClassUtil {
 	 * <p>
 	 * getValueOf.
 	 * </p>
-	 * 
+	 *
 	 * @param fieldName
 	 *            a {@link java.lang.String} object.
-	 * @param reference
-	 *            a {@link java.lang.Object} object.
-	 * @param referenceClazz
-	 *            a {@link java.lang.Class} object.
-	 * @param referenceClazz
-	 *            a {@link java.lang.Class} object.
-	 * @param referenceClazz
-	 *            a {@link java.lang.Class} object.
-	 * @param referenceClazz
-	 *            a {@link java.lang.Class} object.
-	 * @param referenceClazz
-	 *            a {@link java.lang.Class} object.
 	 * @param referenceClazz
 	 *            a {@link java.lang.Class} object.
 	 * @param valueType
@@ -256,7 +230,7 @@ public class ClassUtil {
 	 * <p>
 	 * getValueOfField.
 	 * </p>
-	 * 
+	 *
 	 * @param field
 	 *            a {@link java.lang.reflect.Field} object.
 	 * @param ref
@@ -280,7 +254,7 @@ public class ClassUtil {
 	 * <p>
 	 * newInstance.
 	 * </p>
-	 * 
+	 *
 	 * @param entity
 	 *            a {@link java.lang.Class} object.
 	 * @return a {@link java.lang.Object} object.
@@ -300,7 +274,7 @@ public class ClassUtil {
 	 * <p>
 	 * setSilent.
 	 * </p>
-	 * 
+	 *
 	 * @param target
 	 *            a {@link java.lang.Object} object.
 	 * @param fieldName
@@ -325,7 +299,7 @@ public class ClassUtil {
 	 * <p>
 	 * box.
 	 * </p>
-	 * 
+	 *
 	 * @param property
 	 *            a {@link java.lang.Object} object.
 	 * @param to
@@ -385,7 +359,7 @@ public class ClassUtil {
 	 * <p>
 	 * getDeclaredFieldSilent.
 	 * </p>
-	 * 
+	 *
 	 * @param target
 	 *            a {@link java.lang.Class} object.
 	 * @param fieldName
@@ -404,7 +378,7 @@ public class ClassUtil {
 	 * <p>
 	 * getFieldAnnotationValue.
 	 * </p>
-	 * 
+	 *
 	 * @param annotationProperty
 	 *            a {@link java.lang.String} object.
 	 * @param field
