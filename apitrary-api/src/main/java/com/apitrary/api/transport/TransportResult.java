@@ -13,35 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.orm.codec.date;
+package com.apitrary.api.transport;
 
-import java.util.Date;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
-public class DateISO8601CodecTest {
+public interface TransportResult {
 
-	private DateISO8601Codec codec;
-	private Date date;
-
-	@Before
-	public void setUp() {
-		date = new Date();
-		codec = new DateISO8601Codec();
-	}
-
-	@Test
-	public void test_codec() {
-		String encoded = codec.encode(date);
-		Date result = codec.decode(encoded);
-
-		Assert.assertTrue((date.getTime()/1000) == (result.getTime()/1000));
-	}
-
+	public int getStatusCode();
+	public String getResult();
 }

@@ -15,6 +15,8 @@
  */
 package com.apitrary.api.client.exception;
 
+import com.apitrary.api.exception.ApiException;
+
 /**
  * <p>
  * ClientException class.
@@ -23,7 +25,7 @@ package com.apitrary.api.client.exception;
  * @author Denis Neuling (denisneuling@gmail.com)
  * 
  */
-public class ClientException extends RuntimeException {
+public class ClientException extends ApiException {
 	private static final long serialVersionUID = -3334422740923547404L;
 
 	/**

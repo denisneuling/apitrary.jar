@@ -13,7 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.api.client;
+package com.apitrary.api;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * <p>
@@ -25,8 +28,14 @@ package com.apitrary.api.client;
  */
 public class ApitraryApi {
 
+	private String protocol = "http";
+	private static final String DOT = ".";
+	
 	private String apiId;
 	private String apiKey;
+	
+	private String apiVersion= "apiv2";
+	private String authority = "apitrary.com";
 
 	/**
 	 * <p>
@@ -87,5 +96,34 @@ public class ApitraryApi {
 	 */
 	public void setApiKey(String apiKey) {
 		this.apiKey = apiKey;
+	}
+
+	public String getApiVersion() {
+		return apiVersion;
+	}
+
+	public void setApiVersion(String apiVersion) {
+		this.apiVersion = apiVersion;
+	}
+
+	public String getAuthority() {
+		return authority;
+	}
+
+	public void setAuthority(String authority) {
+		this.authority = authority;
+	}
+	
+	public URL getURL() throws MalformedURLException{
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(apiId);
+		if(apiVersion!=null){
+			stringBuilder.append(DOT);
+			stringBuilder.append(apiVersion);
+		}
+		stringBuilder.append(DOT);
+		stringBuilder.append(authority);
+		URL url = new URL((protocol!=null?protocol+"://":"")+stringBuilder.toString());
+		return url;
 	}
 }

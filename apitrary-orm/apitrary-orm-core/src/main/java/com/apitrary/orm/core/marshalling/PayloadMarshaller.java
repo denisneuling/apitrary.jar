@@ -33,10 +33,10 @@ import org.codehaus.jackson.node.ObjectNode;
 
 import com.apitrary.api.client.util.ClassUtil;
 import com.apitrary.orm.core.ApitraryDaoSupport;
-import com.apitrary.orm.core.codec.Codec;
 import com.apitrary.orm.core.annotations.Column;
 import com.apitrary.orm.core.annotations.Reference;
 import com.apitrary.orm.core.annotations.cascade.Cascade;
+import com.apitrary.orm.core.codec.Codec;
 import com.apitrary.orm.core.exception.ApitraryOrmIdException;
 import com.apitrary.orm.core.json.filter.PropertyFilterMixIn;
 import com.apitrary.orm.core.marshalling.api.Marshaller;

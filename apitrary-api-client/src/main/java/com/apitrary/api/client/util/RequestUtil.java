@@ -19,11 +19,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-
-import org.apache.cxf.jaxrs.client.WebClient;
 
 import com.apitrary.api.annotation.Body;
 import com.apitrary.api.annotation.Query;
@@ -92,34 +89,6 @@ public class RequestUtil {
 			// what if there are more bodies?!
 		}
 		return EMPTY;
-	}
-
-	/**
-	 * <p>
-	 * resolveAndSetQueryPart.
-	 * </p>
-	 * 
-	 * @param request
-	 *            a {@link com.apitrary.api.request.Request} object.
-	 * @param webClient
-	 *            a {@link org.apache.cxf.jaxrs.client.WebClient} object.
-	 * @param <T>
-	 *            a T object.
-	 * @return a {@link org.apache.cxf.jaxrs.client.WebClient} object.
-	 */
-	public static <T> WebClient resolveAndSetQueryPart(Request<T> request, WebClient webClient) {
-		HashMap<String, String> queryParts = resolveQueryPart(request);
-		Iterator<String> iterator = queryParts.keySet().iterator();
-		if (!iterator.hasNext()) {
-			return webClient;
-		} else {
-			while (iterator.hasNext()) {
-				String key = iterator.next();
-				String value = queryParts.get(key);
-				webClient = webClient.replaceQueryParam(key, value);
-			}
-		}
-		return webClient;
 	}
 
 	/**

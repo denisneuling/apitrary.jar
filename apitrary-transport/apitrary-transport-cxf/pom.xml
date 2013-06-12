@@ -1,11 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.apitrary</groupId>
-		<artifactId>apitrary-jar</artifactId>
+		<artifactId>apitrary-transport</artifactId>
 		<version>0.1.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>apitrary-api-client</artifactId>
+	<artifactId>apitrary-transport-cxf</artifactId>
 	<name>${project.artifactId}</name>
 
 	<scm>
@@ -44,11 +45,23 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.apitrary</groupId>
-			<artifactId>apitrary-api</artifactId>
-			<version>0.1.1-SNAPSHOT</version>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-api</artifactId>
+			<version>2.6.2</version>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+			<version>2.6.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>2.6.2</version>
+		</dependency>
+
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>

@@ -13,35 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-package com.apitrary.orm.codec.date;
-
-import java.util.Date;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+package com.apitrary.api.exception;
 
 /**
  * @author Denis Neuling (denisneuling@gmail.com)
- * 
+ *
  */
-public class DateISO8601CodecTest {
+public class ApiTransportException extends ApiException{
+	private static final long serialVersionUID = -1437773368782858652L;
 
-	private DateISO8601Codec codec;
-	private Date date;
-
-	@Before
-	public void setUp() {
-		date = new Date();
-		codec = new DateISO8601Codec();
+	/**
+	 * <p>
+	 * Constructor for ApiTransportException.
+	 * </p>
+	 * 
+	 * @param th
+	 *            a {@link java.lang.Throwable} object.
+	 */
+	public ApiTransportException(Throwable th) {
+		super(th);
 	}
 
-	@Test
-	public void test_codec() {
-		String encoded = codec.encode(date);
-		Date result = codec.decode(encoded);
-
-		Assert.assertTrue((date.getTime()/1000) == (result.getTime()/1000));
+	/**
+	 * <p>
+	 * Constructor for ApiTransportException.
+	 * </p>
+	 * 
+	 * @param message
+	 *            a {@link java.lang.String} object.
+	 */
+	public ApiTransportException(String message) {
+		super(message);
 	}
-
 }

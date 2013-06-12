@@ -15,13 +15,19 @@
  */
 package com.apitrary.api.client.support;
 
-import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.Map;
+import java.util.Set;
 
-import org.apache.cxf.jaxrs.client.WebClient;
 import org.apache.log4j.Logger;
 
+import com.apitrary.api.ApitraryApi;
 import com.apitrary.api.client.common.HttpStatus;
 import com.apitrary.api.client.common.Timer;
+import com.apitrary.api.client.exception.ClientException;
 import com.apitrary.api.client.exception.CommunicationErrorException;
 import com.apitrary.api.client.util.HttpMethodUtil;
 import com.apitrary.api.client.util.PathUtil;
@@ -29,6 +35,8 @@ import com.apitrary.api.client.util.RequestUtil;
 import com.apitrary.api.common.HttpMethod;
 import com.apitrary.api.request.Request;
 import com.apitrary.api.response.Response;
+import com.apitrary.api.transport.ApiClientTransportFactory;
+import com.apitrary.api.transport.TransportResult;
 
 /**
  * <p>
@@ -41,23 +49,13 @@ import com.apitrary.api.response.Response;
 public abstract class AbstractApitraryClient {
 	protected final Logger log = Logger.getLogger(this.getClass());
 
-	/** Constant <code>apitraryUrl="api.apitrary.com"</code> */
-	protected static final String apitraryUrl = "api.apitrary.com";
-
-	/** Constant <code>protocol="http://"</code> */
-	protected static final String protocol = "http://";
-
-	/** Constant <code>apiAuthHeaderKey="X-Api-Key"</code> */
-	protected static final String apiAuthHeaderKey = "X-Api-Key";
-
-	/** Constant <code>contentType="application/json"</code> */
-	protected static final String contentType = "application/json";
-
-	/** Constant <code>DEFAULTCONNECTIONTIMEOUT=60000</code> */
-	protected static final int DEFAULTCONNECTIONTIMEOUT = 60000;
-
-	/** Constant <code>DEFAULTRECEIVETIMEOUT=60000</code> */
-	protected static final int DEFAULTRECEIVETIMEOUT = 60000;
+	protected ApitraryApi api;
+	
+	private ApiClientTransportFactory apiClientTransportFactory = new ApiClientTransportFactory();
+	
+	public ApiClientTransportFactory getApiClientTransportFactory() {
+		return apiClientTransportFactory;
+	}
 
 	/**
 	 * <p>
@@ -73,17 +71,15 @@ public abstract class AbstractApitraryClient {
 	protected <T> Response<T> dispatchByMethod(Request<T> request) {
 		HttpMethod method = HttpMethodUtil.retrieveMethod(request);
 
-		WebClient webClient = instantiateWebClient();
-
 		switch (method) {
 			case GET:
-				return doGet(webClient, request);
+				return doGet(request);
 			case POST:
-				return doPost(webClient, request);
+				return doPost(request);
 			case PUT:
-				return doPut(webClient, request);
+				return doPut(request);
 			case DELETE:
-				return doDelete(webClient, request);
+				return doDelete(request);
 			default:
 				throw new CommunicationErrorException(HttpStatus.Not_Implemented);
 		}
@@ -102,17 +98,18 @@ public abstract class AbstractApitraryClient {
 	 *            a T object.
 	 * @return a {@link com.apitrary.api.response.Response} object.
 	 */
-	protected <T> Response<T> doGet(WebClient webClient, Request<T> request) {
-		webClient = webClient.path(inquirePath(request));
-		webClient = RequestUtil.resolveAndSetQueryPart(request, webClient);
-
+	protected <T> Response<T> doGet(Request<T> request) {
+		URI uri = buidURI(request);
+		
+		log.info(uri);
+		
 		Timer timer = Timer.tic();
-		javax.ws.rs.core.Response cxfResponse = webClient.get();
+		TransportResult result = getApiClientTransportFactory().newTransport(api).doGet(uri);
 		timer.toc();
+		
+		log.trace(result.getStatusCode() + " " + uri.toString() + " took " + timer.getDifference() + "ms");
 
-		log.trace(cxfResponse.getStatus() + " " + webClient.getCurrentURI() + " took " + timer.getDifference() + "ms");
-
-		Response<T> response = toResponse(timer, cxfResponse, request);
+		Response<T> response = toResponse(timer, result, request);
 
 		return response;
 	}
@@ -130,19 +127,19 @@ public abstract class AbstractApitraryClient {
 	 *            a T object.
 	 * @return a {@link com.apitrary.api.response.Response} object.
 	 */
-	protected <T> Response<T> doPost(WebClient webClient, Request<T> request) {
-		webClient = webClient.path(inquirePath(request));
-		webClient = RequestUtil.resolveAndSetQueryPart(request, webClient);
-
+	protected <T> Response<T> doPost(Request<T> request) {
 		String payload = RequestUtil.getRequestPayload(request);
+		URI uri = buidURI(request);
 
+		log.info(uri);
+		
 		Timer timer = Timer.tic();
-		javax.ws.rs.core.Response cxfResponse = webClient.post(payload);
+		TransportResult result = getApiClientTransportFactory().newTransport(api).doPost(uri, payload);
 		timer.toc();
 
-		log.trace(cxfResponse.getStatus() + " " + webClient.getCurrentURI() + " took " + timer.getDifference() + "ms");
+		log.trace(result.getStatusCode() + " " + uri.toString() + " took " + timer.getDifference() + "ms");
 
-		Response<T> response = toResponse(timer, cxfResponse, request);
+		Response<T> response = toResponse(timer, result, request);
 
 		return response;
 	}
@@ -160,19 +157,19 @@ public abstract class AbstractApitraryClient {
 	 *            a T object.
 	 * @return a {@link com.apitrary.api.response.Response} object.
 	 */
-	protected <T> Response<T> doPut(WebClient webClient, Request<T> request) {
-		webClient = webClient.path(inquirePath(request));
-		webClient = RequestUtil.resolveAndSetQueryPart(request, webClient);
-
+	protected <T> Response<T> doPut(Request<T> request) {
 		String payload = RequestUtil.getRequestPayload(request);
-
+		URI uri = buidURI(request);
+		
+		log.info(uri);
+		
 		Timer timer = Timer.tic();
-		javax.ws.rs.core.Response cxfResponse = webClient.put(payload);
+		TransportResult result = getApiClientTransportFactory().newTransport(api).doPut(uri, payload);
 		timer.toc();
 
-		log.trace(cxfResponse.getStatus() + " " + webClient.getCurrentURI() + " took " + timer.getDifference() + "ms");
+		log.trace(result.getStatusCode() + " " + uri.toString() + " took " + timer.getDifference() + "ms");
 
-		Response<T> response = toResponse(timer, cxfResponse, request);
+		Response<T> response = toResponse(timer, result, request);
 
 		return response;
 	}
@@ -190,32 +187,54 @@ public abstract class AbstractApitraryClient {
 	 *            a T object.
 	 * @return a {@link com.apitrary.api.response.Response} object.
 	 */
-	protected <T> Response<T> doDelete(WebClient webClient, Request<T> request) {
-		webClient = webClient.path(inquirePath(request));
-		webClient = RequestUtil.resolveAndSetQueryPart(request, webClient);
-
+	protected <T> Response<T> doDelete(Request<T> request) {
+		URI uri = buidURI(request);
+		
+		log.info(uri);
+		
 		Timer timer = Timer.tic();
-		javax.ws.rs.core.Response cxfResponse = webClient.delete();
+		TransportResult result = getApiClientTransportFactory().newTransport(api).doDelete(uri);
 		timer.toc();
 
-		log.trace(cxfResponse.getStatus() + " " + webClient.getCurrentURI() + " took " + timer.getDifference() + "ms");
+		log.trace(result.getStatusCode() + " " + uri.toString() + " took " + timer.getDifference() + "ms");
 
-		Response<T> response = toResponse(timer, cxfResponse, request);
+		Response<T> response = toResponse(timer, result, request);
 
 		return response;
 	}
+	
+	protected <T> URI buidURI(Request<T> request){
+		URL url = null;
+		try {
+			url = api.getURL();
+		} catch (MalformedURLException e) {
+			throw new ClientException(e);
+		}
+		String path = inquirePath(request);
+		Map<String,String> qry = RequestUtil.resolveQueryPart(request);
+		
+		Set<String> keys = qry.keySet();
+		String query = "";
+		if(!keys.isEmpty()){
+			for(String key : keys){
+				query += (!query.isEmpty()?"&":"?")+key+"="+qry.get(key);
+			}
+		}
+		
+		String fqrn = url.toString() + path + query;
+		try {
+			return new URI(fqrn);
+		} catch (URISyntaxException e) {
+			throw new ClientException(e);
+		}
+	}
 
-	private <T> Response<T> toResponse(Timer timer, javax.ws.rs.core.Response cxfResponse, Request<T> request) {
-		InputStream inputStream = (InputStream) cxfResponse.getEntity();
+	private <T> Response<T> toResponse(Timer timer, TransportResult transportResult, Request<T> request) {
 		Response<T> response = null;
-
-		HttpStatus status = HttpStatus.getStatus(cxfResponse.getStatus());
-
-		response = deserialize(inputStream, request);
-
+		HttpStatus status = HttpStatus.getStatus(transportResult.getStatusCode());
+		response = deserialize(transportResult.getResult(), request);
 		response.setStatusCode(status.getCode());
 		response.setResponseTime(timer.getDifference());
-
 		return response;
 	}
 
@@ -236,17 +255,6 @@ public abstract class AbstractApitraryClient {
 
 	/**
 	 * <p>
-	 * inquireVHost.
-	 * </p>
-	 * 
-	 * @param <T>
-	 *            a T object.
-	 * @return a {@link java.lang.String} object.
-	 */
-	protected abstract <T> String inquireVHost();
-
-	/**
-	 * <p>
 	 * deserialize.
 	 * </p>
 	 * 
@@ -259,28 +267,4 @@ public abstract class AbstractApitraryClient {
 	 * @return a {@link com.apitrary.api.response.Response} object.
 	 */
 	protected abstract <T> Response<T> deserialize(String response, Request<T> request);
-
-	/**
-	 * <p>
-	 * deserialize.
-	 * </p>
-	 * 
-	 * @param inputStream
-	 *            a {@link java.io.InputStream} object.
-	 * @param request
-	 *            a {@link com.apitrary.api.request.Request} object.
-	 * @param <T>
-	 *            a T object.
-	 * @return a {@link com.apitrary.api.response.Response} object.
-	 */
-	protected abstract <T> Response<T> deserialize(InputStream inputStream, Request<T> request);
-
-	/**
-	 * <p>
-	 * instantiateWebClient.
-	 * </p>
-	 * 
-	 * @return a {@link org.apache.cxf.jaxrs.client.WebClient} object.
-	 */
-	protected abstract WebClient instantiateWebClient();
 }

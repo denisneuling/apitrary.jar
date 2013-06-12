@@ -18,6 +18,7 @@
 		<module>apitrary-api</module>
 		<module>apitrary-api-client</module>
 		<module>apitrary-orm</module>
+		<module>apitrary-transport</module>
 	</modules>
 
 	<scm>

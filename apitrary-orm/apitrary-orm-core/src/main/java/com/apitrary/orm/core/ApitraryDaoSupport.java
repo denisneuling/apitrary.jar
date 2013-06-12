@@ -341,7 +341,7 @@ public class ApitraryDaoSupport {
 			// throw new
 			// CommunicationErrorException(HttpStatus.Internal_Server_Error);
 			// }
-			throw new CommunicationErrorException(HttpStatus.getStatus(response.getStatusCode()));
+			throw new CommunicationErrorException(HttpStatus.getStatus(response.getStatusCode()), response.getResult());
 		}
 	}
 
