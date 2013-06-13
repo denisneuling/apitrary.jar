@@ -1,2 +1,3 @@
 com.apitrary.orm.codec.base64
+com.apitrary.orm.codec.date
 com.apitrary.orm.codec.image

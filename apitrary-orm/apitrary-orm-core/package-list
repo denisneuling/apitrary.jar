@@ -9,6 +9,7 @@ com.apitrary.orm.core.internal.proxy
 com.apitrary.orm.core.json.filter
 com.apitrary.orm.core.marshalling
 com.apitrary.orm.core.marshalling.api
+com.apitrary.orm.core.query
 com.apitrary.orm.core.unmarshalling
 com.apitrary.orm.core.unmarshalling.api
 com.apitrary.orm.core.util

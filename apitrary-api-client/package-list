@@ -3,3 +3,4 @@ com.apitrary.api.client.common
 com.apitrary.api.client.exception
 com.apitrary.api.client.support
 com.apitrary.api.client.util
+com.apitrary.api.transport
