@@ -25,14 +25,14 @@ The latest apitrary artifacts are published to maven central. Bringing apitrary 
     <dependency>
       <groupId>com.apitrary</groupId>
       <artifactId>apitrary-api-client</artifactId>
-      <version>0.1.1-SNAPSHOT</version>
+      <version>1.0.0</version>
     </dependency>
 
     <!-- it is necessary that you define the way you want to talk to apitrary! -->
     <dependency>
       <groupId>com.apitrary</groupId>
       <artifactId>apitrary-transport-httpclient</artifactId>
-      <version>0.1.1-SNAPSHOT</version>
+      <version>1.0.0</version>
     </dependency>
   </dependencies>
 ```
