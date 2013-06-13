@@ -3,7 +3,7 @@
   <parent>
     <groupId>com.apitrary</groupId>
     <artifactId>apitrary-transport</artifactId>
-    <version>0.1.1-SNAPSHOT</version>
+    <version>1.0.0</version>
   </parent>
   <artifactId>apitrary-transport-javanet</artifactId>
   <name>${project.artifactId}</name>
