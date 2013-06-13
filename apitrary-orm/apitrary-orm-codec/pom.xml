@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.apitrary</groupId>
 		<artifactId>apitrary-orm</artifactId>
-		<version>1.0.0</version>
+		<version>1.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>apitrary-orm-codec</artifactId>
 	<name>${project.artifactId}</name>
@@ -47,7 +47,7 @@
 		<dependency>
 			<groupId>com.apitrary</groupId>
 			<artifactId>apitrary-orm-core</artifactId>
-			<version>1.0.0</version>
+			<version>1.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
