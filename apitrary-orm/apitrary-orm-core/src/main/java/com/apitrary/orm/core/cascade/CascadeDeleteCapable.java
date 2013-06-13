@@ -67,12 +67,17 @@ public class CascadeDeleteCapable {
 				Cascade[] cascades = ClassUtil.getFieldAnnotationValue("cascade", field, Reference.class, Cascade[].class);
 				if (Arrays.asList(cascades).contains(Cascade.DELETE)) {
 					Object referencedEntity = ClassUtil.getValueOfField(field, entity);
-					try {
-						apitraryDaoSupport.resolveApitraryEntityId(referencedEntity);
-					} catch (ApitraryOrmIdException aoie) {
-						log.trace("Referenced entity cannot be null. Skipping.");
+					if(referencedEntity != null){
+						try {
+							apitraryDaoSupport.resolveApitraryEntityId(referencedEntity);
+							apitraryDaoSupport.delete(referencedEntity);
+						} catch (ApitraryOrmIdException aoie) {
+							/*
+							 * TODO find better way for exception without breaking th cascade flow
+							 */
+							log.warn(aoie);
+						}
 					}
-					apitraryDaoSupport.delete(referencedEntity);
 				}
 			}
 		}

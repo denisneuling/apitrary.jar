@@ -17,6 +17,8 @@ package com.apitrary.api.response;
 
 import java.io.Serializable;
 
+import com.apitrary.api.annotation.Normalized;
+
 /**
  * <p>
  * GetResponse class.
@@ -25,6 +27,7 @@ import java.io.Serializable;
  * @author Denis Neuling (denisneuling@gmail.com)
  *
  */
+@Normalized
 public class GetResponse extends Response<GetResponse> implements Serializable {
 	private static final long serialVersionUID = 7314685154749531515L;
 

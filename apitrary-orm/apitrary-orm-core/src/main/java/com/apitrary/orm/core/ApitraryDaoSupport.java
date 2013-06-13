@@ -231,7 +231,7 @@ public class ApitraryDaoSupport {
 			return null;
 		}
 
-		log.debug("Searching " + entity + " " + id);
+		log.debug("Searching " + entity.getName() + " " + id);
 
 		GetRequest request = new GetRequest();
 		request.setEntity(resolveApitraryEntity(entity));
@@ -269,7 +269,7 @@ public class ApitraryDaoSupport {
 		if (entity == null) {
 			throw new ApitraryOrmException("Cannot access null entity");
 		}
-		log.debug("Searching " + entity + " " + riakQuery);
+		log.debug("Searching " + entity.getName() + " " + riakQuery);
 
 		QueriedGetRequest request = new QueriedGetRequest();
 		request.setEntity(resolveApitraryEntity(entity));
@@ -297,7 +297,7 @@ public class ApitraryDaoSupport {
 		if (entity == null) {
 			throw new ApitraryOrmException("Cannot access null entity");
 		}
-		log.debug("Searching " + entity + " " + query);
+		log.debug("Searching " + entity.getName() + " " + query);
 
 		QueriedGetRequest request = new QueriedGetRequest();
 		request.setEntity(resolveApitraryEntity(entity));
@@ -324,7 +324,7 @@ public class ApitraryDaoSupport {
 			throw new ApitraryOrmException("Cannot access null entity");
 		}
 
-		log.debug("Loading all " + entity);
+		log.debug("Loading all " + entity.getName());
 
 		QueriedGetRequest request = new QueriedGetRequest();
 		request.setEntity(resolveApitraryEntity(entity));

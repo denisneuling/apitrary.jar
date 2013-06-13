@@ -60,25 +60,6 @@ public class TypeUtil {
 
 	/**
 	 * <p>
-	 * printGettersSetters.
-	 * </p>
-	 *
-	 * @param aClass
-	 *            a {@link java.lang.Class} object.
-	 */
-	public static void printGettersSetters(Class<?> aClass) {
-		Method[] methods = aClass.getMethods();
-
-		for (Method method : methods) {
-			if (isGetter(method))
-				System.out.println("getter: " + method);
-			if (isSetter(method))
-				System.out.println("setter: " + method);
-		}
-	}
-
-	/**
-	 * <p>
 	 * isGetter.
 	 * </p>
 	 *

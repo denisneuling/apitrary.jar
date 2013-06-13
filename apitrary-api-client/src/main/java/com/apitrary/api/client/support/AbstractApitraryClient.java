@@ -105,8 +105,6 @@ public abstract class AbstractApitraryClient {
 	protected <T> Response<T> doGet(Request<T> request) {
 		URI uri = buidURI(request);
 		
-		log.info(uri);
-		
 		Timer timer = Timer.tic();
 		TransportResult result = getApiClientTransportFactory().newTransport(api).doGet(uri);
 		timer.toc();
@@ -133,8 +131,6 @@ public abstract class AbstractApitraryClient {
 		String payload = RequestUtil.getRequestPayload(request);
 		URI uri = buidURI(request);
 
-		log.info(uri);
-		
 		Timer timer = Timer.tic();
 		TransportResult result = getApiClientTransportFactory().newTransport(api).doPost(uri, payload);
 		timer.toc();
@@ -161,8 +157,6 @@ public abstract class AbstractApitraryClient {
 		String payload = RequestUtil.getRequestPayload(request);
 		URI uri = buidURI(request);
 		
-		log.info(uri);
-		
 		Timer timer = Timer.tic();
 		TransportResult result = getApiClientTransportFactory().newTransport(api).doPut(uri, payload);
 		timer.toc();
@@ -187,8 +181,6 @@ public abstract class AbstractApitraryClient {
 	 */
 	protected <T> Response<T> doDelete(Request<T> request) {
 		URI uri = buidURI(request);
-		
-		log.info(uri);
 		
 		Timer timer = Timer.tic();
 		TransportResult result = getApiClientTransportFactory().newTransport(api).doDelete(uri);

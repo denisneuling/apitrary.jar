@@ -21,6 +21,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.log4j.Logger;
 
 import com.apitrary.api.exception.ApiTransportException;
 import com.apitrary.api.transport.TransportResult;
@@ -32,6 +33,7 @@ import com.apitrary.api.transport.TransportResult;
  *
  */
 public class CXFClientTransportResult implements TransportResult {
+	protected Logger log = Logger.getLogger(CXFClientTransportResult.class);
 
 	private Response cxfResponse;
 	private int statusCode;
@@ -44,7 +46,6 @@ public class CXFClientTransportResult implements TransportResult {
 	 */
 	public CXFClientTransportResult(Response cxfResponse) {
 		this.cxfResponse = cxfResponse;
-		this.statusCode = cxfResponse.getStatus();
 		
 		readIn();
 	}
@@ -52,11 +53,14 @@ public class CXFClientTransportResult implements TransportResult {
 	private void readIn() {
 		String content = null;
 		try {
+			this.statusCode = cxfResponse.getStatus();
+			
 			content = IOUtils.toString((InputStream)cxfResponse.getEntity());
 			this.result = content;
 		} catch (IOException e) {
 			throw new ApiTransportException(e);
 		}
+		log.debug(this);
 	}
 
 	/** {@inheritDoc} */
@@ -69,5 +73,10 @@ public class CXFClientTransportResult implements TransportResult {
 	@Override
 	public String getResult() {
 		return result;
+	}
+	
+	@Override
+	public String toString() {
+		return statusCode + " " + (result.length()<=300?result:result.substring(0, 300)+"...");
 	}
 }

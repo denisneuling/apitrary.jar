@@ -24,29 +24,38 @@ import org.apache.cxf.configuration.jsse.TLSClientParameters;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.apache.cxf.transport.http.HTTPConduit;
 import org.apache.cxf.transports.http.configuration.HTTPClientPolicy;
+import org.apache.log4j.Logger;
 
 import com.apitrary.api.ApitraryApi;
 import com.apitrary.api.transport.Transport;
 import com.apitrary.api.transport.TransportResult;
 
 /**
- * <p>CXFClientTransport class.</p>
- *
+ * <p>
+ * CXFClientTransport class.
+ * </p>
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
 public class CXFClientTransport extends Transport {
+	protected Logger log = Logger.getLogger(getClass());
 
 	/**
-	 * <p>Constructor for CXFClientTransport.</p>
+	 * <p>
+	 * Constructor for CXFClientTransport.
+	 * </p>
 	 */
 	public CXFClientTransport() {
 	}
 
 	/**
-	 * <p>Constructor for CXFClientTransport.</p>
-	 *
-	 * @param apitraryApi a {@link com.apitrary.api.ApitraryApi} object.
+	 * <p>
+	 * Constructor for CXFClientTransport.
+	 * </p>
+	 * 
+	 * @param apitraryApi
+	 *            a {@link com.apitrary.api.ApitraryApi} object.
 	 */
 	public CXFClientTransport(ApitraryApi apitraryApi) {
 		super(apitraryApi);
@@ -65,9 +74,12 @@ public class CXFClientTransport extends Transport {
 	protected static final int DEFAULTRECEIVETIMEOUT = 60000;
 
 	/**
-	 * <p>instantiateWebClient.</p>
-	 *
-	 * @param uri a {@link java.net.URI} object.
+	 * <p>
+	 * instantiateWebClient.
+	 * </p>
+	 * 
+	 * @param uri
+	 *            a {@link java.net.URI} object.
 	 * @return a {@link org.apache.cxf.jaxrs.client.WebClient} object.
 	 */
 	protected WebClient instantiateWebClient(URI uri) {
@@ -97,8 +109,9 @@ public class CXFClientTransport extends Transport {
 	@Override
 	public TransportResult doGet(URI uri) {
 		WebClient webClient = instantiateWebClient(uri);
-		webClient = webClient.path(uri.getPath());
 		webClient = webClient.replaceQuery(uri.getQuery());
+
+		log.debug("GET " + webClient.getCurrentURI());
 
 		Response cxfResponse = webClient.get();
 
@@ -109,8 +122,9 @@ public class CXFClientTransport extends Transport {
 	@Override
 	public TransportResult doPost(URI uri, String payload) {
 		WebClient webClient = instantiateWebClient(uri);
-		webClient = webClient.path(uri.getPath());
 		webClient = webClient.replaceQuery(uri.getQuery());
+
+		log.debug("POST " + webClient.getCurrentURI() + " application/json: " + payload);
 
 		Response cxfResponse = webClient.post(payload);
 
@@ -121,8 +135,9 @@ public class CXFClientTransport extends Transport {
 	@Override
 	public TransportResult doPut(URI uri, String payload) {
 		WebClient webClient = instantiateWebClient(uri);
-		webClient = webClient.path(uri.getPath());
 		webClient = webClient.replaceQuery(uri.getQuery());
+
+		log.debug("PUT " + webClient.getCurrentURI() + " application/json: " + payload);
 
 		Response cxfResponse = webClient.put(payload);
 
@@ -133,8 +148,9 @@ public class CXFClientTransport extends Transport {
 	@Override
 	public TransportResult doDelete(URI uri) {
 		WebClient webClient = instantiateWebClient(uri);
-		webClient = webClient.path(uri.getPath());
 		webClient = webClient.replaceQuery(uri.getQuery());
+
+		log.debug("DELETE " + webClient.getCurrentURI());
 
 		Response cxfResponse = webClient.delete();
 

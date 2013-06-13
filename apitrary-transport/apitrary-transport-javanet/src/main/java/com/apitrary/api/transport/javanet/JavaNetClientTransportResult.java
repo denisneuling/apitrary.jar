@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.log4j.Logger;
 
 import com.apitrary.api.exception.ApiTransportException;
 import com.apitrary.api.transport.TransportResult;
@@ -30,6 +31,7 @@ import com.apitrary.api.transport.TransportResult;
  *
  */
 public class JavaNetClientTransportResult implements TransportResult {
+	protected Logger log = Logger.getLogger(getClass());
 
 	private int statusCode = -1;
 	private HttpURLConnection httpConnection;
@@ -49,25 +51,30 @@ public class JavaNetClientTransportResult implements TransportResult {
 	private void readIn(){
 		String content = null;
 		try {
+			this.statusCode = httpConnection.getResponseCode();
+			
 			content = IOUtils.toString(httpConnection.getInputStream());
 			this.result = content;
 		} catch (IOException e) {
-			throw new ApiTransportException(e);
+			if(statusCode == 500){
+				try {
+					content = IOUtils.toString(httpConnection.getErrorStream());
+				} catch (IOException e1) {
+					throw new ApiTransportException(e1);
+				}
+				this.result = content;
+			}else{
+				throw new ApiTransportException(e);
+			}
 		} finally {
 			httpConnection.disconnect();
 		}
+		log.debug(this);
 	}
 
 	/** {@inheritDoc} */
 	@Override
 	public int getStatusCode() {
-		if (statusCode < 0) {
-			try {
-				statusCode = httpConnection.getResponseCode();
-			} catch (IOException e) {
-				throw new ApiTransportException(e);
-			}
-		}
 		return statusCode;
 	}
 
@@ -75,5 +82,10 @@ public class JavaNetClientTransportResult implements TransportResult {
 	@Override
 	public String getResult() {
 		return result;
+	}
+
+	@Override
+	public String toString() {
+		return statusCode + " " + (result.length()<=300?result:result.substring(0, 300)+"...");
 	}
 }

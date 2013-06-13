@@ -304,15 +304,6 @@ public abstract class JsonResponseConsumer {
 
 			jsonGenerator.flush();
 			jsonGenerator.close();
-
-			/*
-			 * TODO decide upon logger usage
-			 */
-			// String lineSeparator = System.getProperty("line.separator");
-			// log.info((lineSeparator != null ? lineSeparator : "") +
-			// stringWriter.toString());
-
-			System.out.println(stringWriter.toString());
 		} catch (Throwable throwable) {
 			// hmm, somewhat accidentally crashed?
 		}

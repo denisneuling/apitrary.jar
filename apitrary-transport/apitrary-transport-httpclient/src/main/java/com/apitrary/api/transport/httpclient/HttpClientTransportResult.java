@@ -19,6 +19,7 @@ import java.io.IOException;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
+import org.apache.log4j.Logger;
 
 import com.apitrary.api.exception.ApiTransportException;
 import com.apitrary.api.transport.TransportResult;
@@ -30,6 +31,7 @@ import com.apitrary.api.transport.TransportResult;
  *
  */
 public class HttpClientTransportResult implements TransportResult{
+	protected Logger log = Logger.getLogger(HttpClientTransportResult.class);
 
 	private HttpResponse response;
 	
@@ -43,27 +45,32 @@ public class HttpClientTransportResult implements TransportResult{
 	 */
 	public HttpClientTransportResult(HttpResponse response){
 		this.response = response;
-		this.statusCode = response.getStatusLine().getStatusCode();
 		
 		readIn();
 	}
 	
 	private void readIn(){
 		String content = null;
+		this.statusCode = response.getStatusLine().getStatusCode();
 		try {
-			content = IOUtils.toString(response.getEntity().getContent());
-			this.result = content;
+			if(this.statusCode!=204){
+				content = IOUtils.toString(response.getEntity().getContent());
+				this.result = content;
+			}
 		} catch (IOException e) {
 			throw new ApiTransportException(e);
 		} finally {
 			try {
-				response.getEntity().getContent().close();
+				if(this.statusCode!=204){
+					response.getEntity().getContent().close();
+				}
 			} catch (IllegalStateException e) {
 				// fuck it
 			} catch (IOException e) {
 				// fuck it
 			}
 		}
+		log.debug(this);
 	}
 
 	/**
@@ -79,5 +86,10 @@ public class HttpClientTransportResult implements TransportResult{
 	@Override
 	public String getResult() {
 		return result;
+	}
+	
+	@Override
+	public String toString() {
+		return statusCode + (result!=null? " " + (result.length()<=300?result:result.substring(0, 300)+"..."):"");
 	}
 }

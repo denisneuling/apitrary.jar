@@ -22,28 +22,39 @@ import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 
+import org.apache.log4j.Logger;
+
 import com.apitrary.api.ApitraryApi;
 import com.apitrary.api.exception.ApiTransportException;
 import com.apitrary.api.transport.Transport;
 import com.apitrary.api.transport.TransportResult;
 
 /**
- * <p>JavaNetClientTransport class.</p>
- *
+ * <p>
+ * JavaNetClientTransport class.
+ * </p>
+ * 
  * @author Denis Neuling (denisneuling@gmail.com)
- *
+ * 
  */
 public class JavaNetClientTransport extends Transport {
+	protected Logger log = Logger.getLogger(getClass());
 
 	/**
-	 * <p>Constructor for JavaNetClientTransport.</p>
+	 * <p>
+	 * Constructor for JavaNetClientTransport.
+	 * </p>
 	 */
-	public JavaNetClientTransport(){
+	public JavaNetClientTransport() {
 	}
+
 	/**
-	 * <p>Constructor for JavaNetClientTransport.</p>
-	 *
-	 * @param apitraryApi a {@link com.apitrary.api.ApitraryApi} object.
+	 * <p>
+	 * Constructor for JavaNetClientTransport.
+	 * </p>
+	 * 
+	 * @param apitraryApi
+	 *            a {@link com.apitrary.api.ApitraryApi} object.
 	 */
 	public JavaNetClientTransport(ApitraryApi apitraryApi) {
 		super(apitraryApi);
@@ -60,7 +71,7 @@ public class JavaNetClientTransport extends Transport {
 	public TransportResult doPost(URI uri, String payload) {
 		return doit("POST", uri, payload);
 	}
-	
+
 	/** {@inheritDoc} */
 	@Override
 	public TransportResult doPut(URI uri, String payload) {
@@ -72,13 +83,18 @@ public class JavaNetClientTransport extends Transport {
 	public TransportResult doDelete(URI uri) {
 		return doit("DELETE", uri, null);
 	}
-	
+
 	/**
-	 * <p>doit.</p>
-	 *
-	 * @param method a {@link java.lang.String} object.
-	 * @param uri a {@link java.net.URI} object.
-	 * @param payload a {@link java.lang.String} object.
+	 * <p>
+	 * doit.
+	 * </p>
+	 * 
+	 * @param method
+	 *            a {@link java.lang.String} object.
+	 * @param uri
+	 *            a {@link java.net.URI} object.
+	 * @param payload
+	 *            a {@link java.lang.String} object.
 	 * @return a {@link com.apitrary.api.transport.TransportResult} object.
 	 */
 	protected TransportResult doit(String method, URI uri, String payload){
@@ -91,15 +107,18 @@ public class JavaNetClientTransport extends Transport {
 				httpConnection = (HttpURLConnection) connection;
 
 				httpConnection.setRequestMethod(method);
-				httpConnection.setRequestProperty("Content-Language", "en-US");
+//				httpConnection.setRequestProperty("Content-Language", "en-US");
 
 				httpConnection.setRequestProperty(apiAuthHeaderKey, getApitraryApi().getApiKey());
+				httpConnection.setRequestProperty("Accept", contentType);
 				httpConnection.setRequestProperty("Content-Type", contentType);
 
 				httpConnection.setUseCaches(false);
 				httpConnection.setDoInput(true);
 				httpConnection.setDoOutput(payload!=null);
 
+				log.debug(method+" "+ httpConnection.getURL()+(payload!=null?"application/json: "+payload:""));
+				
 				if(payload!=null){
 					byte[] bytes = payload.getBytes();
 					httpConnection.setRequestProperty("Content-Length", "" + Integer.toString(bytes.length));
